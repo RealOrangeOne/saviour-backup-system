@@ -1,0 +1,4 @@
+Client Name: Matthew Wilson
+
+Software Idea: A Backup system that allows for seamless backup of removable media. 
+	It will also be able to run the backup as soon as the device is plugged in.
