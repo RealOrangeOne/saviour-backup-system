@@ -28,8 +28,6 @@ namespace Background_Worker_Testing
 
     class Program
     {
-        public static int count1 = 0;
-        public static int count2 = 0;
         static void Main(string[] args)
         {
             Console.WriteLine("Program Started.");
