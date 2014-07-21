@@ -16,7 +16,10 @@ namespace Saviour_Backup_System
         public mainWindow()
         {
             InitializeComponent();
-
+            ListViewItem item1 = new ListViewItem("Something");
+            item1.SubItems.Add("SubItem1a");
+            item1.SubItems.Add("SubItem1b");
+            listViewEx1.Items.AddRange(new ListViewItem[] { item1});
         }
     }
 }
