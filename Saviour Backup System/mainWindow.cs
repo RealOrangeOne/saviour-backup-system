@@ -13,6 +13,7 @@ namespace Saviour_Backup_System
 {
     public partial class mainWindow : Form
     {
+        public string selectedDevice;
         public mainWindow()
         {
             InitializeComponent();
@@ -35,13 +36,12 @@ namespace Saviour_Backup_System
             refreshDriveList();
         }
 
-        private void connectedDrivesList_Click(object sender, EventArgs e)
+        private void connectedDrivesList_Select(object sender, EventArgs e)
         {
-            string currentItem = connectedDrivesList.SelectedItems.ToString();
-
-            int index = connectedDrivesList.FindString(currentItem);
-
+            deviceTab.Visible = true;
+            ribbonControl1.RecalcLayout();
+            selectedDevice = connectedDrivesList.SelectedItems[0].Text;
+            MessageBox.Show(selectedDevice);
         }
-
     }
 }
