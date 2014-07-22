@@ -9,7 +9,7 @@ namespace Saviour_Backup_System
 {
     public class USBTools
     {
-        public DriveInfo[] getConnectedDrives()
+        public static DriveInfo[] getConnectedDrives()
         {
             List<DriveInfo> drivesList = new List<DriveInfo>();
             DriveInfo[] drives = DriveInfo.GetDrives();
@@ -17,12 +17,15 @@ namespace Saviour_Backup_System
                 try {
                     string driveName = drive.VolumeLabel;
                     string driveLetter = drive.Name;
-                } catch { // If there is a problem getting the drive data, then the program would crash!
-                    continue;
-                }
+                } catch { continue; }
                 drivesList.Add(drive);
             }
             return drivesList.ToArray(); 
+        }
+        public void safelyEjectDrive(string driveChar)
+        {
+            driveChar = driveChar.Remove(driveChar.Length - 1);
+            RemoveDriveTools.RemoveDrive(driveChar);
         }
     }
 }
