@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainWindow));
             this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
+            this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
+            this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
             this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar3 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem4 = new DevComponents.DotNetBar.ButtonItem();
@@ -38,8 +40,6 @@
             this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel5 = new DevComponents.DotNetBar.RibbonPanel();
-            this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
-            this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar6 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem7 = new DevComponents.DotNetBar.ButtonItem();
@@ -57,16 +57,14 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.connectedDrivesList = new DevComponents.DotNetBar.Controls.ListViewEx();
-            this.driveLabelColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.driveBackupHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sideBar = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.connectedDrivesList = new DevComponents.DotNetBar.Controls.ListViewEx();
             this.connectedDrivesListRefresh = new DevComponents.DotNetBar.ButtonX();
             this.connectedDevicesTab = new DevComponents.DotNetBar.TabItem(this.components);
             this.ribbonControl1.SuspendLayout();
-            this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel3.SuspendLayout();
+            this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sideBar)).BeginInit();
@@ -83,8 +81,8 @@
             this.ribbonControl1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl1.CaptionVisible = true;
             this.ribbonControl1.Controls.Add(this.ribbonPanel3);
-            this.ribbonControl1.Controls.Add(this.ribbonPanel2);
             this.ribbonControl1.Controls.Add(this.ribbonPanel5);
+            this.ribbonControl1.Controls.Add(this.ribbonPanel2);
             this.ribbonControl1.Controls.Add(this.ribbonPanel4);
             this.ribbonControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -119,6 +117,64 @@
             this.ribbonControl1.TabGroupHeight = 14;
             this.ribbonControl1.TabIndex = 0;
             this.ribbonControl1.Text = "Saviour Backup System";
+            // 
+            // ribbonPanel3
+            // 
+            this.ribbonPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel3.Controls.Add(this.ribbonBar7);
+            this.ribbonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ribbonPanel3.Location = new System.Drawing.Point(0, 53);
+            this.ribbonPanel3.Name = "ribbonPanel3";
+            this.ribbonPanel3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.ribbonPanel3.Size = new System.Drawing.Size(992, 108);
+            // 
+            // 
+            // 
+            this.ribbonPanel3.Style.Class = "";
+            this.ribbonPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel3.StyleMouseDown.Class = "";
+            this.ribbonPanel3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel3.StyleMouseOver.Class = "";
+            this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonPanel3.TabIndex = 5;
+            // 
+            // ribbonBar7
+            // 
+            this.ribbonBar7.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBar7.BackgroundMouseOverStyle.Class = "";
+            this.ribbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar7.BackgroundStyle.Class = "";
+            this.ribbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar7.ContainerControlProcessDialogKey = true;
+            this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBar7.Location = new System.Drawing.Point(3, 0);
+            this.ribbonBar7.Name = "ribbonBar7";
+            this.ribbonBar7.Size = new System.Drawing.Size(100, 105);
+            this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar7.TabIndex = 0;
+            this.ribbonBar7.Text = "Backup / Restore";
+            // 
+            // 
+            // 
+            this.ribbonBar7.TitleStyle.Class = "";
+            this.ribbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar7.TitleStyleMouseOver.Class = "";
+            this.ribbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // ribbonPanel2
             // 
@@ -269,64 +325,6 @@
             this.ribbonPanel5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel5.TabIndex = 6;
             this.ribbonPanel5.Visible = false;
-            // 
-            // ribbonPanel3
-            // 
-            this.ribbonPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonPanel3.Controls.Add(this.ribbonBar7);
-            this.ribbonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel3.Location = new System.Drawing.Point(0, 53);
-            this.ribbonPanel3.Name = "ribbonPanel3";
-            this.ribbonPanel3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel3.Size = new System.Drawing.Size(992, 108);
-            // 
-            // 
-            // 
-            this.ribbonPanel3.Style.Class = "";
-            this.ribbonPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel3.StyleMouseDown.Class = "";
-            this.ribbonPanel3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel3.StyleMouseOver.Class = "";
-            this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonPanel3.TabIndex = 5;
-            // 
-            // ribbonBar7
-            // 
-            this.ribbonBar7.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar7.BackgroundMouseOverStyle.Class = "";
-            this.ribbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar7.BackgroundStyle.Class = "";
-            this.ribbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar7.ContainerControlProcessDialogKey = true;
-            this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBar7.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBar7.Name = "ribbonBar7";
-            this.ribbonBar7.Size = new System.Drawing.Size(100, 105);
-            this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar7.TabIndex = 0;
-            this.ribbonBar7.Text = "Backup / Restore";
-            // 
-            // 
-            // 
-            this.ribbonBar7.TitleStyle.Class = "";
-            this.ribbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar7.TitleStyleMouseOver.Class = "";
-            this.ribbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // ribbonPanel4
             // 
@@ -490,6 +488,7 @@
             this.deviceTab.Name = "deviceTab";
             this.deviceTab.Panel = this.ribbonPanel3;
             this.deviceTab.Text = "Device";
+            this.deviceTab.Visible = false;
             // 
             // ruleTab
             // 
@@ -541,37 +540,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // connectedDrivesList
-            // 
-            this.connectedDrivesList.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
-            this.connectedDrivesList.AllowColumnReorder = true;
-            // 
-            // 
-            // 
-            this.connectedDrivesList.Border.Class = "ListViewBorder";
-            this.connectedDrivesList.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.connectedDrivesList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.driveLabelColumn,
-            this.driveBackupHeader});
-            this.connectedDrivesList.FullRowSelect = true;
-            this.connectedDrivesList.Location = new System.Drawing.Point(4, 0);
-            this.connectedDrivesList.Name = "connectedDrivesList";
-            this.connectedDrivesList.Size = new System.Drawing.Size(212, 290);
-            this.connectedDrivesList.TabIndex = 0;
-            this.connectedDrivesList.UseCompatibleStateImageBehavior = false;
-            this.connectedDrivesList.View = System.Windows.Forms.View.Details;
-            this.connectedDrivesList.Click += new System.EventHandler(this.connectedDrivesList_Click);
-            // 
-            // driveLabelColumn
-            // 
-            this.driveLabelColumn.Text = "Label";
-            this.driveLabelColumn.Width = 84;
-            // 
-            // driveBackupHeader
-            // 
-            this.driveBackupHeader.Text = "Backed up?";
-            this.driveBackupHeader.Width = 75;
-            // 
             // sideBar
             // 
             this.sideBar.CanReorderTabs = true;
@@ -580,7 +548,7 @@
             this.sideBar.Name = "sideBar";
             this.sideBar.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.sideBar.SelectedTabIndex = 0;
-            this.sideBar.Size = new System.Drawing.Size(220, 358);
+            this.sideBar.Size = new System.Drawing.Size(180, 358);
             this.sideBar.TabIndex = 2;
             this.sideBar.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
             this.sideBar.Tabs.Add(this.connectedDevicesTab);
@@ -589,13 +557,13 @@
             // 
             // tabControlPanel1
             // 
-            this.tabControlPanel1.Controls.Add(this.connectedDrivesListRefresh);
             this.tabControlPanel1.Controls.Add(this.connectedDrivesList);
+            this.tabControlPanel1.Controls.Add(this.connectedDrivesListRefresh);
             this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 27);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(220, 331);
+            this.tabControlPanel1.Size = new System.Drawing.Size(180, 331);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.SystemColors.Control;
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
@@ -605,13 +573,32 @@
             this.tabControlPanel1.TabItem = this.connectedDevicesTab;
             this.tabControlPanel1.ThemeAware = true;
             // 
+            // connectedDrivesList
+            // 
+            this.connectedDrivesList.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            // 
+            // 
+            // 
+            this.connectedDrivesList.Border.Class = "ListViewBorder";
+            this.connectedDrivesList.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.connectedDrivesList.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.connectedDrivesList.FullRowSelect = true;
+            this.connectedDrivesList.Location = new System.Drawing.Point(4, 4);
+            this.connectedDrivesList.Name = "connectedDrivesList";
+            this.connectedDrivesList.Size = new System.Drawing.Size(169, 286);
+            this.connectedDrivesList.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.connectedDrivesList.TabIndex = 2;
+            this.connectedDrivesList.UseCompatibleStateImageBehavior = false;
+            this.connectedDrivesList.View = System.Windows.Forms.View.Tile;
+            this.connectedDrivesList.ItemActivate += new System.EventHandler(this.connectedDrivesList_Select);
+            // 
             // connectedDrivesListRefresh
             // 
             this.connectedDrivesListRefresh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.connectedDrivesListRefresh.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.connectedDrivesListRefresh.Location = new System.Drawing.Point(4, 296);
             this.connectedDrivesListRefresh.Name = "connectedDrivesListRefresh";
-            this.connectedDrivesListRefresh.Size = new System.Drawing.Size(212, 31);
+            this.connectedDrivesListRefresh.Size = new System.Drawing.Size(189, 31);
             this.connectedDrivesListRefresh.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.connectedDrivesListRefresh.TabIndex = 1;
             this.connectedDrivesListRefresh.Text = "Refresh List";
@@ -638,8 +625,8 @@
             this.Text = "Saviour Backup System";
             this.ribbonControl1.ResumeLayout(false);
             this.ribbonControl1.PerformLayout();
-            this.ribbonPanel2.ResumeLayout(false);
             this.ribbonPanel3.ResumeLayout(false);
+            this.ribbonPanel2.ResumeLayout(false);
             this.ribbonPanel4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -680,13 +667,11 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private DevComponents.DotNetBar.Controls.ListViewEx connectedDrivesList;
-        private System.Windows.Forms.ColumnHeader driveLabelColumn;
-        private System.Windows.Forms.ColumnHeader driveBackupHeader;
         private DevComponents.DotNetBar.TabControl sideBar;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel1;
         private DevComponents.DotNetBar.TabItem connectedDevicesTab;
         private DevComponents.DotNetBar.ButtonX connectedDrivesListRefresh;
+        private DevComponents.DotNetBar.Controls.ListViewEx connectedDrivesList;
 
     }
 }
