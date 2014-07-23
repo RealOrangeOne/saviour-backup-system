@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Timers;
+using System.Data.SqlClient;
 
 namespace Saviour_Backup_System
 {
@@ -18,7 +19,11 @@ namespace Saviour_Backup_System
         }
         private static void driveScanTick(object sender, ElapsedEventArgs e)
         {
-
+            DriveInfo[] drives = getConnectedDrives();
+            foreach (DriveInfo drive in drives)
+            {
+                //open database, check if record backup record exists. If so, then run backup procedure in seperate thread
+            }
         }
         public static DriveInfo[] getConnectedDrives()
         {
