@@ -30,19 +30,32 @@ namespace Saviour_Backup_System
             }
             catch (Exception err) { MessageBox.Show("An Error has occured: \n" + err.ToString()); }
         }
-        public static string queryDatabase(string sqlCode)
+        public static string executeSQLQuery(string sqlCode)
         {
+            SqlCeConnection conn = new SqlCeConnection("Data Source = " + databaseName);
+            conn.Open();
+            SqlCeCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlCode;
+            SqlCeDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+
+            }
             return "";
         }
 
-        public static void modifyDatabase(string sqlCode)
+        public static void executeSQL(string sqlCode)
         {
-
+            SqlCeConnection conn = new SqlCeConnection("Data Source = " + databaseName);
+            conn.Open();
+            SqlCeCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlCode;
+            cmd.ExecuteNonQuery();
         }
 
         public static void clearTable(string tableName)
         {
-            modifyDatabase("DELETE FROM " + tableName + ";");
+           executeSQL("DELETE FROM " + tableName + ";");
         }
     }
 }
