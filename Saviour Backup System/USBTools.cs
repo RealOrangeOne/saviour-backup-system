@@ -14,15 +14,23 @@ namespace Saviour_Backup_System
         public static void initDriveScan(){
             Timer scanTimer = new Timer();
             scanTimer.Elapsed += new ElapsedEventHandler(driveScanTick);
-            scanTimer.Interval = 5000;
+            scanTimer.Interval = 1000 * 7; //seconds to check for new drives
             scanTimer.Start();
         }
+        private static List<string> connectedDrives;
         private static void driveScanTick(object sender, ElapsedEventArgs e)
         {
+            List<string> drivesSnapshot = connectedDrives;
             DriveInfo[] drives = getConnectedDrives();
             foreach (DriveInfo drive in drives)
             {
-                //open database, check if record backup record exists. If so, then run backup procedure in seperate thread
+                connectedDrives.Add(drive.VolumeLabel);
+            }
+            if (connectedDrives.All(item => drivesSnapshot.Contains(item)) &&
+                drivesSnapshot.All(item => connectedDrives.Contains(item))) {
+                    return;
+            } else {
+                //check if record exists in database
             }
         }
         public static DriveInfo[] getConnectedDrives()
