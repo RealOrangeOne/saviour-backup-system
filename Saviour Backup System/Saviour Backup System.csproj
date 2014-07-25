@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="setup.cs" />
     <Compile Include="databaseTools.cs" />
     <Compile Include="ejectDrive.cs" />
     <Compile Include="splashScreen.cs">
