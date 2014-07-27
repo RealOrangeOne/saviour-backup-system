@@ -17,7 +17,7 @@ namespace Saviour_Backup_System
             scanTimer.Interval = 1000 * 7; //seconds to check for new drives
             scanTimer.Start();
         }
-        private static List<string> connectedDrives;
+        private static List<string> connectedDrives = null;
         private static void driveScanTick(object sender, ElapsedEventArgs e)
         {
             List<string> drivesSnapshot = connectedDrives;
@@ -46,10 +46,20 @@ namespace Saviour_Backup_System
             }
             return drivesList.ToArray(); 
         }
+
+
         public void safelyEjectDrive(string driveChar)
         {
             driveChar = driveChar.Remove(driveChar.Length - 1);
             RemoveDriveTools.RemoveDrive(driveChar);
+        }
+
+
+        public static void displayDriveDetails(string driveName)
+        {
+            DriveInfo selectedDrive;
+            foreach (DriveInfo drive in getConnectedDrives()){ if (drive.Name == driveName){ selectedDrive = drive;  break; } }
+            
         }
     }
 }
