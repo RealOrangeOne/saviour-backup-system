@@ -18,6 +18,7 @@ namespace Saviour_Backup_System
         {
             InitializeComponent();
             refreshDriveList();
+            setup.initProgram();
         }
         public void refreshDriveList()
         {
@@ -33,15 +34,18 @@ namespace Saviour_Backup_System
 
         private void connectedDrivesListRefresh_Click(object sender, EventArgs e)
         {
+            foreach (ListViewItem i in connectedDrivesList.SelectedItems){ i.Selected = false; } //Deselected all elements in the list first
             refreshDriveList();
         }
 
-        private void connectedDrivesList_Select(object sender, EventArgs e)
+        private void connectedDrivesList_Selection(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            deviceTab.Visible = true;
+            deviceTab.Visible = e.IsSelected;
             ribbonControl1.RecalcLayout();
+            if (!e.IsSelected) { backupRestoreTab.Select(); return; }
+            deviceTab.Select();
             selectedDevice = connectedDrivesList.SelectedItems[0].Text;
-            MessageBox.Show(selectedDevice);
+            USBTools.displayDriveDetails(selectedDevice.Substring(4));
         }
     }
 }
