@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainWindow));
-            this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
+            this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
+            this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
+            this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
             this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar3 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem4 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar2 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
-            this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar6 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem7 = new DevComponents.DotNetBar.ButtonItem();
@@ -60,67 +60,132 @@
             this.connectedDrivesList = new DevComponents.DotNetBar.Controls.ListViewEx();
             this.connectedDrivesListRefresh = new DevComponents.DotNetBar.ButtonX();
             this.connectedDevicesTab = new DevComponents.DotNetBar.TabItem(this.components);
-            this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.progressBarX1 = new DevComponents.DotNetBar.Controls.ProgressBarX();
-            this.driveIconBox = new System.Windows.Forms.PictureBox();
+            this.driveDetailsPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.driveTypeDisplay = new System.Windows.Forms.Label();
+            this.driveTypeLabel = new System.Windows.Forms.Label();
+            this.driveLetterDisplay = new System.Windows.Forms.Label();
+            this.driveSystemDisplay = new System.Windows.Forms.Label();
+            this.driveNameDisplay = new System.Windows.Forms.Label();
+            this.driveLetterLabel = new System.Windows.Forms.Label();
+            this.driveSystemLabel = new System.Windows.Forms.Label();
             this.driveNameLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.ribbonControl1.SuspendLayout();
-            this.ribbonPanel2.SuspendLayout();
+            this.driveIconBox = new System.Windows.Forms.PictureBox();
+            this.driveCapacityDisplay = new DevComponents.DotNetBar.Controls.ProgressBarX();
+            this.driveRefreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.formatDriveCapacityTimer = new System.Windows.Forms.Timer(this.components);
+            this.ribbonControl.SuspendLayout();
             this.ribbonPanel3.SuspendLayout();
+            this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sideBar)).BeginInit();
             this.sideBar.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
-            this.groupPanel1.SuspendLayout();
+            this.driveDetailsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.driveIconBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // ribbonControl1
+            // ribbonControl
             // 
             // 
             // 
             // 
-            this.ribbonControl1.BackgroundStyle.Class = "";
-            this.ribbonControl1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonControl1.CaptionVisible = true;
-            this.ribbonControl1.Controls.Add(this.ribbonPanel3);
-            this.ribbonControl1.Controls.Add(this.ribbonPanel2);
-            this.ribbonControl1.Controls.Add(this.ribbonPanel4);
-            this.ribbonControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ribbonControl1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.ribbonControl.BackgroundStyle.Class = "";
+            this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonControl.CaptionVisible = true;
+            this.ribbonControl.Controls.Add(this.ribbonPanel3);
+            this.ribbonControl.Controls.Add(this.ribbonPanel2);
+            this.ribbonControl.Controls.Add(this.ribbonPanel4);
+            this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.backupRestoreTab,
             this.deviceTab,
             this.settingsTab});
-            this.ribbonControl1.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
-            this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.ribbonControl1.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.ribbonControl.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
+            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl.Name = "ribbonControl";
+            this.ribbonControl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.ribbonControl.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItem1,
             this.qatCustomizeItem1});
-            this.ribbonControl1.Size = new System.Drawing.Size(992, 163);
-            this.ribbonControl1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonControl1.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
-            this.ribbonControl1.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
-            this.ribbonControl1.SystemText.QatAddItemText = "&Add to Quick Access Toolbar";
-            this.ribbonControl1.SystemText.QatCustomizeMenuLabel = "<b>Customize Quick Access Toolbar</b>";
-            this.ribbonControl1.SystemText.QatCustomizeText = "&Customize Quick Access Toolbar...";
-            this.ribbonControl1.SystemText.QatDialogAddButton = "&Add >>";
-            this.ribbonControl1.SystemText.QatDialogCancelButton = "Cancel";
-            this.ribbonControl1.SystemText.QatDialogCaption = "Customize Quick Access Toolbar";
-            this.ribbonControl1.SystemText.QatDialogCategoriesLabel = "&Choose commands from:";
-            this.ribbonControl1.SystemText.QatDialogOkButton = "OK";
-            this.ribbonControl1.SystemText.QatDialogPlacementCheckbox = "&Place Quick Access Toolbar below the Ribbon";
-            this.ribbonControl1.SystemText.QatDialogRemoveButton = "&Remove";
-            this.ribbonControl1.SystemText.QatPlaceAboveRibbonText = "&Place Quick Access Toolbar above the Ribbon";
-            this.ribbonControl1.SystemText.QatPlaceBelowRibbonText = "&Place Quick Access Toolbar below the Ribbon";
-            this.ribbonControl1.SystemText.QatRemoveItemText = "&Remove from Quick Access Toolbar";
-            this.ribbonControl1.TabGroupHeight = 14;
-            this.ribbonControl1.TabIndex = 0;
-            this.ribbonControl1.Text = "Saviour Backup System";
+            this.ribbonControl.Size = new System.Drawing.Size(992, 163);
+            this.ribbonControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonControl.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
+            this.ribbonControl.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
+            this.ribbonControl.SystemText.QatAddItemText = "&Add to Quick Access Toolbar";
+            this.ribbonControl.SystemText.QatCustomizeMenuLabel = "<b>Customize Quick Access Toolbar</b>";
+            this.ribbonControl.SystemText.QatCustomizeText = "&Customize Quick Access Toolbar...";
+            this.ribbonControl.SystemText.QatDialogAddButton = "&Add >>";
+            this.ribbonControl.SystemText.QatDialogCancelButton = "Cancel";
+            this.ribbonControl.SystemText.QatDialogCaption = "Customize Quick Access Toolbar";
+            this.ribbonControl.SystemText.QatDialogCategoriesLabel = "&Choose commands from:";
+            this.ribbonControl.SystemText.QatDialogOkButton = "OK";
+            this.ribbonControl.SystemText.QatDialogPlacementCheckbox = "&Place Quick Access Toolbar below the Ribbon";
+            this.ribbonControl.SystemText.QatDialogRemoveButton = "&Remove";
+            this.ribbonControl.SystemText.QatPlaceAboveRibbonText = "&Place Quick Access Toolbar above the Ribbon";
+            this.ribbonControl.SystemText.QatPlaceBelowRibbonText = "&Place Quick Access Toolbar below the Ribbon";
+            this.ribbonControl.SystemText.QatRemoveItemText = "&Remove from Quick Access Toolbar";
+            this.ribbonControl.TabGroupHeight = 14;
+            this.ribbonControl.TabIndex = 0;
+            this.ribbonControl.Text = "Saviour Backup System";
+            // 
+            // ribbonPanel3
+            // 
+            this.ribbonPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel3.Controls.Add(this.ribbonBar7);
+            this.ribbonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ribbonPanel3.Location = new System.Drawing.Point(0, 53);
+            this.ribbonPanel3.Name = "ribbonPanel3";
+            this.ribbonPanel3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.ribbonPanel3.Size = new System.Drawing.Size(992, 108);
+            // 
+            // 
+            // 
+            this.ribbonPanel3.Style.Class = "";
+            this.ribbonPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel3.StyleMouseDown.Class = "";
+            this.ribbonPanel3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel3.StyleMouseOver.Class = "";
+            this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonPanel3.TabIndex = 5;
+            // 
+            // ribbonBar7
+            // 
+            this.ribbonBar7.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBar7.BackgroundMouseOverStyle.Class = "";
+            this.ribbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar7.BackgroundStyle.Class = "";
+            this.ribbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar7.ContainerControlProcessDialogKey = true;
+            this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBar7.Location = new System.Drawing.Point(3, 0);
+            this.ribbonBar7.Name = "ribbonBar7";
+            this.ribbonBar7.Size = new System.Drawing.Size(100, 105);
+            this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar7.TabIndex = 0;
+            this.ribbonBar7.Text = "Backup / Restore";
+            // 
+            // 
+            // 
+            this.ribbonBar7.TitleStyle.Class = "";
+            this.ribbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar7.TitleStyleMouseOver.Class = "";
+            this.ribbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // ribbonPanel2
             // 
@@ -245,64 +310,6 @@
             this.buttonItem3.Name = "buttonItem3";
             this.buttonItem3.SubItemsExpandWidth = 14;
             this.buttonItem3.Text = "Add Backup Rule";
-            // 
-            // ribbonPanel3
-            // 
-            this.ribbonPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonPanel3.Controls.Add(this.ribbonBar7);
-            this.ribbonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel3.Location = new System.Drawing.Point(0, 53);
-            this.ribbonPanel3.Name = "ribbonPanel3";
-            this.ribbonPanel3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel3.Size = new System.Drawing.Size(992, 108);
-            // 
-            // 
-            // 
-            this.ribbonPanel3.Style.Class = "";
-            this.ribbonPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel3.StyleMouseDown.Class = "";
-            this.ribbonPanel3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel3.StyleMouseOver.Class = "";
-            this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonPanel3.TabIndex = 5;
-            // 
-            // ribbonBar7
-            // 
-            this.ribbonBar7.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar7.BackgroundMouseOverStyle.Class = "";
-            this.ribbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar7.BackgroundStyle.Class = "";
-            this.ribbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar7.ContainerControlProcessDialogKey = true;
-            this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBar7.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBar7.Name = "ribbonBar7";
-            this.ribbonBar7.Size = new System.Drawing.Size(100, 105);
-            this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar7.TabIndex = 0;
-            this.ribbonBar7.Text = "Backup / Restore";
-            // 
-            // 
-            // 
-            this.ribbonBar7.TitleStyle.Class = "";
-            this.ribbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar7.TitleStyleMouseOver.Class = "";
-            this.ribbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // ribbonPanel4
             // 
@@ -581,77 +588,134 @@
             this.connectedDevicesTab.Name = "connectedDevicesTab";
             this.connectedDevicesTab.Text = "Connected Drives";
             // 
-            // groupPanel1
+            // driveDetailsPanel
             // 
-            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.groupPanel1.Controls.Add(this.textBox1);
-            this.groupPanel1.Controls.Add(this.label1);
-            this.groupPanel1.Controls.Add(this.driveNameLabel);
-            this.groupPanel1.Controls.Add(this.driveIconBox);
-            this.groupPanel1.Controls.Add(this.progressBarX1);
-            this.groupPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupPanel1.Location = new System.Drawing.Point(186, 169);
-            this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(794, 199);
-            // 
-            // 
-            // 
-            this.groupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.groupPanel1.Style.BackColorGradientAngle = 90;
-            this.groupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderBottomWidth = 1;
-            this.groupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderLeftWidth = 1;
-            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderRightWidth = 1;
-            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderTopWidth = 1;
-            this.groupPanel1.Style.Class = "";
-            this.groupPanel1.Style.CornerDiameter = 4;
-            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            this.driveDetailsPanel.CanvasColor = System.Drawing.SystemColors.Control;
+            this.driveDetailsPanel.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.driveDetailsPanel.Controls.Add(this.driveTypeDisplay);
+            this.driveDetailsPanel.Controls.Add(this.driveTypeLabel);
+            this.driveDetailsPanel.Controls.Add(this.driveLetterDisplay);
+            this.driveDetailsPanel.Controls.Add(this.driveSystemDisplay);
+            this.driveDetailsPanel.Controls.Add(this.driveNameDisplay);
+            this.driveDetailsPanel.Controls.Add(this.driveLetterLabel);
+            this.driveDetailsPanel.Controls.Add(this.driveSystemLabel);
+            this.driveDetailsPanel.Controls.Add(this.driveNameLabel);
+            this.driveDetailsPanel.Controls.Add(this.driveIconBox);
+            this.driveDetailsPanel.Controls.Add(this.driveCapacityDisplay);
+            this.driveDetailsPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveDetailsPanel.Location = new System.Drawing.Point(186, 169);
+            this.driveDetailsPanel.Name = "driveDetailsPanel";
+            this.driveDetailsPanel.Size = new System.Drawing.Size(794, 199);
             // 
             // 
             // 
-            this.groupPanel1.StyleMouseDown.Class = "";
-            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.driveDetailsPanel.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.driveDetailsPanel.Style.BackColorGradientAngle = 90;
+            this.driveDetailsPanel.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.driveDetailsPanel.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.driveDetailsPanel.Style.BorderBottomWidth = 1;
+            this.driveDetailsPanel.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.driveDetailsPanel.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.driveDetailsPanel.Style.BorderLeftWidth = 1;
+            this.driveDetailsPanel.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.driveDetailsPanel.Style.BorderRightWidth = 1;
+            this.driveDetailsPanel.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.driveDetailsPanel.Style.BorderTopWidth = 1;
+            this.driveDetailsPanel.Style.Class = "";
+            this.driveDetailsPanel.Style.CornerDiameter = 4;
+            this.driveDetailsPanel.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.driveDetailsPanel.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.driveDetailsPanel.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.driveDetailsPanel.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
             // 
             // 
             // 
-            this.groupPanel1.StyleMouseOver.Class = "";
-            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel1.TabIndex = 3;
-            this.groupPanel1.Text = "Drive Details";
-            // 
-            // progressBarX1
-            // 
-            this.progressBarX1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.driveDetailsPanel.StyleMouseDown.Class = "";
+            this.driveDetailsPanel.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.progressBarX1.BackgroundStyle.Class = "";
-            this.progressBarX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.progressBarX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.progressBarX1.Location = new System.Drawing.Point(3, 148);
-            this.progressBarX1.Name = "progressBarX1";
-            this.progressBarX1.Size = new System.Drawing.Size(782, 23);
-            this.progressBarX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.progressBarX1.TabIndex = 0;
-            this.progressBarX1.Text = "Drive Capacity";
-            this.progressBarX1.TextVisible = true;
+            this.driveDetailsPanel.StyleMouseOver.Class = "";
+            this.driveDetailsPanel.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.driveDetailsPanel.TabIndex = 3;
+            this.driveDetailsPanel.Text = "Drive Details";
             // 
-            // driveIconBox
+            // driveTypeDisplay
             // 
-            this.driveIconBox.Location = new System.Drawing.Point(3, -1);
-            this.driveIconBox.Name = "driveIconBox";
-            this.driveIconBox.Size = new System.Drawing.Size(183, 143);
-            this.driveIconBox.TabIndex = 1;
-            this.driveIconBox.TabStop = false;
+            this.driveTypeDisplay.AutoSize = true;
+            this.driveTypeDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.driveTypeDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveTypeDisplay.Location = new System.Drawing.Point(480, 39);
+            this.driveTypeDisplay.Name = "driveTypeDisplay";
+            this.driveTypeDisplay.Size = new System.Drawing.Size(48, 17);
+            this.driveTypeDisplay.TabIndex = 7;
+            this.driveTypeDisplay.Text = "NONE";
+            // 
+            // driveTypeLabel
+            // 
+            this.driveTypeLabel.AutoSize = true;
+            this.driveTypeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.driveTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveTypeLabel.Location = new System.Drawing.Point(405, 39);
+            this.driveTypeLabel.Name = "driveTypeLabel";
+            this.driveTypeLabel.Size = new System.Drawing.Size(81, 17);
+            this.driveTypeLabel.TabIndex = 6;
+            this.driveTypeLabel.Text = "Drive Type:";
+            // 
+            // driveLetterDisplay
+            // 
+            this.driveLetterDisplay.AutoSize = true;
+            this.driveLetterDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.driveLetterDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveLetterDisplay.Location = new System.Drawing.Point(485, 5);
+            this.driveLetterDisplay.Name = "driveLetterDisplay";
+            this.driveLetterDisplay.Size = new System.Drawing.Size(48, 17);
+            this.driveLetterDisplay.TabIndex = 5;
+            this.driveLetterDisplay.Text = "NONE";
+            // 
+            // driveSystemDisplay
+            // 
+            this.driveSystemDisplay.AutoSize = true;
+            this.driveSystemDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.driveSystemDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveSystemDisplay.Location = new System.Drawing.Point(266, 39);
+            this.driveSystemDisplay.Name = "driveSystemDisplay";
+            this.driveSystemDisplay.Size = new System.Drawing.Size(48, 17);
+            this.driveSystemDisplay.TabIndex = 4;
+            this.driveSystemDisplay.Text = "NONE";
+            // 
+            // driveNameDisplay
+            // 
+            this.driveNameDisplay.AutoSize = true;
+            this.driveNameDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.driveNameDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveNameDisplay.Location = new System.Drawing.Point(229, 5);
+            this.driveNameDisplay.Name = "driveNameDisplay";
+            this.driveNameDisplay.Size = new System.Drawing.Size(48, 17);
+            this.driveNameDisplay.TabIndex = 4;
+            this.driveNameDisplay.Text = "NONE";
+            // 
+            // driveLetterLabel
+            // 
+            this.driveLetterLabel.AutoSize = true;
+            this.driveLetterLabel.BackColor = System.Drawing.Color.Transparent;
+            this.driveLetterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveLetterLabel.Location = new System.Drawing.Point(405, 5);
+            this.driveLetterLabel.Name = "driveLetterLabel";
+            this.driveLetterLabel.Size = new System.Drawing.Size(86, 17);
+            this.driveLetterLabel.TabIndex = 3;
+            this.driveLetterLabel.Text = "Drive Letter:";
+            // 
+            // driveSystemLabel
+            // 
+            this.driveSystemLabel.AutoSize = true;
+            this.driveSystemLabel.BackColor = System.Drawing.Color.Transparent;
+            this.driveSystemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveSystemLabel.Location = new System.Drawing.Point(188, 39);
+            this.driveSystemLabel.Name = "driveSystemLabel";
+            this.driveSystemLabel.Size = new System.Drawing.Size(84, 17);
+            this.driveSystemLabel.TabIndex = 2;
+            this.driveSystemLabel.Text = "File System:";
             // 
             // driveNameLabel
             // 
@@ -664,50 +728,76 @@
             this.driveNameLabel.TabIndex = 2;
             this.driveNameLabel.Text = "Label:";
             // 
-            // label1
+            // driveIconBox
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(405, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Drive Letter:";
+            this.driveIconBox.BackColor = System.Drawing.Color.Transparent;
+            this.driveIconBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.driveIconBox.Location = new System.Drawing.Point(3, -1);
+            this.driveIconBox.Name = "driveIconBox";
+            this.driveIconBox.Size = new System.Drawing.Size(183, 143);
+            this.driveIconBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.driveIconBox.TabIndex = 1;
+            this.driveIconBox.TabStop = false;
             // 
-            // textBox1
+            // driveCapacityDisplay
             // 
-            this.textBox1.Location = new System.Drawing.Point(258, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 24);
-            this.textBox1.TabIndex = 4;
+            this.driveCapacityDisplay.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            // 
+            // 
+            // 
+            this.driveCapacityDisplay.BackgroundStyle.Class = "";
+            this.driveCapacityDisplay.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.driveCapacityDisplay.ColorTable = DevComponents.DotNetBar.eProgressBarItemColor.Error;
+            this.driveCapacityDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driveCapacityDisplay.Location = new System.Drawing.Point(3, 148);
+            this.driveCapacityDisplay.Maximum = 10000;
+            this.driveCapacityDisplay.Name = "driveCapacityDisplay";
+            this.driveCapacityDisplay.Size = new System.Drawing.Size(782, 23);
+            this.driveCapacityDisplay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.driveCapacityDisplay.TabIndex = 0;
+            this.driveCapacityDisplay.TabStop = false;
+            this.driveCapacityDisplay.Text = "Drive Capacity";
+            this.driveCapacityDisplay.TextVisible = true;
+            // 
+            // driveRefreshTimer
+            // 
+            this.driveRefreshTimer.Enabled = true;
+            this.driveRefreshTimer.Interval = 800;
+            this.driveRefreshTimer.Tick += new System.EventHandler(this.driveRefreshTimer_Tick);
+            // 
+            // formatDriveCapacityTimer
+            // 
+            this.formatDriveCapacityTimer.Enabled = true;
+            this.formatDriveCapacityTimer.Interval = 300;
+            this.formatDriveCapacityTimer.Tick += new System.EventHandler(this.formatDriveCapacityTimer_Tick);
             // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(992, 546);
-            this.Controls.Add(this.groupPanel1);
+            this.Controls.Add(this.driveDetailsPanel);
             this.Controls.Add(this.sideBar);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.ribbonControl1);
+            this.Controls.Add(this.ribbonControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "mainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Saviour Backup System";
-            this.ribbonControl1.ResumeLayout(false);
-            this.ribbonControl1.PerformLayout();
-            this.ribbonPanel2.ResumeLayout(false);
+            this.ribbonControl.ResumeLayout(false);
+            this.ribbonControl.PerformLayout();
             this.ribbonPanel3.ResumeLayout(false);
+            this.ribbonPanel2.ResumeLayout(false);
             this.ribbonPanel4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sideBar)).EndInit();
             this.sideBar.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
-            this.groupPanel1.ResumeLayout(false);
-            this.groupPanel1.PerformLayout();
+            this.driveDetailsPanel.ResumeLayout(false);
+            this.driveDetailsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.driveIconBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -716,7 +806,7 @@
 
         #endregion
 
-        private DevComponents.DotNetBar.RibbonControl ribbonControl1;
+        private DevComponents.DotNetBar.RibbonControl ribbonControl;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanel2;
         private DevComponents.DotNetBar.RibbonTabItem backupRestoreTab;
         private DevComponents.DotNetBar.ButtonItem buttonItem1;
@@ -746,12 +836,19 @@
         private DevComponents.DotNetBar.TabItem connectedDevicesTab;
         private DevComponents.DotNetBar.ButtonX connectedDrivesListRefresh;
         private DevComponents.DotNetBar.Controls.ListViewEx connectedDrivesList;
-        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
-        private DevComponents.DotNetBar.Controls.ProgressBarX progressBarX1;
+        private DevComponents.DotNetBar.Controls.GroupPanel driveDetailsPanel;
+        private DevComponents.DotNetBar.Controls.ProgressBarX driveCapacityDisplay;
         private System.Windows.Forms.PictureBox driveIconBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label driveLetterLabel;
         private System.Windows.Forms.Label driveNameLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label driveNameDisplay;
+        private System.Windows.Forms.Label driveLetterDisplay;
+        private System.Windows.Forms.Label driveSystemDisplay;
+        private System.Windows.Forms.Label driveSystemLabel;
+        private System.Windows.Forms.Label driveTypeDisplay;
+        private System.Windows.Forms.Label driveTypeLabel;
+        private System.Windows.Forms.Timer driveRefreshTimer;
+        private System.Windows.Forms.Timer formatDriveCapacityTimer;
 
     }
 }
