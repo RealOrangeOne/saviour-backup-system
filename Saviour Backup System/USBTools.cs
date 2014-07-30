@@ -48,7 +48,7 @@ namespace Saviour_Backup_System
         }
 
 
-        public void safelyEjectDrive(string driveChar)
+        public static void safelyEjectDrive(string driveChar)
         {
             driveChar = driveChar.Remove(driveChar.Length - 1);
             RemoveDriveTools.RemoveDrive(driveChar);
@@ -58,8 +58,55 @@ namespace Saviour_Backup_System
         public static void displayDriveDetails(string driveName)
         {
             DriveInfo selectedDrive;
-            foreach (DriveInfo drive in getConnectedDrives()){ if (drive.Name == driveName){ selectedDrive = drive;  break; } }
-            
+            foreach (DriveInfo drive in getConnectedDrives()) { if (drive.Name == driveName) { selectedDrive = drive; break; } }
+        }
+
+
+        public static string getDriveType(DriveInfo selectedDrive)
+        {
+            string driveTypeDecoded = "Error decoding drive details!";
+            switch (selectedDrive.DriveType)
+            {
+                case DriveType.CDRom:
+                    driveTypeDecoded = "Optical Disk Drive";
+                    break;
+                case DriveType.Fixed:
+                    driveTypeDecoded = "Fixed Disk Drive";
+                    break;
+                case DriveType.Network:
+                    driveTypeDecoded = "Network Drive";
+                    break;
+                case DriveType.NoRootDirectory:
+                    driveTypeDecoded = "Drive Without Root Directory";
+                    break;
+                case DriveType.Ram:
+                    driveTypeDecoded = "RAM Drive";
+                    break;
+                case DriveType.Removable:
+                    driveTypeDecoded = "Removable Drive";
+                    break;
+                case DriveType.Unknown:
+                    driveTypeDecoded = "Unknown";
+                    break;
+            }
+            return driveTypeDecoded;
+        }
+
+
+        public static int countDrives()
+        {
+            int numberofDrives = 0;
+            foreach (DriveInfo drive in getConnectedDrives()) { numberofDrives++; }
+            return numberofDrives;
+        }
+
+
+        public static int spacePercentage(DriveInfo drive)
+        {
+            double capacity = (double)(drive.TotalSize / (1024 * 1024));
+            double free = (double)(drive.AvailableFreeSpace / (1024 * 1024));
+            double answer = (10000 - ((free / capacity) * 10000));
+            return (int)answer;
         }
     }
 }
