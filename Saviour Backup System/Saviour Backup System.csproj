@@ -86,6 +86,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="splashScreen.resx">
       <DependentUpon>splashScreen.cs</DependentUpon>
@@ -105,6 +106,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cd-black-red.ico" />
+    <None Include="Resources\USB Drive_256.png" />
+    <None Include="Resources\External Drive_256.png" />
+    <None Include="Resources\error-image.png" />
+    <None Include="Resources\CD Yellow_256.png" />
+    <None Include="Resources\cdIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
