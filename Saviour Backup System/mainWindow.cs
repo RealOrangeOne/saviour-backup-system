@@ -12,7 +12,7 @@ namespace Saviour_Backup_System
 {
     public partial class mainWindow : Form
     {
-        private DriveInfo selectedDrive = null;
+        private DriveInfo selectedDrive;
 
         public mainWindow()
         {
@@ -22,27 +22,25 @@ namespace Saviour_Backup_System
             clearDriveDetails();
             formatDriveCapacityTimer.Start();
 
-
             //Starts the timer for refreshing drive list
             driveRefreshTimer.Start();
         }
 
 
-        public void refreshDriveList(){
+        internal void refreshDriveList(){
             DriveInfo[] drives = USBTools.getConnectedDrives();
             if (connectedDrivesList.Items.Count == USBTools.countDrives()) { return; }
             connectedDrivesList.Items.Clear();
             bool deviceStillConnected = false;
             foreach (DriveInfo drive in drives){
-                try {
-                    ListViewItem driveItem = new ListViewItem(drive.Name + " " + drive.VolumeLabel);
-                    driveItem.SubItems.Add("X");
-                    connectedDrivesList.Items.Add(driveItem);
-                    if (drive.VolumeLabel == driveNameDisplay.Text){
-                        deviceStillConnected = true;
-                        driveItem.Selected = true;
-                    }
-                } catch { continue; }
+                ListViewItem driveItem = new ListViewItem(drive.Name + " " + tools.Trim(drive.VolumeLabel, 24));
+                driveItem.SubItems.Add("X");
+                connectedDrivesList.Items.Add(driveItem);
+                if (drive.VolumeLabel == driveNameDisplay.Text)
+                {
+                    deviceStillConnected = true;
+                    driveItem.Selected = true;
+                }
             }
             if (!deviceStillConnected) { clearDriveDetails(); }
             connectedDrivesList.Sort();
@@ -74,7 +72,7 @@ namespace Saviour_Backup_System
             foreach (DriveInfo drive in USBTools.getConnectedDrives()) {
                 if (drive.Name == driveName) { selectedDrive = drive; break; }
             }
-            driveNameDisplay.Text = tools.Trim(selectedDrive.VolumeLabel, 15);
+            driveNameDisplay.Text = tools.Trim(selectedDrive.VolumeLabel, 16);
             driveLetterDisplay.Text = selectedDrive.Name;
             driveSystemDisplay.Text = selectedDrive.DriveFormat;
             driveTypeDisplay.Text = USBTools.getDriveType(selectedDrive);
@@ -101,13 +99,14 @@ namespace Saviour_Backup_System
             while (driveCapacityPerc != driveCapacityDisplay.Value) {
                 if (driveCapacityPerc < driveCapacityDisplay.Value) { driveCapacityDisplay.Value -= 1; }
                 if (driveCapacityPerc > driveCapacityDisplay.Value) { driveCapacityDisplay.Value += 1; }
+                driveCapacityDisplay.Text = "Drive Capacity: " + (driveCapacityDisplay.Value / 100).ToString() + "%";
 
                 //adjust the colour of the progressbar depending on capacity of the drive
                 if (driveCapacityDisplay.Value <= 6800) { driveCapacityDisplay.ColorTable = DevComponents.DotNetBar.eProgressBarItemColor.Normal; }
                 else if (driveCapacityDisplay.Value > 6800 && driveCapacityDisplay.Value < 9000) { driveCapacityDisplay.ColorTable = DevComponents.DotNetBar.eProgressBarItemColor.Paused; }
                 else if (driveCapacityDisplay.Value >= 9000) { driveCapacityDisplay.ColorTable = DevComponents.DotNetBar.eProgressBarItemColor.Error; }
             }
-
+            
         }
 
 
