@@ -24,7 +24,7 @@ namespace Saviour_Backup_System
         }
 
 
-        public static void clearBackups(string tableName)
+        internal static void clearBackups(string tableName)
         {
            executeSQL("DELETE FROM Rules;");
         }

@@ -12,7 +12,7 @@ namespace Saviour_Backup_System
 {
     class setup
     {
-        public static void initProgram(){
+        internal static void initProgram(){
             string databaseName = databaseTools.databaseName;
             if (File.Exists(databaseName)) { return; } // If the program has been run before, then the database will exist, so use that to test it.
 

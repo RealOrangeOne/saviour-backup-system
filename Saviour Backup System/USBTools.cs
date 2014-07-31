@@ -9,9 +9,9 @@ using System.Data.SqlClient;
 
 namespace Saviour_Backup_System
 {
-    public class USBTools
+    class USBTools
     {
-        public static void initDriveScan(){
+        internal static void initDriveScan(){
             Timer scanTimer = new Timer();
             scanTimer.Elapsed += new ElapsedEventHandler(driveScanTick);
             scanTimer.Interval = 1000 * 7; //seconds to check for new drives
@@ -33,7 +33,7 @@ namespace Saviour_Backup_System
                 //check if record exists in database
             }
         }
-        public static DriveInfo[] getConnectedDrives()
+        internal static DriveInfo[] getConnectedDrives()
         {
             List<DriveInfo> drivesList = new List<DriveInfo>();
             DriveInfo[] drives = DriveInfo.GetDrives();
@@ -48,21 +48,21 @@ namespace Saviour_Backup_System
         }
 
 
-        public static void safelyEjectDrive(string driveChar)
+        internal static void safelyEjectDrive(string driveChar)
         {
             driveChar = driveChar.Remove(driveChar.Length - 1);
             RemoveDriveTools.RemoveDrive(driveChar);
         }
 
 
-        public static void displayDriveDetails(string driveName)
+        internal static void displayDriveDetails(string driveName)
         {
             DriveInfo selectedDrive;
             foreach (DriveInfo drive in getConnectedDrives()) { if (drive.Name == driveName) { selectedDrive = drive; break; } }
         }
 
 
-        public static string getDriveType(DriveInfo selectedDrive)
+        internal static string getDriveType(DriveInfo selectedDrive)
         {
             string driveTypeDecoded = "Error decoding drive details!";
             switch (selectedDrive.DriveType)
@@ -93,7 +93,7 @@ namespace Saviour_Backup_System
         }
 
 
-        public static int countDrives()
+        internal static int countDrives()
         {
             int numberofDrives = 0;
             foreach (DriveInfo drive in getConnectedDrives()) { numberofDrives++; }
@@ -101,7 +101,7 @@ namespace Saviour_Backup_System
         }
 
 
-        public static int spacePercentage(DriveInfo drive)
+        internal static int spacePercentage(DriveInfo drive)
         {
             double capacity = (double)(drive.TotalSize / (1024 * 1024));
             double free = (double)(drive.AvailableFreeSpace / (1024 * 1024));
