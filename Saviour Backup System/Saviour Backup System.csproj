@@ -106,6 +106,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cd-black-red.ico" />
+    <None Include="Resources\56229__pera__3beeps.wav" />
+    <None Include="Resources\Time Drive_256.png" />
+    <None Include="Resources\Logo.png" />
+    <None Include="Resources\hdd_down.png" />
+    <None Include="Resources\Cd-black-red-256.png" />
+    <None Include="Resources\Settings-flat-circle-256.png" />
+    <None Include="Resources\info_black-128.png" />
+    <None Include="Resources\exit.png" />
+    <None Include="Resources\237034-file_document_add_plus-512.png" />
     <None Include="Resources\USB Drive_256.png" />
     <None Include="Resources\External Drive_256.png" />
     <None Include="Resources\error-image.png" />
