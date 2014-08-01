@@ -17,9 +17,11 @@ namespace Saviour_Backup_System
         public mainWindow()
         {
             InitializeComponent();
-            //setup.initProgram();   ##Add in later!
-            refreshDriveList();
-            clearDriveDetails();
+            refreshDriveList(); 
+            connectedDrivesList.Items[0].Selected = true; //Selects the first item in the list of drives
+            displayDriveDetails(connectedDrivesList.SelectedItems[0].Text.Substring(0, 3)); //displays the info for the drive
+
+            //Starts the thread for displaying the capacity of a drive
             formatDriveCapacityTimer.Start();
 
             //Starts the timer for refreshing drive list
@@ -33,14 +35,17 @@ namespace Saviour_Backup_System
             connectedDrivesList.Items.Clear();
             bool deviceStillConnected = false;
             foreach (DriveInfo drive in drives){
-                ListViewItem driveItem = new ListViewItem(drive.Name + " " + tools.Trim(drive.VolumeLabel, 24));
-                driveItem.SubItems.Add("X");
-                connectedDrivesList.Items.Add(driveItem);
-                if (drive.VolumeLabel == driveNameDisplay.Text)
-                {
-                    deviceStillConnected = true;
-                    driveItem.Selected = true;
+                try {
+                    ListViewItem driveItem = new ListViewItem(drive.Name + " " + tools.Trim(drive.VolumeLabel, 24));
+                    driveItem.SubItems.Add("X");
+                    connectedDrivesList.Items.Add(driveItem);
+                    if (drive.VolumeLabel == driveNameDisplay.Text)
+                    {
+                        deviceStillConnected = true;
+                        driveItem.Selected = true;
+                    }
                 }
+                catch { continue; }
             }
             if (!deviceStillConnected) { clearDriveDetails(); }
             connectedDrivesList.Sort();
@@ -50,18 +55,19 @@ namespace Saviour_Backup_System
         private void connectedDrivesListRefresh_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem i in connectedDrivesList.SelectedItems){ i.Selected = false; } //Deselected all elements in the list first
+            clearDriveDetails();
             refreshDriveList();
         }
 
 
         private void connectedDrivesList_Selection(object sender, ListViewItemSelectionChangedEventArgs e) {
-            deviceTab.Visible = e.IsSelected;
             if (!e.IsSelected) {
+                deviceTab.Visible = false;
                 backupRestoreTab.Select();
                 return; 
             }
             ribbonControl.RecalcLayout();
-            deviceTab.Select();
+            populateDeviceTab();
             string selectedDevice = connectedDrivesList.SelectedItems[0].Text;
             displayDriveDetails(selectedDevice.Substring(0,3));
         }
@@ -88,7 +94,7 @@ namespace Saviour_Backup_System
                     driveIconBox.Image = Properties.Resources.hddIcon;
                     break;
             }
-            //formatDriveCapacity();
+            
         }
 
 
@@ -96,6 +102,7 @@ namespace Saviour_Backup_System
         {
             DriveInfo drive = selectedDrive;
             int driveCapacityPerc = USBTools.spacePercentage(drive);
+            driveCapacityDisplay.Text = "Drive Capacity: " + (driveCapacityDisplay.Value / 100).ToString() + "%";
             while (driveCapacityPerc != driveCapacityDisplay.Value) {
                 if (driveCapacityPerc < driveCapacityDisplay.Value) { driveCapacityDisplay.Value -= 1; }
                 if (driveCapacityPerc > driveCapacityDisplay.Value) { driveCapacityDisplay.Value += 1; }
@@ -112,11 +119,13 @@ namespace Saviour_Backup_System
 
         private void clearDriveDetails() {
             string blankText = "";
+            selectedDrive = null;
             driveNameDisplay.Text = blankText;
             driveLetterDisplay.Text = blankText;
             driveSystemDisplay.Text = blankText;
             driveTypeDisplay.Text = blankText;
             driveCapacityDisplay.Value = 0;
+            driveCapacityDisplay.Text = blankText;
         }
 
 
@@ -124,6 +133,10 @@ namespace Saviour_Backup_System
 
         private void formatDriveCapacityTimer_Tick(object sender, EventArgs e) { try { formatDriveCapacity(); } catch { } } //Because background workers cant interact with the GUI (very quickly)
 
+        private void populateDeviceTab() {
 
+            deviceTab.Visible = true;
+            deviceTab.Select();
+        }
     }
 }
