@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Data.SqlServerCe;
+using System.Windows.Forms;
 
 
 namespace Saviour_Backup_System
 {
     class setup
     {
-        internal static void initProgram(){
-            string databaseName = databaseTools.databaseName;
-            if (File.Exists(databaseName)) { return; } // If the program has been run before, then the database will exist, so use that to test it.
+        internal static NotifyIcon notifyIcon;
+        internal static ContextMenu contextMenu;
+        static string databaseName = databaseTools.databaseName;
 
+        internal static void initProgram()
+        {
+            //if (!File.Exists(databaseName)) { setupDatabase(); } // If the program has been run before, then the database will exist, so use that to test it.
+            notificationIcon.init();
+        }
+
+        private static void setupDatabase(){
             SqlCeEngine SQLEngine = new SqlCeEngine("Data Source = " + databaseName);
             SQLEngine.CreateDatabase(); //Creates the database if it doesnt exist already
 
@@ -31,6 +40,8 @@ namespace Saviour_Backup_System
 
             fillDatabase(cmd, conn);
         }
+
+
         private static void fillDatabase(SqlCeCommand cmd, SqlCeConnection conn)
         {
             cmd.CommandText = "INSERT INTO Properties VALUES (?,?);";
@@ -45,6 +56,13 @@ namespace Saviour_Backup_System
             cmd.Parameters["VALUE"].Value = "";
             cmd.ExecuteNonQuery();
 
+        }
+
+
+        internal static void closeProgram(object sender, FormClosingEventArgs e)
+        {
+
+            notificationIcon.notifyIcon.Dispose(); //
         }
     }
 }
