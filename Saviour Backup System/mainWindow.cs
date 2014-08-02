@@ -134,9 +134,10 @@ namespace Saviour_Backup_System
         private void formatDriveCapacityTimer_Tick(object sender, EventArgs e) { try { formatDriveCapacity(); } catch { } } //Because background workers cant interact with the GUI (very quickly)
 
         private void populateDeviceTab() {
-
+            // put stuff in here!!
             deviceTab.Visible = true;
             deviceTab.Select();
         }
+        private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) { setup.closeProgram(sender, e); }
     }
 }
