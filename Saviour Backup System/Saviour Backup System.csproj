@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="notificationIcon.cs" />
     <Compile Include="setup.cs" />
     <Compile Include="databaseTools.cs" />
     <Compile Include="ejectDrive.cs" />
@@ -106,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cd-black-red.ico" />
+    <None Include="Resources\Cd-black-red.ico" />
     <None Include="Resources\56229__pera__3beeps.wav" />
     <None Include="Resources\Time Drive_256.png" />
     <None Include="Resources\Logo.png" />
