@@ -12,11 +12,11 @@ namespace Saviour_Backup_System
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            setup.initProgram();
+            setup.initProgram(args);
             Application.Run(new mainWindow());
         }
     }
