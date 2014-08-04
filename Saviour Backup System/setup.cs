@@ -18,8 +18,9 @@ namespace Saviour_Backup_System
         internal static ContextMenu contextMenu;
         static string databaseName = databaseTools.databaseName;
 
-        internal static void initProgram()
+        internal static void initProgram(string[] args)
         {
+            MessageBox.Show(args.Length.ToString());
             //if (!File.Exists(databaseName)) { setupDatabase(); } // If the program has been run before, then the database will exist, so use that to test it.
             notificationIcon.init();
         }
