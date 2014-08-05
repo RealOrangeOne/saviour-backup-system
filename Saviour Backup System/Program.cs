@@ -17,7 +17,6 @@ namespace Saviour_Backup_System
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             setup.initProgram(args);
-            Application.Run(new mainWindow());
         }
     }
 }
