@@ -27,7 +27,6 @@ namespace Saviour_Backup_System
 
         private static void displayWindow(object sender, EventArgs e)
         {
-            MessageBox.Show("Display");
         }
     }
 }
