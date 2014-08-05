@@ -17,12 +17,25 @@ namespace Saviour_Backup_System
         internal static NotifyIcon notifyIcon;
         internal static ContextMenu contextMenu;
         static string databaseName = databaseTools.databaseName;
+        internal static string[] runtimeArguements = null;
+
+
 
         internal static void initProgram(string[] args)
         {
-            MessageBox.Show(args.Length.ToString());
+                MessageBox.Show(args.Length.ToString());
+                runtimeArguements = args;
+                notificationIcon.init();
+
+                if (args.Length == 0) //if the program is run out-right or not from startup
+                {
+                    Application.Run(new mainWindow());
+                }
+                else if (args[0] == "STARTUP") //if the program is run when the computer starts up
+                {
+
+                }
             //if (!File.Exists(databaseName)) { setupDatabase(); } // If the program has been run before, then the database will exist, so use that to test it.
-            notificationIcon.init();
         }
 
         private static void setupDatabase(){
