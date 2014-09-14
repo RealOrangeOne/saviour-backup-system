@@ -55,13 +55,6 @@ namespace Saviour_Backup_System
         }
 
 
-        internal static void displayDriveDetails(string driveName)
-        {
-            DriveInfo selectedDrive;
-            foreach (DriveInfo drive in getConnectedDrives()) { if (drive.Name == driveName) { selectedDrive = drive; break; } }
-        }
-
-
         internal static string getDriveType(DriveInfo selectedDrive)
         {
             string driveTypeDecoded = "Error decoding drive details!";
