@@ -14,12 +14,16 @@ namespace Saviour_Backup_System
     {
         private DriveInfo selectedDrive;
 
-        public mainWindow()
-        {
+        public mainWindow() {
             InitializeComponent();
+            //populates the drive list
             refreshDriveList(); 
-            connectedDrivesList.Items[0].Selected = true; //Selects the first item in the list of drives
-            displayDriveDetails(connectedDrivesList.SelectedItems[0].Text.Substring(0, 3)); //displays the info for the drive
+
+            //selects the first item in the list of drives
+            connectedDrivesList.Items[0].Selected = true; 
+            
+            //Displays the details for the selected drive
+            displayDriveDetails(connectedDrivesList.SelectedItems[0].Text.Substring(0, 3)); 
 
             //Starts the thread for displaying the capacity of a drive
             formatDriveCapacityTimer.Start();
@@ -29,9 +33,9 @@ namespace Saviour_Backup_System
         }
 
 
-        internal void refreshDriveList(){
+        internal void refreshDriveList() {
             DriveInfo[] drives = USBTools.getConnectedDrives();
-            if (connectedDrivesList.Items.Count == USBTools.countDrives()) { return; }
+            if (connectedDrivesList.Items.Count == USBTools.countDrives()) { return; } //f there is no change in the numer
             connectedDrivesList.Items.Clear();
             bool deviceStillConnected = false;
             foreach (DriveInfo drive in drives){
@@ -131,7 +135,7 @@ namespace Saviour_Backup_System
 
         private void driveRefreshTimer_Tick(object sender, EventArgs e) { refreshDriveList(); }
 
-        private void formatDriveCapacityTimer_Tick(object sender, EventArgs e) { try { formatDriveCapacity(); } catch { } } //Because background workers cant interact with the GUI (very quickly)
+        private void formatDriveCapacityTimer_Tick(object sender, EventArgs e) { try { formatDriveCapacity(); } catch { } } //Because background workers cant interact with the GUI (very quickly), so a timer has to 
 
         private void populateDeviceTab() {
             // put stuff in here!!
