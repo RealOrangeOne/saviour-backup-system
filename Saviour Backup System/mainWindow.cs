@@ -142,6 +142,6 @@ namespace Saviour_Backup_System
             deviceTab.Visible = true;
             deviceTab.Select();
         }
-        private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) { setup.closeProgram(sender, e); }
+        private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) { /*setup.closeProgram(sender, e);*/ }
     }
 }
