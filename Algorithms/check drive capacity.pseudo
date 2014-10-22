@@ -1,0 +1,5 @@
+(USB_Location, Drive_Location)
+freeSpace <-- getCapacity(Drive_Location)
+driveFiles <-- getCapacity(USB_Location)
+if driveFiles > freeSpace then return True
+else return False

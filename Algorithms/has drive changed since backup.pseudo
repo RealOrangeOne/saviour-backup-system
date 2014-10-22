@@ -1,0 +1,5 @@
+(backupName, driveLetter)
+driveHash <-- calculateHash(driveLetter)
+backupHash = ExecuteSQL("SELECT Hash FROM Backups WHERE backupName = {}", backupName)
+if backupName is driveHash then return False
+Else return True

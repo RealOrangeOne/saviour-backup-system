@@ -1,0 +1,4 @@
+(DriveFormat, DriveName, DriveCapacity)
+result <-- ExecuteSQL("SELECT BackupName FROM backups WHERE driveFormat = {} AND DriveName = {} AND DriveCapacity = {};")
+if results is None then return False
+Else Return True

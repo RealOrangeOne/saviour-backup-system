@@ -1,0 +1,3 @@
+(BackupName, DriveName, DriveCapacity)
+wantsCompression <-- ExecuteSQL("SELECT isCompressed FROM backupTable WHERE driveName = {} AND BackupName = {} AND DriveCapacity = {}",  DriveName, BackupName, DriveCapacity)
+return wantsCompression
