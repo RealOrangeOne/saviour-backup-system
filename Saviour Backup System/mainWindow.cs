@@ -16,23 +16,27 @@ namespace Saviour_Backup_System
 
         public mainWindow() {
             InitializeComponent();
-            //populates the drive list
-            refreshDriveList(); 
-
-            //selects the first item in the list of drives
-            connectedDrivesList.Items[0].Selected = true; 
-            
-            //Displays the details for the selected drive
-            displayDriveDetails(connectedDrivesList.SelectedItems[0].Text.Substring(0, 3)); 
-
-            //Starts the thread for displaying the capacity of a drive
-            formatDriveCapacityTimer.Start();
-
-            //Starts the timer for refreshing drive list
-            driveRefreshTimer.Start();
-            if (setup.runtimeArguements[0] == "STARTUP") { this.Hide(); }
+            if (setup.runtimeArguements[0] == "STARTUP") { this.removeDisplay(); }
+            else { this.showDisplay(); }
         }
 
+        internal void removeDisplay() {
+            formatDriveCapacityTimer.Stop();
+            driveRefreshTimer.Stop();
+            clearDriveDetails();
+            this.Hide();
+            setup.icon.notifyIcon.Visible = true;
+        }
+
+        internal void showDisplay() {
+            this.Show();
+            refreshDriveList();
+            connectedDrivesList.Items[0].Selected = true;
+            displayDriveDetails(connectedDrivesList.SelectedItems[0].Text.Substring(0, 3));
+            formatDriveCapacityTimer.Start();
+            driveRefreshTimer.Start();
+            setup.icon.notifyIcon.Visible = false;
+        }
 
         internal void refreshDriveList() {
             DriveInfo[] drives = USBTools.getConnectedDrives();
@@ -143,6 +147,20 @@ namespace Saviour_Backup_System
             deviceTab.Visible = true;
             deviceTab.Select();
         }
-        private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) { /*setup.closeProgram(sender, e);*/ }
+        private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) {
+            switch (e.CloseReason)
+            {
+                case(CloseReason.ApplicationExitCall):
+                    this.Close();
+                    break;
+                case(CloseReason.UserClosing):
+                    this.removeDisplay();
+                    setup.icon.displayStillRunning();
+                    break;
+                default:
+                    this.Close();
+                    break;
+            }
+        }
     }
 }
