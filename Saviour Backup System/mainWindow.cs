@@ -30,6 +30,7 @@ namespace Saviour_Backup_System
 
             //Starts the timer for refreshing drive list
             driveRefreshTimer.Start();
+            if (setup.runtimeArguements[0] == "STARTUP") { this.Hide(); }
         }
 
 
