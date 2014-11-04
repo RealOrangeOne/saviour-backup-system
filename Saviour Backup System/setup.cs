@@ -17,28 +17,22 @@ namespace Saviour_Backup_System
         static string databaseName = databaseTools.databaseName;
         internal static string[] runtimeArguements = null;
         internal static mainWindow MW;
-
+        internal static notificationIcon icon;
         internal static void initProgram(string[] args)
         {
             runtimeArguements = args;
 
-            notificationIcon icon = new notificationIcon();
-            if (args.Length == 0) //if the program is run out-right or not from startup
-            {
-                Application.Run(MW);
-            }
-            else if (args[0] == "STARTUP") //if the program is run when the computer starts up
-            {
-                Application.Run(MW);
-                MainUI = MW;
-                MW.Hide();
-            }
+            icon = new notificationIcon();
+            MW = new mainWindow();
+            Application.Run(MW);
+           
             //if (!File.Exists(databaseName)) { setupDatabase(); } // If the program has been run before, then the database will exist, so use that to test it.
         }
 
         private static void setupDatabase(){
             SqlCeEngine SQLEngine = new SqlCeEngine("Data Source = " + databaseName);
             SQLEngine.CreateDatabase(); //Creates the database if it doesnt exist already
+            SQLEngine.Dispose();
 
             SqlCeConnection conn = new SqlCeConnection("Data Source = " + databaseName);
             conn.Open();
@@ -71,9 +65,9 @@ namespace Saviour_Backup_System
         }
 
 
-        internal static void closeProgram(object sender, FormClosingEventArgs e)
+        internal static void closeProgram()
         {
-
+            Application.Exit();
             
         }
     }
