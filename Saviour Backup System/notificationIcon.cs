@@ -9,15 +9,13 @@ namespace Saviour_Backup_System
 {
     class notificationIcon
     {
-        internal static NotifyIcon notifyIcon;
-        internal static ContextMenu contextMenu;
+        internal NotifyIcon notifyIcon = new NotifyIcon() ;
+        internal static ContextMenu contextMenu = new ContextMenu();
 
-        internal static void init()
+        internal notificationIcon()
         {
-            contextMenu = new ContextMenu();
             contextMenu.MenuItems.Add("Show Interface", displayWindow);
 
-            notifyIcon = new NotifyIcon();
             notifyIcon.Text = "Saviour Backup System";
             notifyIcon.Icon = Properties.Resources.redCDIconICO;
 
@@ -25,9 +23,6 @@ namespace Saviour_Backup_System
             notifyIcon.Visible = true; //finally displays the tray icon
         }
 
-        private static void displayWindow(object sender, EventArgs e)
-        {
-            setup.MW.Show();
-        }
+        private static void displayWindow(object sender, EventArgs e) { setup.MW.Show(); }
     }
 }

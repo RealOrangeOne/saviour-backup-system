@@ -14,25 +14,25 @@ namespace Saviour_Backup_System
 {
     class setup
     {
-        internal static NotifyIcon notifyIcon;
-        internal static ContextMenu contextMenu;
         static string databaseName = databaseTools.databaseName;
         internal static string[] runtimeArguements = null;
-        internal static mainWindow MW = null;
-
+        internal static mainWindow MW;
 
         internal static void initProgram(string[] args)
         {
-                runtimeArguements = args;
-                notificationIcon.init();
-                if (args.Length == 0) //if the program is run out-right or not from startup
-                {
-                    MW = new mainWindow();
-                }
-                else if (args[0] == "STARTUP") //if the program is run when the computer starts up
-                {
-                    MW = new mainWindow();
-                }
+            runtimeArguements = args;
+
+            notificationIcon icon = new notificationIcon();
+            if (args.Length == 0) //if the program is run out-right or not from startup
+            {
+                Application.Run(MW);
+            }
+            else if (args[0] == "STARTUP") //if the program is run when the computer starts up
+            {
+                Application.Run(MW);
+                MainUI = MW;
+                MW.Hide();
+            }
             //if (!File.Exists(databaseName)) { setupDatabase(); } // If the program has been run before, then the database will exist, so use that to test it.
         }
 
@@ -74,7 +74,7 @@ namespace Saviour_Backup_System
         internal static void closeProgram(object sender, FormClosingEventArgs e)
         {
 
-            notificationIcon.notifyIcon.Dispose(); //
+            
         }
     }
 }
