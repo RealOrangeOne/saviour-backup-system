@@ -151,6 +151,8 @@ namespace Saviour_Backup_System
             switch (e.CloseReason)
             {
                 case(CloseReason.ApplicationExitCall):
+                    formatDriveCapacityTimer.Stop();
+                    driveRefreshTimer.Stop();
                     this.Close();
                     break;
                 case(CloseReason.UserClosing):
