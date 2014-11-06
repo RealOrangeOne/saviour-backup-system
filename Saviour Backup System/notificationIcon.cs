@@ -14,20 +14,21 @@ namespace Saviour_Backup_System
 
         internal notificationIcon()
         {
-           
             notifyIcon.Text = "Saviour Backup System";
             notifyIcon.Icon = Properties.Resources.redCDIconICO;
             populateList();
             notifyIcon.ContextMenu = contextMenu;
             notifyIcon.Visible = true; //finally displays the tray icon
         }
+
         private void populateList()
         {
             contextMenu.MenuItems.Add("Show Interface", displayWindow);
-
+            contextMenu.MenuItems.Add("Copy Progress", showProgress);
         }
-        private void displayWindow(object sender, EventArgs e) { setup.MW.showDisplay(); }
 
+        private void displayWindow(object sender, EventArgs e) { setup.MW.showDisplay(); }
+        private void showProgress(object sender, EventArgs e) { return; }
         internal void displayStillRunning() {
             notifyIcon.BalloonTipText = "Saviour backup system is still running in the background";
             notifyIcon.BalloonTipTitle = "Still running...";
