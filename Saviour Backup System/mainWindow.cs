@@ -16,8 +16,11 @@ namespace Saviour_Backup_System
 
         public mainWindow() {
             InitializeComponent();
-            if (setup.runtimeArguements[0] == "STARTUP") { this.removeDisplay(); }
-            else { this.showDisplay(); }
+            try
+            {
+                if (setup.runtimeArguements[0] == "STARTUP") { this.removeDisplay(); }
+                else { this.showDisplay(); }
+            } catch { }
         }
 
         internal void removeDisplay() {
