@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="notificationIcon.cs" />
+    <Compile Include="OSInfo.cs" />
     <Compile Include="setup.cs" />
     <Compile Include="databaseTools.cs" />
     <Compile Include="ejectDrive.cs" />
