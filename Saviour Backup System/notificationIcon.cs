@@ -25,10 +25,13 @@ namespace Saviour_Backup_System
         {
             contextMenu.MenuItems.Add("Show Interface", displayWindow);
             contextMenu.MenuItems.Add("Copy Progress", showProgress);
+            contextMenu.MenuItems.Add("Exit", closeProgram);
         }
 
         private void displayWindow(object sender, EventArgs e) { setup.MW.showDisplay(); }
         private void showProgress(object sender, EventArgs e) { return; }
+        private void closeProgram(object sender, EventArgs e) { setup.closeProgram(); }
+
         internal void displayStillRunning() {
             notifyIcon.BalloonTipText = "Saviour backup system is still running in the background";
             notifyIcon.BalloonTipTitle = "Still running...";
