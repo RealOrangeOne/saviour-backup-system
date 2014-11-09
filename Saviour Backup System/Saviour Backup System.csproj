@@ -108,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cd-black-red.ico" />
+    <None Include="Resources\saviour.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Cd-black-red.ico" />
     <None Include="Resources\56229__pera__3beeps.wav" />
     <None Include="Resources\Time Drive_256.png" />
