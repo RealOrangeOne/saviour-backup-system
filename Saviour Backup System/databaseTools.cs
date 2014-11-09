@@ -7,15 +7,16 @@ using System.Data.SqlServerCe;
 using System.Data;
 using System.IO;
 
+
 namespace Saviour_Backup_System
 {
-    class database
+    class databaseTools
     {
         internal static string databaseName = "db.sdf";
         private static SqlCeConnection conn = new SqlCeConnection("Data Source = " + databaseName);
         private static SqlCeCommand cmd = conn.CreateCommand();
 
-        internal static void setup(){
+        internal static void init(){
             SqlCeEngine SQLEngine = new SqlCeEngine("Data Source = " + databaseName);
             SQLEngine.CreateDatabase(); //Creates the database if it doesnt exist already
             SQLEngine.Dispose();
@@ -27,29 +28,27 @@ namespace Saviour_Backup_System
             conn.Open();
             
             cmd.CommandText = "INSERT INTO Properties VALUES (?,?);";
-            cmd.Parameters.Add(new SqlCeParameter("PROPERTY", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlCeParameter("PROPERTY", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("VALUE", SqlDbType.NText));
 
             cmd.Parameters["PROPERTY"].Value = "Startup";
             cmd.Parameters["VALUE"].Value = "FALSE";
             cmd.ExecuteNonQuery();
-
             cmd.Parameters["PROPERTY"].Value = "Save_Location";
             string saveLocation;
-            string username = Environment.UserName;
             switch (OSInfo.Name)
             {
                 case("Windows XP"):
-                    saveLocation = @"C:\Documents and Settings\" + username + @"\Saviour Backup System\My Backups\";
+                    saveLocation = @"C:\Documents and Settings\" + setup.username + @"\Saviour Backup System\My Backups\";
                     break;
                 case("Windows Vista"):
-                    saveLocation = @"C:\Users\" + username + @"\Saviour Backup System\My Backups\";
+                    saveLocation = @"C:\Users\" + setup.username + @"\Saviour Backup System\My Backups\";
                     break;
                 default:
                     saveLocation = @"C:\";
                     break;
             }
-            cmd.Parameters["VALUE"].Value = "";
+            cmd.Parameters["VALUE"].Value = saveLocation;
             cmd.ExecuteNonQuery();
 
             cmd.Parameters["PROPERTY"].Value = "Window_Style";

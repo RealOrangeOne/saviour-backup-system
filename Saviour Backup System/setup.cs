@@ -13,20 +13,18 @@ namespace Saviour_Backup_System
 {
     class setup
     {
-        static string databaseName = database.databaseName;
+        static string databaseName = databaseTools.databaseName;
         internal static string[] runtimeArguements = null;
         internal static mainWindow MW;
         internal static notificationIcon icon;
+        internal static string username = Environment.UserName;
 
         internal static void initProgram(string[] args)
         {
             runtimeArguements = args;
-
             icon = new notificationIcon();
             MW = new mainWindow();
             Application.Run(MW);
-           
-            //if (!File.Exists(databaseName)) { setupDatabase(); } // If the program has been run before, then the database will exist, so use that to test it.
         }
 
        
