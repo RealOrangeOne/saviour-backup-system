@@ -17,13 +17,15 @@ namespace Saviour_Backup_System
         internal static string[] runtimeArguements = null;
         internal static mainWindow MW;
         internal static notificationIcon icon;
-        internal static string username = Environment.UserName;
+        internal static string username = Environment.UserName; //snapshots the username
 
         internal static void initProgram(string[] args)
         {
             runtimeArguements = args;
             icon = new notificationIcon();
             MW = new mainWindow();
+            //databaseTools.init();
+            MW.showDisplay();
             Application.Run(MW);
         }
 
@@ -33,7 +35,12 @@ namespace Saviour_Backup_System
         {
             string exitMessage = "Are you sure you want to close Saviour Backup System? \n All copying backups and backup scanning will cease.";
             DialogResult result = MessageBox.Show(exitMessage, "Saviour Backup System Exiting...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if ( result == System.Windows.Forms.DialogResult.Yes) { Application.Exit(); }
+            if (result == System.Windows.Forms.DialogResult.Yes) {
+                icon.notifyIcon.Dispose();
+                MW.removeDisplay();
+                MW.Dispose();
+                Environment.Exit(0);
+            }
         }
     }
 }
