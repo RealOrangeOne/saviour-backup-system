@@ -33,9 +33,6 @@ namespace Saviour_Backup_System
         private void closeProgram(object sender, EventArgs e) { setup.closeProgram(); }
 
         internal void displayStillRunning() {
-            notifyIcon.BalloonTipText = "Saviour backup system is still running in the background";
-            notifyIcon.BalloonTipTitle = "Still running...";
-            notifyIcon.ShowBalloonTip(2000);
 
         }
     }
