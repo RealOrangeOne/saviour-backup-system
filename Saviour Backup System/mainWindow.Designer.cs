@@ -38,7 +38,9 @@
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem8 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar3 = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItem4 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar2 = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar6 = new DevComponents.DotNetBar.RibbonBar();
@@ -70,12 +72,10 @@
             this.driveLetterLabel = new System.Windows.Forms.Label();
             this.driveSystemLabel = new System.Windows.Forms.Label();
             this.driveNameLabel = new System.Windows.Forms.Label();
+            this.driveIconBox = new System.Windows.Forms.PictureBox();
             this.driveCapacityDisplay = new DevComponents.DotNetBar.Controls.ProgressBarX();
             this.driveRefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.formatDriveCapacityTimer = new System.Windows.Forms.Timer(this.components);
-            this.driveIconBox = new System.Windows.Forms.PictureBox();
-            this.buttonItem4 = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanel3.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
@@ -302,6 +302,16 @@
             this.ribbonBar3.TitleStyleMouseOver.Class = "";
             this.ribbonBar3.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
+            // buttonItem4
+            // 
+            this.buttonItem4.Image = global::Saviour_Backup_System.Properties.Resources.restoreIcon;
+            this.buttonItem4.ImageFixedSize = new System.Drawing.Size(55, 55);
+            this.buttonItem4.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.buttonItem4.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            this.buttonItem4.Name = "buttonItem4";
+            this.buttonItem4.SubItemsExpandWidth = 14;
+            this.buttonItem4.Text = "Restore Device from Backup";
+            // 
             // ribbonBar2
             // 
             this.ribbonBar2.AutoOverflowEnabled = true;
@@ -336,6 +346,17 @@
             // 
             this.ribbonBar2.TitleStyleMouseOver.Class = "";
             this.ribbonBar2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItem2
+            // 
+            this.buttonItem2.Image = global::Saviour_Backup_System.Properties.Resources.backupIcon;
+            this.buttonItem2.ImageFixedSize = new System.Drawing.Size(55, 55);
+            this.buttonItem2.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.buttonItem2.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            this.buttonItem2.Name = "buttonItem2";
+            this.buttonItem2.PopupFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonItem2.SubItemsExpandWidth = 14;
+            this.buttonItem2.Text = "Backup All Devices";
             // 
             // buttonItem3
             // 
@@ -760,6 +781,17 @@
             this.driveNameLabel.TabIndex = 2;
             this.driveNameLabel.Text = "Label:";
             // 
+            // driveIconBox
+            // 
+            this.driveIconBox.BackColor = System.Drawing.Color.Transparent;
+            this.driveIconBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.driveIconBox.Location = new System.Drawing.Point(3, -1);
+            this.driveIconBox.Name = "driveIconBox";
+            this.driveIconBox.Size = new System.Drawing.Size(183, 143);
+            this.driveIconBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.driveIconBox.TabIndex = 1;
+            this.driveIconBox.TabStop = false;
+            // 
             // driveCapacityDisplay
             // 
             this.driveCapacityDisplay.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -791,38 +823,6 @@
             this.formatDriveCapacityTimer.Enabled = true;
             this.formatDriveCapacityTimer.Interval = 300;
             this.formatDriveCapacityTimer.Tick += new System.EventHandler(this.formatDriveCapacityTimer_Tick);
-            // 
-            // driveIconBox
-            // 
-            this.driveIconBox.BackColor = System.Drawing.Color.Transparent;
-            this.driveIconBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.driveIconBox.Location = new System.Drawing.Point(3, -1);
-            this.driveIconBox.Name = "driveIconBox";
-            this.driveIconBox.Size = new System.Drawing.Size(183, 143);
-            this.driveIconBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.driveIconBox.TabIndex = 1;
-            this.driveIconBox.TabStop = false;
-            // 
-            // buttonItem4
-            // 
-            this.buttonItem4.Image = global::Saviour_Backup_System.Properties.Resources.restoreIcon;
-            this.buttonItem4.ImageFixedSize = new System.Drawing.Size(55, 55);
-            this.buttonItem4.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.buttonItem4.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-            this.buttonItem4.Name = "buttonItem4";
-            this.buttonItem4.SubItemsExpandWidth = 14;
-            this.buttonItem4.Text = "Restore Device from Backup";
-            // 
-            // buttonItem2
-            // 
-            this.buttonItem2.Image = global::Saviour_Backup_System.Properties.Resources.backupIcon;
-            this.buttonItem2.ImageFixedSize = new System.Drawing.Size(55, 55);
-            this.buttonItem2.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.buttonItem2.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-            this.buttonItem2.Name = "buttonItem2";
-            this.buttonItem2.PopupFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonItem2.SubItemsExpandWidth = 14;
-            this.buttonItem2.Text = "Backup All Devices";
             // 
             // mainWindow
             // 
