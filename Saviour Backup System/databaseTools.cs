@@ -18,13 +18,13 @@ namespace Saviour_Backup_System
 
         private static void copyDatabase()
         {
-            File.WriteAllBytes(@"\" + databaseName, Resources.saviour);
+            File.WriteAllBytes(@"" + databaseName, Resources.saviour); //copy file from resources to project file
         }
 
 
         internal static void init() {
             if (!File.Exists(databaseName)) { //if the database doesnt exists (program hasnt been run before)
-
+                copyDatabase();
             }
         }
     }
