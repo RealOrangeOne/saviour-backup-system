@@ -26,24 +26,26 @@ namespace Saviour_Backup_System
         internal void removeDisplay() {
             formatDriveCapacityTimer.Stop();
             driveRefreshTimer.Stop();
+            connectedDrivesList.Update();
             clearDriveDetails();
             this.Hide();
             setup.icon.notifyIcon.Visible = true;
         }
 
         internal void showDisplay() {
-            this.Show();
             refreshDriveList();
+            connectedDrivesList.Update();
             connectedDrivesList.Items[0].Selected = true;
             displayDriveDetails(connectedDrivesList.SelectedItems[0].Text.Substring(0, 3));
             formatDriveCapacityTimer.Start();
             driveRefreshTimer.Start();
             setup.icon.notifyIcon.Visible = false;
+            this.Show();
         }
 
         internal void refreshDriveList() {
             DriveInfo[] drives = USBTools.getConnectedDrives();
-            if (connectedDrivesList.Items.Count == USBTools.countDrives()) { return; } //f there is no change in the numer
+            if (connectedDrivesList.Items.Count == USBTools.countDrives()) { return; } //if there is no change in the numer
             connectedDrivesList.Items.Clear();
             bool deviceStillConnected = false;
             foreach (DriveInfo drive in drives){
@@ -78,6 +80,7 @@ namespace Saviour_Backup_System
                 backupRestoreTab.Select();
                 return; 
             }
+            formatDriveCapacityTimer.Start();
             ribbonControl.RecalcLayout();
             populateDeviceTab();
             string selectedDevice = connectedDrivesList.SelectedItems[0].Text;
@@ -125,6 +128,7 @@ namespace Saviour_Backup_System
                 else if (driveCapacityDisplay.Value > 6800 && driveCapacityDisplay.Value < 9000) { driveCapacityDisplay.ColorTable = DevComponents.DotNetBar.eProgressBarItemColor.Paused; }
                 else if (driveCapacityDisplay.Value >= 9000) { driveCapacityDisplay.ColorTable = DevComponents.DotNetBar.eProgressBarItemColor.Error; }
             }
+            formatDriveCapacityTimer.Stop();
             
         }
 
@@ -151,9 +155,10 @@ namespace Saviour_Backup_System
             deviceTab.Select();
         }
         private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) {
-            switch (e.CloseReason)
-            {
+            e.Cancel = true;
+            switch (e.CloseReason) {
                 case(CloseReason.ApplicationExitCall):
+                case(CloseReason.WindowsShutDown):
                     formatDriveCapacityTimer.Stop();
                     driveRefreshTimer.Stop();
                     this.Close();
