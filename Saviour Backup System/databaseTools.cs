@@ -37,9 +37,6 @@ namespace Saviour_Backup_System
             while (reader.Read())
             {
                 backup temp = new backup();
-                temp.create(reader.GetString(0), 
-                    reader.GetString(1),
-                    reader.GetInt64(1)
                 backups.Add(temp);
                 temp = null;
                 index++;
