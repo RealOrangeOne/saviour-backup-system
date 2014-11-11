@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saviour_Backup_System
 {
-    class notificationIcon
+    class notificationIcon : IDisposable
     {
         internal NotifyIcon notifyIcon = new NotifyIcon() ;
         internal ContextMenu contextMenu = new ContextMenu();
@@ -34,6 +34,11 @@ namespace Saviour_Backup_System
 
         internal void displayStillRunning() {
 
+        }
+        public void Dispose()//deconstructor - for memory management
+        {
+            notifyIcon.Dispose();
+            contextMenu.Dispose();
         }
     }
 }
