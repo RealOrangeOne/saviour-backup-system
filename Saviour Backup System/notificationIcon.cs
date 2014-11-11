@@ -9,10 +9,10 @@ namespace Saviour_Backup_System
 {
     class notificationIcon : IDisposable
     {
-        internal NotifyIcon notifyIcon = new NotifyIcon() ;
-        internal ContextMenu contextMenu = new ContextMenu();
+        public NotifyIcon notifyIcon = new NotifyIcon() ;
+        public ContextMenu contextMenu = new ContextMenu();
 
-        internal notificationIcon()
+        public notificationIcon()
         {
             notifyIcon.Text = "Saviour Backup System";
             notifyIcon.Icon = Properties.Resources.redCDIconICO;
@@ -31,7 +31,7 @@ namespace Saviour_Backup_System
         private void showProgress(object sender, EventArgs e) { return; } //nothing yet!
         private void closeProgram(object sender, EventArgs e) { setup.closeProgram(); }
 
-        internal void displayStillRunning() {
+        public void displayStillRunning() {
             string title = "I'm Still Here!";
             string message = "Saviour Backup System is still running in the background";
             notifyIcon.ShowBalloonTip(2000, title, message, ToolTipIcon.Info);

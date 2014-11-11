@@ -12,8 +12,8 @@ namespace Saviour_Backup_System
 {
     class databaseTools
     {
-        internal static string databaseName = "saviour.sdf";
-        internal static SqlCeConnection conn = new SqlCeConnection("Data Source = " + databaseName + "; password=12a712d7e6f71ed07822c219318da2c0"); //password is a hash
+        public static string databaseName = "saviour.sdf";
+        public static SqlCeConnection conn = new SqlCeConnection("Data Source = " + databaseName + "; password=12a712d7e6f71ed07822c219318da2c0"); //password is a hash
         private static SqlCeCommand cmd = conn.CreateCommand();
 
         private static void copyDatabase()
@@ -22,12 +22,12 @@ namespace Saviour_Backup_System
         }
 
 
-        internal static void init() {
+        public static void init() {
             if (!File.Exists(databaseName)) { //if the database doesnt exists (program hasnt been run before)
                 copyDatabase();
             }
         }
-        internal static backup[] getBackups()
+        public static backup[] getBackups()
         {
             List<backup> backups = null;
             conn.Open();
@@ -53,13 +53,13 @@ namespace Saviour_Backup_System
 
     class backup
     {
-        internal string driveID;
-        internal string name;
-        internal Int64 startDate;
-        internal string hash;
-        internal Int32 duration;
+        public string driveID;
+        public string name;
+        public Int64 startDate;
+        public string hash;
+        public Int32 duration;
 
-        internal void store()
+        public void store()
         {
             SqlCeCommand cmd = databaseTools.conn.CreateCommand();
             cmd.CommandText = "";
@@ -67,7 +67,7 @@ namespace Saviour_Backup_System
             cmd.Dispose();
         }
 
-        internal void update()
+        public void update()
         {
             databaseTools.conn.Open();
             SqlCeCommand cmd = databaseTools.conn.CreateCommand();
@@ -77,7 +77,7 @@ namespace Saviour_Backup_System
             cmd.Dispose();
         }
 
-        internal void create(string Drive_ID, string Backup_Name, Int64 Start_Date, string Hash, Int32 Duration ) {
+        public void create(string Drive_ID, string Backup_Name, Int64 Start_Date, string Hash, Int32 Duration ) {
             driveID = Drive_ID;
             name = Backup_Name;
             startDate = Start_Date;

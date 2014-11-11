@@ -23,7 +23,7 @@ namespace Saviour_Backup_System
             } catch { }
         }
 
-        internal void removeDisplay() {
+        public void removeDisplay() {
             formatDriveCapacityTimer.Stop();
             driveRefreshTimer.Stop();
             connectedDrivesList.Update();
@@ -32,7 +32,7 @@ namespace Saviour_Backup_System
             setup.icon.notifyIcon.Visible = true;
         }
 
-        internal void showDisplay() {
+        public void showDisplay() {
             refreshDriveList();
             connectedDrivesList.Update();
             connectedDrivesList.Items[0].Selected = true;
@@ -43,7 +43,7 @@ namespace Saviour_Backup_System
             this.Show();
         }
 
-        internal void refreshDriveList() {
+        public void refreshDriveList() {
             DriveInfo[] drives = USBTools.getConnectedDrives();
             if (connectedDrivesList.Items.Count == USBTools.countDrives()) { return; } //if there is no change in the numer
             connectedDrivesList.Items.Clear();

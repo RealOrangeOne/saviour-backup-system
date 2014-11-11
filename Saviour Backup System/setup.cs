@@ -13,13 +13,13 @@ namespace Saviour_Backup_System
 {
     class setup
     {
-        internal static string[] runtimeArguements = null;
-        internal static mainWindow MW;
-        internal static notificationIcon icon;
-        internal static splashScreen SS;
-        internal static string username = Environment.UserName; //snapshots the username
+        public static string[] runtimeArguements = null;
+        public static mainWindow MW;
+        public static notificationIcon icon;
+        public static splashScreen SS;
+        public static string username = Environment.UserName; //snapshots the username
 
-        internal static void initProgram(string[] args)
+        public static void initProgram(string[] args)
         {
             runtimeArguements = args;
             SS = new splashScreen();
@@ -37,7 +37,7 @@ namespace Saviour_Backup_System
 
        
 
-        internal static void closeProgram()
+        public static void closeProgram()
         {
             string exitMessage = "Are you sure you want to close Saviour Backup System?\nAll copying backups and backup scanning will cease.";
             DialogResult result = MessageBox.Show(exitMessage, "Saviour Backup System Exiting...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);

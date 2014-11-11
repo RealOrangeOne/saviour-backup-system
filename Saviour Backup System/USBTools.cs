@@ -11,7 +11,7 @@ namespace Saviour_Backup_System
 {
     class USBTools
     {
-        internal static void initDriveScan(){
+        public static void initDriveScan(){
             Timer scanTimer = new Timer();
             scanTimer.Elapsed += new ElapsedEventHandler(driveScanTick);
             scanTimer.Interval = 1000 * 7; //seconds to check for new drives
@@ -33,7 +33,7 @@ namespace Saviour_Backup_System
                 //check if record exists in database
             }
         }
-        internal static DriveInfo[] getConnectedDrives()
+        public static DriveInfo[] getConnectedDrives()
         {
             List<DriveInfo> drivesList = new List<DriveInfo>();
             DriveInfo[] drives = DriveInfo.GetDrives();
@@ -48,14 +48,14 @@ namespace Saviour_Backup_System
         }
 
 
-        internal static void safelyEjectDrive(string driveChar)
+        public static void safelyEjectDrive(string driveChar)
         {
             driveChar = driveChar.Remove(driveChar.Length - 1);
             RemoveDriveTools.RemoveDrive(driveChar);
         }
 
 
-        internal static string getDriveType(DriveInfo selectedDrive)
+        public static string getDriveType(DriveInfo selectedDrive)
         {
             string driveTypeDecoded = "Error decoding drive details!";
             switch (selectedDrive.DriveType)
@@ -86,7 +86,7 @@ namespace Saviour_Backup_System
         }
 
 
-        internal static int countDrives()
+        public static int countDrives()
         {
             int numberofDrives = 0;
             foreach (DriveInfo drive in getConnectedDrives()) { numberofDrives++; }
@@ -94,7 +94,7 @@ namespace Saviour_Backup_System
         }
 
 
-        internal static int spacePercentage(DriveInfo drive)
+        public static int spacePercentage(DriveInfo drive)
         {
             double capacity = (double)(drive.TotalSize / (1024 * 1024));
             double free = (double)(drive.AvailableFreeSpace / (1024 * 1024));

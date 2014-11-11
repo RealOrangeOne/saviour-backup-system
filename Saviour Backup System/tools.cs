@@ -8,7 +8,7 @@ namespace Saviour_Backup_System
 {
     class tools
     {
-        internal static string Trim(string value, int maxLength)
+        public static string Trim(string value, int maxLength)
         {
             if (value.Length > maxLength)
             {
