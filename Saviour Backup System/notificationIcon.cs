@@ -21,8 +21,7 @@ namespace Saviour_Backup_System
             notifyIcon.Visible = true; //finally displays the tray icon
         }
 
-        private void populateList()
-        {
+        private void populateList() {
             contextMenu.MenuItems.Add("Show Interface", displayWindow);
             contextMenu.MenuItems.Add("Copy Progress", showProgress);
             contextMenu.MenuItems.Add("Exit", closeProgram);
