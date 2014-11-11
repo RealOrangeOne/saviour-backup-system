@@ -29,12 +29,15 @@ namespace Saviour_Backup_System
         }
 
         private void displayWindow(object sender, EventArgs e) { setup.MW.showDisplay(); }
-        private void showProgress(object sender, EventArgs e) { return; }
+        private void showProgress(object sender, EventArgs e) { return; } //nothing yet!
         private void closeProgram(object sender, EventArgs e) { setup.closeProgram(); }
 
         internal void displayStillRunning() {
-
+            string title = "I'm Still Here!";
+            string message = "Saviour Backup System is still running in the background";
+            notifyIcon.ShowBalloonTip(2000, title, message, ToolTipIcon.Info);
         }
+
         public void Dispose()//deconstructor - for memory management
         {
             notifyIcon.Dispose();
