@@ -16,5 +16,11 @@ namespace Saviour_Backup_System
         {
             InitializeComponent();
         }
+
+        internal void display(bool isStartup) {
+            this.Show();
+            this.desc.Text = "Initialising...";
+            if (isStartup) { this.Hide(); }
+        }
     }
 }
