@@ -96,8 +96,8 @@
             this.ribbonControl.BackgroundStyle.Class = "";
             this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl.CaptionVisible = true;
-            this.ribbonControl.Controls.Add(this.ribbonPanel3);
             this.ribbonControl.Controls.Add(this.ribbonPanel2);
+            this.ribbonControl.Controls.Add(this.ribbonPanel3);
             this.ribbonControl.Controls.Add(this.ribbonPanel4);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -157,6 +157,7 @@
             this.ribbonPanel3.StyleMouseOver.Class = "";
             this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel3.TabIndex = 5;
+            this.ribbonPanel3.Visible = false;
             // 
             // ribbonBar7
             // 
@@ -225,7 +226,6 @@
             this.ribbonPanel2.StyleMouseOver.Class = "";
             this.ribbonPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel2.TabIndex = 2;
-            this.ribbonPanel2.Visible = false;
             // 
             // ribbonBar1
             // 
@@ -267,6 +267,7 @@
             this.buttonItem8.Name = "buttonItem8";
             this.buttonItem8.SubItemsExpandWidth = 14;
             this.buttonItem8.Text = "View All Rules";
+            this.buttonItem8.Click += new System.EventHandler(this.buttonItem8_Click);
             // 
             // ribbonBar3
             // 
@@ -515,13 +516,13 @@
             // 
             // backupRestoreTab
             // 
+            this.backupRestoreTab.Checked = true;
             this.backupRestoreTab.Name = "backupRestoreTab";
             this.backupRestoreTab.Panel = this.ribbonPanel2;
             this.backupRestoreTab.Text = "Backup and Restore";
             // 
             // deviceTab
             // 
-            this.deviceTab.Checked = true;
             this.deviceTab.ColorTable = DevComponents.DotNetBar.eRibbonTabColor.Green;
             this.deviceTab.Name = "deviceTab";
             this.deviceTab.Panel = this.ribbonPanel3;
@@ -865,7 +866,6 @@
         private DevComponents.DotNetBar.RibbonTabItem backupRestoreTab;
         private DevComponents.DotNetBar.ButtonItem buttonItem1;
         private DevComponents.DotNetBar.QatCustomizeItem qatCustomizeItem1;
-        private DevComponents.DotNetBar.StyleManager styleManager1;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanel4;
         private DevComponents.DotNetBar.RibbonTabItem settingsTab;
         private DevComponents.DotNetBar.RibbonBar ribbonBar3;
@@ -906,6 +906,7 @@
         private DevComponents.DotNetBar.RibbonBar ribbonBar1;
         private DevComponents.DotNetBar.ButtonItem buttonItem8;
         private DevComponents.DotNetBar.ButtonItem backupDeviceButton;
+        public DevComponents.DotNetBar.StyleManager styleManager1;
 
     }
 }
