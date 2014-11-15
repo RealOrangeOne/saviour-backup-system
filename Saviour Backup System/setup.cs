@@ -17,6 +17,7 @@ namespace Saviour_Backup_System
         public static mainWindow MW;
         public static notificationIcon icon;
         public static splashScreen SS;
+        public static addBackupWizard ABW;
         public static string username = Environment.UserName; //snapshots the username
 
         public static void initProgram(string[] args)
@@ -44,7 +45,6 @@ namespace Saviour_Backup_System
             if (result == System.Windows.Forms.DialogResult.Yes) {
                 icon.notifyIcon.Dispose();
                 MW.removeDisplay();
-                MW.Dispose();
                 Environment.Exit(0);
             }
         }
