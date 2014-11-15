@@ -38,13 +38,13 @@
             this.buttonItem4 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar2 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
+            this.addBackupRuleButton = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
             this.backupDeviceButton = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar6 = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItem7 = new DevComponents.DotNetBar.ButtonItem();
+            this.exitButton = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar5 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem6 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar4 = new DevComponents.DotNetBar.RibbonBar();
@@ -96,9 +96,9 @@
             this.ribbonControl.BackgroundStyle.Class = "";
             this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl.CaptionVisible = true;
+            this.ribbonControl.Controls.Add(this.ribbonPanel4);
             this.ribbonControl.Controls.Add(this.ribbonPanel2);
             this.ribbonControl.Controls.Add(this.ribbonPanel3);
-            this.ribbonControl.Controls.Add(this.ribbonPanel4);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.backupRestoreTab,
@@ -159,6 +159,7 @@
             this.ribbonPanel2.StyleMouseOver.Class = "";
             this.ribbonPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel2.TabIndex = 2;
+            this.ribbonPanel2.Visible = false;
             // 
             // ribbonBar1
             // 
@@ -262,7 +263,7 @@
             this.ribbonBar2.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar2.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItem2,
-            this.buttonItem3});
+            this.addBackupRuleButton});
             this.ribbonBar2.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar2.Name = "ribbonBar2";
             this.ribbonBar2.Size = new System.Drawing.Size(267, 105);
@@ -291,11 +292,12 @@
             this.buttonItem2.SubItemsExpandWidth = 14;
             this.buttonItem2.Text = "Backup All Devices";
             // 
-            // buttonItem3
+            // addBackupRuleButton
             // 
-            this.buttonItem3.Name = "buttonItem3";
-            this.buttonItem3.SubItemsExpandWidth = 14;
-            this.buttonItem3.Text = "Add Backup Rule";
+            this.addBackupRuleButton.Name = "addBackupRuleButton";
+            this.addBackupRuleButton.SubItemsExpandWidth = 14;
+            this.addBackupRuleButton.Text = "Add Backup Rule";
+            this.addBackupRuleButton.Click += new System.EventHandler(this.addBackupRuleButton_Click);
             // 
             // ribbonPanel3
             // 
@@ -371,10 +373,10 @@
             this.ribbonPanel4.Controls.Add(this.ribbonBar5);
             this.ribbonPanel4.Controls.Add(this.ribbonBar4);
             this.ribbonPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel4.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanel4.Location = new System.Drawing.Point(0, 53);
             this.ribbonPanel4.Name = "ribbonPanel4";
             this.ribbonPanel4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel4.Size = new System.Drawing.Size(992, 161);
+            this.ribbonPanel4.Size = new System.Drawing.Size(992, 108);
             // 
             // 
             // 
@@ -391,7 +393,6 @@
             this.ribbonPanel4.StyleMouseOver.Class = "";
             this.ribbonPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel4.TabIndex = 4;
-            this.ribbonPanel4.Visible = false;
             // 
             // ribbonBar6
             // 
@@ -409,10 +410,10 @@
             this.ribbonBar6.ContainerControlProcessDialogKey = true;
             this.ribbonBar6.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar6.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItem7});
+            this.exitButton});
             this.ribbonBar6.Location = new System.Drawing.Point(203, 0);
             this.ribbonBar6.Name = "ribbonBar6";
-            this.ribbonBar6.Size = new System.Drawing.Size(100, 158);
+            this.ribbonBar6.Size = new System.Drawing.Size(100, 105);
             this.ribbonBar6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar6.TabIndex = 2;
             this.ribbonBar6.Text = "Exit";
@@ -427,11 +428,12 @@
             this.ribbonBar6.TitleStyleMouseOver.Class = "";
             this.ribbonBar6.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // buttonItem7
+            // exitButton
             // 
-            this.buttonItem7.Name = "buttonItem7";
-            this.buttonItem7.SubItemsExpandWidth = 14;
-            this.buttonItem7.Text = "Exit Saviour Backup";
+            this.exitButton.Name = "exitButton";
+            this.exitButton.SubItemsExpandWidth = 14;
+            this.exitButton.Text = "Exit Saviour Backup";
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // ribbonBar5
             // 
@@ -452,7 +454,7 @@
             this.buttonItem6});
             this.ribbonBar5.Location = new System.Drawing.Point(103, 0);
             this.ribbonBar5.Name = "ribbonBar5";
-            this.ribbonBar5.Size = new System.Drawing.Size(100, 158);
+            this.ribbonBar5.Size = new System.Drawing.Size(100, 105);
             this.ribbonBar5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar5.TabIndex = 1;
             this.ribbonBar5.Text = "About";
@@ -492,7 +494,7 @@
             this.buttonItem5});
             this.ribbonBar4.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar4.Name = "ribbonBar4";
-            this.ribbonBar4.Size = new System.Drawing.Size(100, 158);
+            this.ribbonBar4.Size = new System.Drawing.Size(100, 105);
             this.ribbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar4.TabIndex = 0;
             this.ribbonBar4.Text = "Preferences";
@@ -515,7 +517,6 @@
             // 
             // backupRestoreTab
             // 
-            this.backupRestoreTab.Checked = true;
             this.backupRestoreTab.Name = "backupRestoreTab";
             this.backupRestoreTab.Panel = this.ribbonPanel2;
             this.backupRestoreTab.Text = "Backup and Restore";
@@ -530,6 +531,7 @@
             // 
             // settingsTab
             // 
+            this.settingsTab.Checked = true;
             this.settingsTab.Name = "settingsTab";
             this.settingsTab.Panel = this.ribbonPanel4;
             this.settingsTab.Text = "Settings";
@@ -871,9 +873,9 @@
         private DevComponents.DotNetBar.ButtonItem buttonItem4;
         private DevComponents.DotNetBar.RibbonBar ribbonBar2;
         private DevComponents.DotNetBar.ButtonItem buttonItem2;
-        private DevComponents.DotNetBar.ButtonItem buttonItem3;
+        private DevComponents.DotNetBar.ButtonItem addBackupRuleButton;
         private DevComponents.DotNetBar.RibbonBar ribbonBar6;
-        private DevComponents.DotNetBar.ButtonItem buttonItem7;
+        private DevComponents.DotNetBar.ButtonItem exitButton;
         private DevComponents.DotNetBar.RibbonBar ribbonBar5;
         private DevComponents.DotNetBar.ButtonItem buttonItem6;
         private DevComponents.DotNetBar.RibbonBar ribbonBar4;
