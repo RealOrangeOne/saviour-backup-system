@@ -162,6 +162,7 @@ namespace Saviour_Backup_System
                     formatDriveCapacityTimer.Stop();
                     driveRefreshTimer.Stop();
                     this.Close();
+                    this.Dispose();
                     break;
                 case(CloseReason.UserClosing):
                     this.removeDisplay();
@@ -179,10 +180,6 @@ namespace Saviour_Backup_System
             setup.ABW.Show();
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            this.removeDisplay();
-            setup.closeProgram();
-        }
+        private void exitButton_Click(object sender, EventArgs e) { setup.closeProgram(); }
     }
 }
