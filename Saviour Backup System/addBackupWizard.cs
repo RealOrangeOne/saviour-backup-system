@@ -13,11 +13,12 @@ namespace Saviour_Backup_System
 {
     public partial class addBackupWizard : Form
     {
-        private string folderPath = "";
+        private string defaultText;
         public addBackupWizard()
         {
             InitializeComponent();
-            populateDropdown();            
+            populateDropdown();
+            defaultText = introTextBox.Text; //stores it so we can append to the end at runtime
         }
 
         private void directoryBrowseButton_Click(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace Saviour_Backup_System
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                folderPath = folderBrowserDialog.SelectedPath;
+                folderPath.Text = folderBrowserDialog.SelectedPath;
             }
             folderBrowserDialog.Dispose(); //memory management
         }
