@@ -38,14 +38,14 @@ namespace Saviour_Backup_System
 
        
 
-        public static void closeProgram()
-        {
+        public static void closeProgram() {
             string exitMessage = "Are you sure you want to close Saviour Backup System?\nAll copying backups and backup scanning will cease.";
             DialogResult result = MessageBox.Show(exitMessage, "Saviour Backup System Exiting...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == System.Windows.Forms.DialogResult.Yes) {
                 icon.notifyIcon.Dispose();
                 MW.removeDisplay();
                 Environment.Exit(0);
+                Application.Exit();
             }
         }
     }
