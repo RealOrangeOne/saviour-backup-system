@@ -85,6 +85,4 @@ namespace Saviour_Backup_System
             duration = Duration;
         }
     }
-
-
 }
