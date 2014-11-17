@@ -45,7 +45,6 @@ namespace Saviour_Backup_System
                 icon.notifyIcon.Dispose();
                 MW.removeDisplay();
                 Environment.Exit(0);
-                Application.Exit();
             }
         }
     }
