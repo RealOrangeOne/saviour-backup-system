@@ -36,7 +36,7 @@ namespace Saviour_Backup_System
             DriveInfo[] drives = USBTools.getConnectedDrives();
             foreach (DriveInfo drive in drives)
             {
-                drivesDropdown.Items.Add(drive.VolumeLabel);
+                drivesDropdown.Items.Add(drive.Name + " " + drive.VolumeLabel);
             }
         }
     }
