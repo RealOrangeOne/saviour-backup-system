@@ -177,7 +177,7 @@ namespace Saviour_Backup_System
         private void addBackupRuleButton_Click(object sender, EventArgs e)
         {
             setup.ABW = new addBackupWizard();
-            setup.ABW.Show();
+            setup.ABW.ShowDialog();
         }
 
         private void exitButton_Click(object sender, EventArgs e) { setup.closeProgram(); }
