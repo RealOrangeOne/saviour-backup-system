@@ -9,17 +9,16 @@ using System.Data.SqlClient;
 
 namespace Saviour_Backup_System
 {
-    class USBTools
-    {
-        public static void initDriveScan(){
+    class USBTools {
+        public static void initDriveScan() {
             Timer scanTimer = new Timer();
             scanTimer.Elapsed += new ElapsedEventHandler(driveScanTick);
             scanTimer.Interval = 1000 * 7; //seconds to check for new drives
             scanTimer.Start();
         }
         private static List<string> connectedDrives = null;
-        private static void driveScanTick(object sender, ElapsedEventArgs e)
-        {
+
+        private static void driveScanTick(object sender, ElapsedEventArgs e) {
             List<string> drivesSnapshot = connectedDrives;
             DriveInfo[] drives = getConnectedDrives();
             foreach (DriveInfo drive in drives)
@@ -48,18 +47,25 @@ namespace Saviour_Backup_System
         }
 
 
-        public static void safelyEjectDrive(string driveChar)
-        {
+        public static DriveInfo getDriveObject(string driveChar) {
+            DriveInfo foundDrive = null;
+            foreach (DriveInfo drive in getConnectedDrives()){
+                if (drive.Name[0].ToString() == driveChar) {
+                    foundDrive = drive;
+                }
+            }
+            return foundDrive;
+        }
+
+        public static void safelyEjectDrive(string driveChar) {
             driveChar = driveChar.Remove(driveChar.Length - 1);
             RemoveDriveTools.RemoveDrive(driveChar);
         }
 
 
-        public static string getDriveType(DriveInfo selectedDrive)
-        {
+        public static string getDriveType(DriveInfo selectedDrive) {
             string driveTypeDecoded = "Error decoding drive details!";
-            switch (selectedDrive.DriveType)
-            {
+            switch (selectedDrive.DriveType) {
                 case DriveType.CDRom:
                     driveTypeDecoded = "Optical Disk Drive";
                     break;
@@ -86,16 +92,14 @@ namespace Saviour_Backup_System
         }
 
 
-        public static int countDrives()
-        {
+        public static int countDrives() {
             int numberofDrives = 0;
             foreach (DriveInfo drive in getConnectedDrives()) { numberofDrives++; }
             return numberofDrives;
         }
 
 
-        public static int spacePercentage(DriveInfo drive)
-        {
+        public static int spacePercentage(DriveInfo drive) {
             double capacity = (double)(drive.TotalSize / (1024 * 1024));
             double free = (double)(drive.AvailableFreeSpace / (1024 * 1024));
             double answer = (10000 - ((free / capacity) * 10000));
