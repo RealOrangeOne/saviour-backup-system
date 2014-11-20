@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
+            this.title = new System.Windows.Forms.Label();
+            this.totalFilesProgress = new DevComponents.DotNetBar.Controls.ProgressBarX();
+            this.currentFileProgress = new System.Windows.Forms.ProgressBar();
+            this.currentFileTitle = new System.Windows.Forms.Label();
+            this.currentFile = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -75,16 +80,74 @@
             this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Black;
             this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(26))))));
             // 
+            // title
+            // 
+            this.title.AutoSize = true;
+            this.title.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title.Location = new System.Drawing.Point(12, 32);
+            this.title.Name = "title";
+            this.title.Size = new System.Drawing.Size(115, 20);
+            this.title.TabIndex = 2;
+            this.title.Text = "Copying Files...";
+            // 
+            // totalFilesProgress
+            // 
+            // 
+            // 
+            // 
+            this.totalFilesProgress.BackgroundStyle.Class = "";
+            this.totalFilesProgress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.totalFilesProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalFilesProgress.Location = new System.Drawing.Point(12, 55);
+            this.totalFilesProgress.Name = "totalFilesProgress";
+            this.totalFilesProgress.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.totalFilesProgress.Size = new System.Drawing.Size(410, 33);
+            this.totalFilesProgress.TabIndex = 3;
+            this.totalFilesProgress.Text = "Initialising...";
+            this.totalFilesProgress.TextVisible = true;
+            // 
+            // currentFileProgress
+            // 
+            this.currentFileProgress.Location = new System.Drawing.Point(12, 124);
+            this.currentFileProgress.Name = "currentFileProgress";
+            this.currentFileProgress.Size = new System.Drawing.Size(410, 33);
+            this.currentFileProgress.TabIndex = 4;
+            // 
+            // currentFileTitle
+            // 
+            this.currentFileTitle.AutoSize = true;
+            this.currentFileTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentFileTitle.Location = new System.Drawing.Point(12, 104);
+            this.currentFileTitle.Name = "currentFileTitle";
+            this.currentFileTitle.Size = new System.Drawing.Size(85, 17);
+            this.currentFileTitle.TabIndex = 5;
+            this.currentFileTitle.Text = "Current File:";
+            // 
+            // currentFile
+            // 
+            this.currentFile.AutoSize = true;
+            this.currentFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentFile.Location = new System.Drawing.Point(103, 104);
+            this.currentFile.Name = "currentFile";
+            this.currentFile.Size = new System.Drawing.Size(0, 17);
+            this.currentFile.TabIndex = 6;
+            // 
             // transferWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 261);
+            this.Controls.Add(this.currentFile);
+            this.Controls.Add(this.currentFileTitle);
+            this.Controls.Add(this.currentFileProgress);
+            this.Controls.Add(this.totalFilesProgress);
+            this.Controls.Add(this.title);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "transferWindow";
             this.Text = "Backup Process";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -92,6 +155,11 @@
 
         private DevComponents.DotNetBar.RibbonControl ribbonControl1;
         private DevComponents.DotNetBar.StyleManager styleManager1;
+        private System.Windows.Forms.Label title;
+        private DevComponents.DotNetBar.Controls.ProgressBarX totalFilesProgress;
+        private System.Windows.Forms.ProgressBar currentFileProgress;
+        private System.Windows.Forms.Label currentFileTitle;
+        private System.Windows.Forms.Label currentFile;
 
     }
 }
