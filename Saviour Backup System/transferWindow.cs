@@ -10,11 +10,27 @@ using System.Windows.Forms;
 
 namespace Saviour_Backup_System
 {
-    public partial class transferWindow : Form
+    public partial class transferWindow : Form, CopyFiles.ICopyFilesDiag
     {
+        public System.ComponentModel.ISynchronizeInvoke SyncronizationObject { get; set; }
+
         public transferWindow()
         {
             InitializeComponent();
         }
+        public void update(Int32 totalFiles, Int32 copiedFiles, Int64 totalBytes, Int64 copiedBytes, string currentFilename)
+        {
+            totalFilesProgress.Maximum = totalFiles;
+            totalFilesProgress.Value = copiedFiles;
+            currentFileProgress.Maximum = 100; //so its a percentage, might make it more accurate.
+
+            if (totalBytes != 0) {
+                currentFileProgress.Value = Convert.ToInt32((100f / (totalBytes / 1024f)) * (copiedBytes / 1024f));
+            }
+            totalFilesProgress.Text = "Copying File " + copiedFiles + " of " + totalFiles + ".";
+            currentFile.Text = currentFilename;
+        }
+
+        public event CopyFiles.CopyFiles.DEL_cancelCopy EN_cancelCopy;
     }
 }
