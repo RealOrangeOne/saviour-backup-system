@@ -16,5 +16,13 @@ namespace Saviour_Backup_System
         {
             InitializeComponent();
         }
+
+        private void copyFiles(string startDirectory, string endDirectory)
+        {
+            CopyFiles.CopyFiles Temp = new CopyFiles.CopyFiles(startDirectory, endDirectory);
+
+            transferWindow copyDiag = new transferWindow();
+            copyDiag.
+        }
     }
 }
