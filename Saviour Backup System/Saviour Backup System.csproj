@@ -134,6 +134,9 @@
     <EmbeddedResource Include="addBackupWizard.resx">
       <DependentUpon>addBackupWizard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="currentTransfers.resx">
+      <DependentUpon>currentTransfers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainWindow.resx">
       <DependentUpon>mainWindow.cs</DependentUpon>
     </EmbeddedResource>
