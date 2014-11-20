@@ -180,6 +180,17 @@ namespace Saviour_Backup_System
             setup.ABW.ShowDialog();
         }
 
-        private void exitButton_Click(object sender, EventArgs e) { setup.closeProgram(); }
+        private void exitButton_Click(object sender, EventArgs e) { setup.icon.closeProgram(null, null); }
+
+        private void backupRestoreTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonItem3_Click(object sender, EventArgs e)
+        {
+            setup.TW = new transferWindow();
+            setup.TW.ShowDialog();
+        }
     }
 }
