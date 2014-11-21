@@ -34,20 +34,20 @@
             this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
             this.viewAllRulesButton = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
+            this.currentTransfersButton = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar3 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem4 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar2 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
             this.addBackupRuleButton = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
+            this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
+            this.backupDeviceButton = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar5 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem6 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar4 = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItem5 = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
-            this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
-            this.backupDeviceButton = new DevComponents.DotNetBar.ButtonItem();
             this.backupRestoreTab = new DevComponents.DotNetBar.RibbonTabItem();
             this.deviceTab = new DevComponents.DotNetBar.RibbonTabItem();
             this.settingsTab = new DevComponents.DotNetBar.RibbonTabItem();
@@ -73,16 +73,24 @@
             this.driveCapacityDisplay = new DevComponents.DotNetBar.Controls.ProgressBarX();
             this.driveRefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.formatDriveCapacityTimer = new System.Windows.Forms.Timer(this.components);
+            this.backupDetailsPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.backupDirectoryDisplay = new System.Windows.Forms.Label();
+            this.backupDirectoryLabel = new System.Windows.Forms.Label();
+            this.backupProgress = new System.Windows.Forms.ProgressBar();
+            this.label3 = new System.Windows.Forms.Label();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
-            this.ribbonPanel4.SuspendLayout();
             this.ribbonPanel3.SuspendLayout();
+            this.ribbonPanel4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sideBar)).BeginInit();
             this.sideBar.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
             this.driveDetailsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.driveIconBox)).BeginInit();
+            this.backupDetailsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -95,8 +103,8 @@
             this.ribbonControl.CanCustomize = false;
             this.ribbonControl.CaptionVisible = true;
             this.ribbonControl.Controls.Add(this.ribbonPanel2);
-            this.ribbonControl.Controls.Add(this.ribbonPanel4);
             this.ribbonControl.Controls.Add(this.ribbonPanel3);
+            this.ribbonControl.Controls.Add(this.ribbonPanel4);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.backupRestoreTab,
@@ -172,7 +180,7 @@
             this.ribbonBar1.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.viewAllRulesButton,
-            this.buttonItem3});
+            this.currentTransfersButton});
             this.ribbonBar1.Location = new System.Drawing.Point(437, 0);
             this.ribbonBar1.Name = "ribbonBar1";
             this.ribbonBar1.Size = new System.Drawing.Size(176, 105);
@@ -197,12 +205,12 @@
             this.viewAllRulesButton.SubItemsExpandWidth = 14;
             this.viewAllRulesButton.Text = "View All Rules";
             // 
-            // buttonItem3
+            // currentTransfersButton
             // 
-            this.buttonItem3.Name = "buttonItem3";
-            this.buttonItem3.SubItemsExpandWidth = 14;
-            this.buttonItem3.Text = "Current Transfers";
-            this.buttonItem3.Click += new System.EventHandler(this.buttonItem3_Click);
+            this.currentTransfersButton.Name = "currentTransfersButton";
+            this.currentTransfersButton.SubItemsExpandWidth = 14;
+            this.currentTransfersButton.Text = "Current Transfers";
+            this.currentTransfersButton.Click += new System.EventHandler(this.currentTransfersButton_Click);
             // 
             // ribbonBar3
             // 
@@ -300,6 +308,73 @@
             this.addBackupRuleButton.SubItemsExpandWidth = 14;
             this.addBackupRuleButton.Text = "Add Backup Rule";
             this.addBackupRuleButton.Click += new System.EventHandler(this.addBackupRuleButton_Click);
+            // 
+            // ribbonPanel3
+            // 
+            this.ribbonPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel3.Controls.Add(this.ribbonBar7);
+            this.ribbonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ribbonPanel3.Location = new System.Drawing.Point(0, 53);
+            this.ribbonPanel3.Name = "ribbonPanel3";
+            this.ribbonPanel3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.ribbonPanel3.Size = new System.Drawing.Size(992, 108);
+            // 
+            // 
+            // 
+            this.ribbonPanel3.Style.Class = "";
+            this.ribbonPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel3.StyleMouseDown.Class = "";
+            this.ribbonPanel3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel3.StyleMouseOver.Class = "";
+            this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonPanel3.TabIndex = 5;
+            this.ribbonPanel3.Visible = false;
+            // 
+            // ribbonBar7
+            // 
+            this.ribbonBar7.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBar7.BackgroundMouseOverStyle.Class = "";
+            this.ribbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar7.BackgroundStyle.Class = "";
+            this.ribbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar7.ContainerControlProcessDialogKey = true;
+            this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.backupDeviceButton});
+            this.ribbonBar7.Location = new System.Drawing.Point(3, 0);
+            this.ribbonBar7.Name = "ribbonBar7";
+            this.ribbonBar7.Size = new System.Drawing.Size(170, 105);
+            this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar7.TabIndex = 0;
+            this.ribbonBar7.Text = "Backup / Restore";
+            // 
+            // 
+            // 
+            this.ribbonBar7.TitleStyle.Class = "";
+            this.ribbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar7.TitleStyleMouseOver.Class = "";
+            this.ribbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // backupDeviceButton
+            // 
+            this.backupDeviceButton.Name = "backupDeviceButton";
+            this.backupDeviceButton.SubItemsExpandWidth = 14;
+            this.backupDeviceButton.Text = "Backup Device";
             // 
             // ribbonPanel4
             // 
@@ -409,80 +484,12 @@
             this.buttonItem5.SubItemsExpandWidth = 14;
             this.buttonItem5.Text = "Edit Preferences";
             // 
-            // ribbonPanel3
-            // 
-            this.ribbonPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonPanel3.Controls.Add(this.ribbonBar7);
-            this.ribbonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel3.Location = new System.Drawing.Point(0, 53);
-            this.ribbonPanel3.Name = "ribbonPanel3";
-            this.ribbonPanel3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel3.Size = new System.Drawing.Size(992, 108);
-            // 
-            // 
-            // 
-            this.ribbonPanel3.Style.Class = "";
-            this.ribbonPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel3.StyleMouseDown.Class = "";
-            this.ribbonPanel3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel3.StyleMouseOver.Class = "";
-            this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonPanel3.TabIndex = 5;
-            this.ribbonPanel3.Visible = false;
-            // 
-            // ribbonBar7
-            // 
-            this.ribbonBar7.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar7.BackgroundMouseOverStyle.Class = "";
-            this.ribbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar7.BackgroundStyle.Class = "";
-            this.ribbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar7.ContainerControlProcessDialogKey = true;
-            this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.backupDeviceButton});
-            this.ribbonBar7.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBar7.Name = "ribbonBar7";
-            this.ribbonBar7.Size = new System.Drawing.Size(170, 105);
-            this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar7.TabIndex = 0;
-            this.ribbonBar7.Text = "Backup / Restore";
-            // 
-            // 
-            // 
-            this.ribbonBar7.TitleStyle.Class = "";
-            this.ribbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar7.TitleStyleMouseOver.Class = "";
-            this.ribbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // backupDeviceButton
-            // 
-            this.backupDeviceButton.Name = "backupDeviceButton";
-            this.backupDeviceButton.SubItemsExpandWidth = 14;
-            this.backupDeviceButton.Text = "Backup Device";
-            // 
             // backupRestoreTab
             // 
             this.backupRestoreTab.Checked = true;
             this.backupRestoreTab.Name = "backupRestoreTab";
             this.backupRestoreTab.Panel = this.ribbonPanel2;
             this.backupRestoreTab.Text = "Backup and Restore";
-            this.backupRestoreTab.Click += new System.EventHandler(this.backupRestoreTab_Click);
             // 
             // deviceTab
             // 
@@ -779,11 +786,123 @@
             this.formatDriveCapacityTimer.Interval = 300;
             this.formatDriveCapacityTimer.Tick += new System.EventHandler(this.formatDriveCapacityTimer_Tick);
             // 
+            // backupDetailsPanel
+            // 
+            this.backupDetailsPanel.CanvasColor = System.Drawing.SystemColors.Control;
+            this.backupDetailsPanel.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.backupDetailsPanel.Controls.Add(this.label3);
+            this.backupDetailsPanel.Controls.Add(this.backupProgress);
+            this.backupDetailsPanel.Controls.Add(this.label1);
+            this.backupDetailsPanel.Controls.Add(this.label2);
+            this.backupDetailsPanel.Controls.Add(this.backupDirectoryDisplay);
+            this.backupDetailsPanel.Controls.Add(this.backupDirectoryLabel);
+            this.backupDetailsPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backupDetailsPanel.Location = new System.Drawing.Point(186, 374);
+            this.backupDetailsPanel.Name = "backupDetailsPanel";
+            this.backupDetailsPanel.Size = new System.Drawing.Size(794, 147);
+            // 
+            // 
+            // 
+            this.backupDetailsPanel.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.backupDetailsPanel.Style.BackColorGradientAngle = 90;
+            this.backupDetailsPanel.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.backupDetailsPanel.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.backupDetailsPanel.Style.BorderBottomWidth = 1;
+            this.backupDetailsPanel.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.backupDetailsPanel.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.backupDetailsPanel.Style.BorderLeftWidth = 1;
+            this.backupDetailsPanel.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.backupDetailsPanel.Style.BorderRightWidth = 1;
+            this.backupDetailsPanel.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.backupDetailsPanel.Style.BorderTopWidth = 1;
+            this.backupDetailsPanel.Style.Class = "";
+            this.backupDetailsPanel.Style.CornerDiameter = 4;
+            this.backupDetailsPanel.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.backupDetailsPanel.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.backupDetailsPanel.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.backupDetailsPanel.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.backupDetailsPanel.StyleMouseDown.Class = "";
+            this.backupDetailsPanel.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.backupDetailsPanel.StyleMouseOver.Class = "";
+            this.backupDetailsPanel.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.backupDetailsPanel.TabIndex = 4;
+            this.backupDetailsPanel.Text = "Backup Settings";
+            this.backupDetailsPanel.Click += new System.EventHandler(this.backupDetailsPanel_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(96, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "NONE";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Creation Date:";
+            // 
+            // backupDirectoryDisplay
+            // 
+            this.backupDirectoryDisplay.AutoSize = true;
+            this.backupDirectoryDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.backupDirectoryDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backupDirectoryDisplay.Location = new System.Drawing.Point(67, 0);
+            this.backupDirectoryDisplay.Name = "backupDirectoryDisplay";
+            this.backupDirectoryDisplay.Size = new System.Drawing.Size(48, 17);
+            this.backupDirectoryDisplay.TabIndex = 6;
+            this.backupDirectoryDisplay.Text = "NONE";
+            // 
+            // backupDirectoryLabel
+            // 
+            this.backupDirectoryLabel.AutoSize = true;
+            this.backupDirectoryLabel.BackColor = System.Drawing.Color.Transparent;
+            this.backupDirectoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backupDirectoryLabel.Location = new System.Drawing.Point(3, 0);
+            this.backupDirectoryLabel.Name = "backupDirectoryLabel";
+            this.backupDirectoryLabel.Size = new System.Drawing.Size(69, 17);
+            this.backupDirectoryLabel.TabIndex = 5;
+            this.backupDirectoryLabel.Text = "Directory:";
+            // 
+            // backupProgress
+            // 
+            this.backupProgress.Location = new System.Drawing.Point(78, 86);
+            this.backupProgress.Name = "backupProgress";
+            this.backupProgress.Size = new System.Drawing.Size(707, 27);
+            this.backupProgress.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 17);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Progress:";
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(992, 546);
+            this.Controls.Add(this.backupDetailsPanel);
             this.Controls.Add(this.driveDetailsPanel);
             this.Controls.Add(this.sideBar);
             this.Controls.Add(this.statusStrip1);
@@ -798,8 +917,8 @@
             this.ribbonControl.ResumeLayout(false);
             this.ribbonControl.PerformLayout();
             this.ribbonPanel2.ResumeLayout(false);
-            this.ribbonPanel4.ResumeLayout(false);
             this.ribbonPanel3.ResumeLayout(false);
+            this.ribbonPanel4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sideBar)).EndInit();
@@ -808,6 +927,8 @@
             this.driveDetailsPanel.ResumeLayout(false);
             this.driveDetailsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.driveIconBox)).EndInit();
+            this.backupDetailsPanel.ResumeLayout(false);
+            this.backupDetailsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -857,7 +978,14 @@
         private DevComponents.DotNetBar.ButtonItem viewAllRulesButton;
         private DevComponents.DotNetBar.ButtonItem backupDeviceButton;
         public DevComponents.DotNetBar.StyleManager styleManager;
-        private DevComponents.DotNetBar.ButtonItem buttonItem3;
+        private DevComponents.DotNetBar.ButtonItem currentTransfersButton;
+        private DevComponents.DotNetBar.Controls.GroupPanel backupDetailsPanel;
+        private System.Windows.Forms.Label backupDirectoryDisplay;
+        private System.Windows.Forms.Label backupDirectoryLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar backupProgress;
 
     }
 }
