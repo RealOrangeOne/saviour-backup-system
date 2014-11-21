@@ -18,8 +18,7 @@ namespace Saviour_Backup_System
         public static notificationIcon icon;
         public static splashScreen SS;
         public static addBackupWizard ABW;
-        public static transferWindow TW;
-        public static List<transferWindow> transfersArray;
+        public static currentTransfers CT = new currentTransfers();
         public static string username = Environment.UserName; //snapshots the username
 
         public static void initProgram(string[] args)
@@ -41,7 +40,7 @@ namespace Saviour_Backup_System
             Application.Run(MW);
         }
 
-        public static void startupBackups(){
+        private static void startupBackups(){
             return;
         }
 
