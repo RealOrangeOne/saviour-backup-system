@@ -36,7 +36,7 @@ namespace Saviour_Backup_System
             refreshDriveList();
             connectedDrivesList.Update();
             connectedDrivesList.Items[0].Selected = true;
-            displayDriveDetails(connectedDrivesList.SelectedItems[0].Text.Substring(0, 3));
+            displayDriveDetails(USBTools.getDriveObject(connectedDrivesList.SelectedItems[0].Text.Substring(0,1)));
             formatDriveCapacityTimer.Start();
             driveRefreshTimer.Start();
             setup.icon.notifyIcon.Visible = false;
@@ -84,15 +84,12 @@ namespace Saviour_Backup_System
             ribbonControl.RecalcLayout();
             populateDeviceTab();
             string selectedDevice = connectedDrivesList.SelectedItems[0].Text;
-            displayDriveDetails(selectedDevice.Substring(0,3));
+            displayDriveDetails(USBTools.getDriveObject(selectedDevice.Substring(0,1)));
         }
         
         
-        private void displayDriveDetails(string driveName)
-        {
-            foreach (DriveInfo drive in USBTools.getConnectedDrives()) {
-                if (drive.Name == driveName) { selectedDrive = drive; break; }
-            }
+        private void displayDriveDetails(DriveInfo drive) {
+            selectedDrive = drive;
             driveNameDisplay.Text = tools.Trim(selectedDrive.VolumeLabel, 16);
             driveLetterDisplay.Text = selectedDrive.Name;
             driveSystemDisplay.Text = selectedDrive.DriveFormat;
@@ -109,7 +106,6 @@ namespace Saviour_Backup_System
                     driveIconBox.Image = Properties.Resources.hddIcon;
                     break;
             }
-            
         }
 
 
@@ -150,7 +146,7 @@ namespace Saviour_Backup_System
         private void formatDriveCapacityTimer_Tick(object sender, EventArgs e) { try { formatDriveCapacity(); } catch { } } //Because background workers cant interact with the GUI (very quickly), so a timer has to 
 
         private void populateDeviceTab() {
-            // put stuff in here!!
+            // put stuff in here for changing labels of buttons etc.
             deviceTab.Visible = true;
             deviceTab.Select();
         }
@@ -180,17 +176,16 @@ namespace Saviour_Backup_System
             setup.ABW.ShowDialog();
         }
 
-        private void exitButton_Click(object sender, EventArgs e) { setup.icon.closeProgram(null, null); }
+        private void exitButton_Click(object sender, EventArgs e) { setup.closeProgram(); }
 
-        private void backupRestoreTab_Click(object sender, EventArgs e)
+        private void currentTransfersButton_Click(object sender, EventArgs e)
         {
-
+            setup.CT.ShowDialog();
         }
 
-        private void buttonItem3_Click(object sender, EventArgs e)
+        private void backupDetailsPanel_Click(object sender, EventArgs e)
         {
-            setup.TW = new transferWindow();
-            setup.TW.ShowDialog();
+
         }
     }
 }
