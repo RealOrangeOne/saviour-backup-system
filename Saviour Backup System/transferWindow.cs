@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CopyFiles;
+
 
 namespace Saviour_Backup_System
 {
     public partial class transferWindow : Form, CopyFiles.ICopyFilesDiag
     {
-        public System.ComponentModel.ISynchronizeInvoke SyncronizationObject { get; set; }
-
+        public System.ComponentModel.ISynchronizeInvoke SynchronizationObject { get; set; }
         public transferWindow()
         {
             InitializeComponent();
@@ -31,6 +32,15 @@ namespace Saviour_Backup_System
             currentFile.Text = currentFilename;
         }
 
+        public void cancelCopy() {
+            if (EN_cancelCopy != null) { EN_cancelCopy(); }
+        }
+
         public event CopyFiles.CopyFiles.DEL_cancelCopy EN_cancelCopy;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cancelCopy();
+        }
     }
 }
