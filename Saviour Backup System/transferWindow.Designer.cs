@@ -36,6 +36,8 @@
             this.currentFileProgress = new System.Windows.Forms.ProgressBar();
             this.currentFileTitle = new System.Windows.Forms.Label();
             this.currentFile = new System.Windows.Forms.Label();
+            this.minimizeButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -49,6 +51,7 @@
             this.ribbonControl1.CaptionVisible = true;
             this.ribbonControl1.CategorizeMode = DevComponents.DotNetBar.eCategorizeMode.Categories;
             this.ribbonControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ribbonControl1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ribbonControl1.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Name = "ribbonControl1";
@@ -83,10 +86,10 @@
             // title
             // 
             this.title.AutoSize = true;
-            this.title.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title.Location = new System.Drawing.Point(12, 32);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(115, 20);
+            this.title.Size = new System.Drawing.Size(130, 20);
             this.title.TabIndex = 2;
             this.title.Text = "Copying Files...";
             // 
@@ -97,7 +100,7 @@
             // 
             this.totalFilesProgress.BackgroundStyle.Class = "";
             this.totalFilesProgress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.totalFilesProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalFilesProgress.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalFilesProgress.Location = new System.Drawing.Point(12, 55);
             this.totalFilesProgress.Name = "totalFilesProgress";
             this.totalFilesProgress.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -116,10 +119,10 @@
             // currentFileTitle
             // 
             this.currentFileTitle.AutoSize = true;
-            this.currentFileTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentFileTitle.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentFileTitle.Location = new System.Drawing.Point(12, 104);
             this.currentFileTitle.Name = "currentFileTitle";
-            this.currentFileTitle.Size = new System.Drawing.Size(85, 17);
+            this.currentFileTitle.Size = new System.Drawing.Size(93, 17);
             this.currentFileTitle.TabIndex = 5;
             this.currentFileTitle.Text = "Current File:";
             // 
@@ -132,11 +135,36 @@
             this.currentFile.Size = new System.Drawing.Size(0, 17);
             this.currentFile.TabIndex = 6;
             // 
+            // minimizeButton
+            // 
+            this.minimizeButton.Font = new System.Drawing.Font("Lucida Sans Unicode", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minimizeButton.Location = new System.Drawing.Point(12, 163);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(96, 29);
+            this.minimizeButton.TabIndex = 0;
+            this.minimizeButton.TabStop = false;
+            this.minimizeButton.Text = "Minimize";
+            this.minimizeButton.UseVisualStyleBackColor = true;
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Font = new System.Drawing.Font("Lucida Sans Unicode", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Location = new System.Drawing.Point(326, 163);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(96, 29);
+            this.cancelButton.TabIndex = 7;
+            this.cancelButton.TabStop = false;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // transferWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 261);
+            this.ClientSize = new System.Drawing.Size(434, 204);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.currentFile);
             this.Controls.Add(this.currentFileTitle);
             this.Controls.Add(this.currentFileProgress);
@@ -160,6 +188,8 @@
         private System.Windows.Forms.ProgressBar currentFileProgress;
         private System.Windows.Forms.Label currentFileTitle;
         private System.Windows.Forms.Label currentFile;
+        private System.Windows.Forms.Button minimizeButton;
+        private System.Windows.Forms.Button cancelButton;
 
     }
 }
