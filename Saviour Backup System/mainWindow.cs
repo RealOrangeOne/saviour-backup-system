@@ -12,7 +12,7 @@ namespace Saviour_Backup_System
 {
     public partial class mainWindow : Form
     {
-        private DriveInfo selectedDrive;
+        public DriveInfo selectedDrive;
 
         public mainWindow() {
             InitializeComponent();
