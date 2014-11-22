@@ -145,6 +145,7 @@
             this.minimizeButton.TabStop = false;
             this.minimizeButton.Text = "Minimize";
             this.minimizeButton.UseVisualStyleBackColor = true;
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // cancelButton
             // 
