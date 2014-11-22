@@ -74,12 +74,12 @@
             this.driveRefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.formatDriveCapacityTimer = new System.Windows.Forms.Timer(this.components);
             this.backupDetailsPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.backupProgress = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.backupDirectoryDisplay = new System.Windows.Forms.Label();
             this.backupDirectoryLabel = new System.Windows.Forms.Label();
-            this.backupProgress = new System.Windows.Forms.ProgressBar();
-            this.label3 = new System.Windows.Forms.Label();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel3.SuspendLayout();
@@ -835,6 +835,24 @@
             this.backupDetailsPanel.Text = "Backup Settings";
             this.backupDetailsPanel.Click += new System.EventHandler(this.backupDetailsPanel_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 17);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Progress:";
+            // 
+            // backupProgress
+            // 
+            this.backupProgress.Location = new System.Drawing.Point(78, 86);
+            this.backupProgress.Name = "backupProgress";
+            this.backupProgress.Size = new System.Drawing.Size(707, 27);
+            this.backupProgress.TabIndex = 9;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -878,24 +896,6 @@
             this.backupDirectoryLabel.Size = new System.Drawing.Size(69, 17);
             this.backupDirectoryLabel.TabIndex = 5;
             this.backupDirectoryLabel.Text = "Directory:";
-            // 
-            // backupProgress
-            // 
-            this.backupProgress.Location = new System.Drawing.Point(78, 86);
-            this.backupProgress.Name = "backupProgress";
-            this.backupProgress.Size = new System.Drawing.Size(707, 27);
-            this.backupProgress.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 91);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 17);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Progress:";
             // 
             // mainWindow
             // 
@@ -985,7 +985,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ProgressBar backupProgress;
+        public System.Windows.Forms.ProgressBar backupProgress;
 
     }
 }
