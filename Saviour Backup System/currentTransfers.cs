@@ -40,8 +40,7 @@ namespace Saviour_Backup_System
             if (!display) { transfersList[backups].Hide(); } //if it is a startup backup process, dont display the dialog.
         }
 
-        private class copyProgressLabel : Label
-        {
+        private class copyProgressLabel : Label {
             public copyProgressLabel()
             {
                 base.InitLayout();
