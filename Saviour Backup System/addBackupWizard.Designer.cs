@@ -45,6 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.previousBackupInput = new DevComponents.Editors.IntegerInput();
             this.createButton = new System.Windows.Forms.Button();
+            this.statusProgress = new DevComponents.DotNetBar.Controls.ProgressBarX();
             ((System.ComponentModel.ISupportInitialize)(this.previousBackupInput)).BeginInit();
             this.SuspendLayout();
             // 
@@ -267,12 +268,31 @@
             this.createButton.TabIndex = 27;
             this.createButton.Text = "Create";
             this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
+            // 
+            // statusProgress
+            // 
+            // 
+            // 
+            // 
+            this.statusProgress.BackgroundStyle.Class = "";
+            this.statusProgress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.statusProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusProgress.Location = new System.Drawing.Point(12, 258);
+            this.statusProgress.Name = "statusProgress";
+            this.statusProgress.ProgressType = DevComponents.DotNetBar.eProgressItemType.Marquee;
+            this.statusProgress.Size = new System.Drawing.Size(539, 26);
+            this.statusProgress.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.statusProgress.TabIndex = 28;
+            this.statusProgress.Text = "Initialising...";
+            this.statusProgress.TextVisible = true;
             // 
             // addBackupWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 257);
+            this.ClientSize = new System.Drawing.Size(563, 294);
+            this.Controls.Add(this.statusProgress);
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.previousBackupInput);
             this.Controls.Add(this.label3);
@@ -323,5 +343,6 @@
         private System.Windows.Forms.Label label3;
         private DevComponents.Editors.IntegerInput previousBackupInput;
         private System.Windows.Forms.Button createButton;
+        private DevComponents.DotNetBar.Controls.ProgressBarX statusProgress;
     }
 }
