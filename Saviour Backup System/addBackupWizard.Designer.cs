@@ -36,8 +36,8 @@
             this.folderPath = new System.Windows.Forms.TextBox();
             this.directoryBrowseButton = new System.Windows.Forms.Button();
             this.introTextBox = new System.Windows.Forms.RichTextBox();
-            this.switchButton1 = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.switchButton3 = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.insertionSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.unifiedFileSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -143,43 +143,43 @@
     "p record.\n\nBe careful when filling in the details, they may not be able to be ch" +
     "anged later.";
             // 
-            // switchButton1
+            // insertionSwitch
             // 
-            this.switchButton1.BackColor = System.Drawing.SystemColors.ControlDark;
-            // 
-            // 
-            // 
-            this.switchButton1.BackgroundStyle.Class = "";
-            this.switchButton1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton1.Font = new System.Drawing.Font("Lucida Sans Typewriter", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.switchButton1.Location = new System.Drawing.Point(487, 133);
-            this.switchButton1.Name = "switchButton1";
-            this.switchButton1.OffBackColor = System.Drawing.Color.DarkRed;
-            this.switchButton1.OffTextColor = System.Drawing.Color.White;
-            this.switchButton1.OnBackColor = System.Drawing.Color.LimeGreen;
-            this.switchButton1.OnTextColor = System.Drawing.Color.Black;
-            this.switchButton1.Size = new System.Drawing.Size(64, 23);
-            this.switchButton1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.switchButton1.TabIndex = 13;
-            // 
-            // switchButton3
-            // 
-            this.switchButton3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.insertionSwitch.BackColor = System.Drawing.SystemColors.ControlDark;
             // 
             // 
             // 
-            this.switchButton3.BackgroundStyle.Class = "";
-            this.switchButton3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton3.Font = new System.Drawing.Font("Lucida Sans Typewriter", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.switchButton3.Location = new System.Drawing.Point(487, 162);
-            this.switchButton3.Name = "switchButton3";
-            this.switchButton3.OffBackColor = System.Drawing.Color.DarkRed;
-            this.switchButton3.OffTextColor = System.Drawing.Color.White;
-            this.switchButton3.OnBackColor = System.Drawing.Color.LimeGreen;
-            this.switchButton3.OnTextColor = System.Drawing.Color.Black;
-            this.switchButton3.Size = new System.Drawing.Size(64, 23);
-            this.switchButton3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.switchButton3.TabIndex = 15;
+            this.insertionSwitch.BackgroundStyle.Class = "";
+            this.insertionSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.insertionSwitch.Font = new System.Drawing.Font("Lucida Sans Typewriter", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.insertionSwitch.Location = new System.Drawing.Point(487, 133);
+            this.insertionSwitch.Name = "insertionSwitch";
+            this.insertionSwitch.OffBackColor = System.Drawing.Color.DarkRed;
+            this.insertionSwitch.OffTextColor = System.Drawing.Color.White;
+            this.insertionSwitch.OnBackColor = System.Drawing.Color.LimeGreen;
+            this.insertionSwitch.OnTextColor = System.Drawing.Color.Black;
+            this.insertionSwitch.Size = new System.Drawing.Size(64, 23);
+            this.insertionSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.insertionSwitch.TabIndex = 13;
+            // 
+            // unifiedFileSwitch
+            // 
+            this.unifiedFileSwitch.BackColor = System.Drawing.SystemColors.ControlDark;
+            // 
+            // 
+            // 
+            this.unifiedFileSwitch.BackgroundStyle.Class = "";
+            this.unifiedFileSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.unifiedFileSwitch.Font = new System.Drawing.Font("Lucida Sans Typewriter", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unifiedFileSwitch.Location = new System.Drawing.Point(487, 162);
+            this.unifiedFileSwitch.Name = "unifiedFileSwitch";
+            this.unifiedFileSwitch.OffBackColor = System.Drawing.Color.DarkRed;
+            this.unifiedFileSwitch.OffTextColor = System.Drawing.Color.White;
+            this.unifiedFileSwitch.OnBackColor = System.Drawing.Color.LimeGreen;
+            this.unifiedFileSwitch.OnTextColor = System.Drawing.Color.Black;
+            this.unifiedFileSwitch.Size = new System.Drawing.Size(64, 23);
+            this.unifiedFileSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.unifiedFileSwitch.TabIndex = 15;
             // 
             // label6
             // 
@@ -300,8 +300,8 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.switchButton3);
-            this.Controls.Add(this.switchButton1);
+            this.Controls.Add(this.unifiedFileSwitch);
+            this.Controls.Add(this.insertionSwitch);
             this.Controls.Add(this.introTextBox);
             this.Controls.Add(this.directoryBrowseButton);
             this.Controls.Add(this.label5);
@@ -334,8 +334,8 @@
         private System.Windows.Forms.TextBox folderPath;
         private System.Windows.Forms.Button directoryBrowseButton;
         private System.Windows.Forms.RichTextBox introTextBox;
-        private DevComponents.DotNetBar.Controls.SwitchButton switchButton1;
-        private DevComponents.DotNetBar.Controls.SwitchButton switchButton3;
+        private DevComponents.DotNetBar.Controls.SwitchButton insertionSwitch;
+        private DevComponents.DotNetBar.Controls.SwitchButton unifiedFileSwitch;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
