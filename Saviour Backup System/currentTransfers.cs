@@ -71,7 +71,6 @@ namespace Saviour_Backup_System
 
         private void currentTransfers_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageBox.Show("Closing");
             e.Cancel = true;
             this.Hide();
         }
