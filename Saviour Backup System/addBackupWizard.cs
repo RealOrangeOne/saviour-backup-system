@@ -41,10 +41,21 @@ namespace Saviour_Backup_System
                 drivesDropdown.Items.Add(drive.Name + " " + drive.VolumeLabel);
             }
         }
-
+        private void lockControls(bool state)
+        {
+            backupNameInput.ReadOnly = state;
+            drivesDropdown.Enabled = !state;
+            compressionTypeDropdown.Enabled = !state;
+            insertionSwitch.IsReadOnly = state;
+            unifiedFileSwitch.IsReadOnly = state;
+            previousBackupInput.Enabled = !state;
+            folderPath.ReadOnly = state;
+        }
         private void createButton_Click(object sender, EventArgs e) {
-            if ((folderPath.Text == "") || (previousBackupInput.Text == "") || (compressionTypeDropdown.Text == "") || (drivesDropdown.Text == "")){
+            lockControls(true);
+            if ((folderPath.Text == "") || (previousBackupInput.Text == "") || (compressionTypeDropdown.Text == "") || (drivesDropdown.Text == "") || (backupNameInput.Text == "")) {
                     MessageBox.Show("You have not filled in every element, Please try again!", "Not everything is complete", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lockControls(false);
                     return;
             }
 
@@ -86,9 +97,27 @@ namespace Saviour_Backup_System
             SqlCeConnection conn = databaseTools.conn;
             SqlCeCommand cmd = conn.CreateCommand();
             conn.Open();
+            cmd.CommandText = "INSERT INTO Drive (ID, Name, Capacity, File_System, Type) VALUES (?,?,?,?,?)";
+            cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
+            cmd.Parameters.Add(new SqlCeParameter("Drive Name", SqlDbType.NText));
 
+            cmd.CommandText = "INSERT INTO Recordset (Name, Drive_ID, Creation_Date, Backup_Location, Automatic, Compression, Previous_Backups) VALUES (?, ?, ?)";
+
+            cmd.Parameters.Add(new SqlCeParameter("p1", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlCeParameter("p2", SqlDbType.NText));
+            cmd.Parameters.Add(new SqlCeParameter("p3", SqlDbType.Money));
+
+            cmd.Prepare();
+
+            cmd.Parameters["p1"].Value = 1;
+            cmd.Parameters["p2"].Value = "abc";
+            cmd.Parameters["p3"].Value = 15.66;
+            cmd.ExecuteNonQuery();
+
+            cmd.Parameters.Clear();
             conn.Close();
             MessageBox.Show("Record created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
 
         }
     }
