@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.components = new System.ComponentModel.Container();
+            this.backupNameInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.drivesDropdown = new System.Windows.Forms.ComboBox();
@@ -46,20 +47,21 @@
             this.previousBackupInput = new DevComponents.Editors.IntegerInput();
             this.createButton = new System.Windows.Forms.Button();
             this.statusProgress = new DevComponents.DotNetBar.Controls.ProgressBarX();
+            this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.previousBackupInput)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox2
+            // backupNameInput
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.backupNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(302, 9);
-            this.textBox2.MaxLength = 30;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(249, 28);
-            this.textBox2.TabIndex = 1;
+            this.backupNameInput.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backupNameInput.Location = new System.Drawing.Point(302, 9);
+            this.backupNameInput.MaxLength = 30;
+            this.backupNameInput.Name = "backupNameInput";
+            this.backupNameInput.Size = new System.Drawing.Size(249, 28);
+            this.backupNameInput.TabIndex = 1;
             // 
             // label1
             // 
@@ -87,6 +89,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.drivesDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.drivesDropdown.Enabled = false;
             this.drivesDropdown.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.drivesDropdown.FormattingEnabled = true;
             this.drivesDropdown.Location = new System.Drawing.Point(302, 43);
@@ -287,6 +290,11 @@
             this.statusProgress.Text = "Initialising...";
             this.statusProgress.TextVisible = true;
             // 
+            // styleManager1
+            // 
+            this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Black;
+            this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(26))))));
+            // 
             // addBackupWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,7 +317,7 @@
             this.Controls.Add(this.drivesDropdown);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.backupNameInput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -326,7 +334,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox backupNameInput;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox drivesDropdown;
@@ -344,5 +352,6 @@
         private DevComponents.Editors.IntegerInput previousBackupInput;
         private System.Windows.Forms.Button createButton;
         private DevComponents.DotNetBar.Controls.ProgressBarX statusProgress;
+        private DevComponents.DotNetBar.StyleManager styleManager1;
     }
 }
