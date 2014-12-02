@@ -92,31 +92,49 @@ namespace Saviour_Backup_System
             }
         }
 
-        private void createRecord()
-        {
+        private void createRecord() {
             SqlCeConnection conn = databaseTools.conn;
             SqlCeCommand cmd = conn.CreateCommand();
+            DriveInfo drive = USBTools.getDriveObject(drivesDropdown.Text.Substring(0, 1));
             conn.Open();
+
             cmd.CommandText = "INSERT INTO Drive (ID, Name, Capacity, File_System, Type) VALUES (?,?,?,?,?)";
             cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Drive Name", SqlDbType.NText));
-
-            cmd.CommandText = "INSERT INTO Recordset (Name, Drive_ID, Creation_Date, Backup_Location, Automatic, Compression, Previous_Backups) VALUES (?, ?, ?)";
-
-            cmd.Parameters.Add(new SqlCeParameter("p1", SqlDbType.Int));
-            cmd.Parameters.Add(new SqlCeParameter("p2", SqlDbType.NText));
-            cmd.Parameters.Add(new SqlCeParameter("p3", SqlDbType.Money));
-
+            cmd.Parameters.Add(new SqlCeParameter("Capacity", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlCeParameter("File System", SqlDbType.NText));
+            cmd.Parameters.Add(new SqlCeParameter("Type", SqlDbType.NText));
             cmd.Prepare();
+            cmd.Parameters["Drive ID"].Value = tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive));
+            cmd.Parameters["Drive Name"].Value = drive.VolumeLabel;
+            cmd.Parameters["Capacity"].Value = drive.TotalSize;
+            cmd.Parameters["File System"].Value = drive.DriveFormat;
+            cmd.Parameters["Type"].Value = USBTools.getDriveType(drive);
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
 
-            cmd.Parameters["p1"].Value = 1;
-            cmd.Parameters["p2"].Value = "abc";
-            cmd.Parameters["p3"].Value = 15.66;
+            cmd.CommandText = "INSERT INTO Recordset (Name, Drive_ID, Creation_Date, Backup_Location, Automatic, Compression, Previous_Backups) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            cmd.Parameters.Add(new SqlCeParameter("Name", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
+            cmd.Parameters.Add(new SqlCeParameter("Creation Date", SqlDbType.BigInt));
+            cmd.Parameters.Add(new SqlCeParameter("Backup Location", SqlDbType.NText));
+            cmd.Parameters.Add(new SqlCeParameter("Automatic", SqlDbType.Bit));
+            cmd.Parameters.Add(new SqlCeParameter("Compression", SqlDbType.Bit));
+            cmd.Parameters.Add(new SqlCeParameter("Previous Backups", SqlDbType.Int));
+            cmd.Prepare();
+            cmd.Parameters["Name"].Value = backupNameInput.Text;
+            cmd.Parameters["Drive ID"].Value = tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive));
+            cmd.Parameters["Creation Date"].Value = 
+            cmd.Parameters["Backup Location"].Value = "";
+            cmd.Parameters["Automatic"].Value = (insertionSwitch.Value) ? 1 : 0; //hopefully this is converted to a bit properly by SQLCE!
+            cmd.Parameters["Compression"].Value = (unifiedFileSwitch.Value) ? 1 : 0;
+            cmd.Parameters["Previous Backups"].Value = "";
             cmd.ExecuteNonQuery();
 
             cmd.Parameters.Clear();
+            MessageBox.Show("Record created successfully!\nYou may now backup your drive.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             conn.Close();
-            MessageBox.Show("Record created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            conn.Dispose();
             this.Close();
 
         }
