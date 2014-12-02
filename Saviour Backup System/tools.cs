@@ -33,5 +33,6 @@ namespace Saviour_Backup_System
             }
             return sb.ToString();
         }
+        public static Int64 getUnixTimeStamp() { return (Int64)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds; }
     }
 }
