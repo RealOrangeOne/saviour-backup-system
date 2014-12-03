@@ -124,11 +124,11 @@ namespace Saviour_Backup_System
             cmd.Prepare();
             cmd.Parameters["Name"].Value = backupNameInput.Text;
             cmd.Parameters["Drive ID"].Value = tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive));
-            cmd.Parameters["Creation Date"].Value = 
-            cmd.Parameters["Backup Location"].Value = "";
+            cmd.Parameters["Creation Date"].Value = tools.getUnixTimeStamp();
+            cmd.Parameters["Backup Location"].Value = folderPath.Text;
             cmd.Parameters["Automatic"].Value = (insertionSwitch.Value) ? 1 : 0; //hopefully this is converted to a bit properly by SQLCE!
             cmd.Parameters["Compression"].Value = (unifiedFileSwitch.Value) ? 1 : 0;
-            cmd.Parameters["Previous Backups"].Value = "";
+            cmd.Parameters["Previous Backups"].Value = previousBackupInput.Value;
             cmd.ExecuteNonQuery();
 
             cmd.Parameters.Clear();
