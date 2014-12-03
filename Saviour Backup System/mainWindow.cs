@@ -20,7 +20,8 @@ namespace Saviour_Backup_System
             {
                 if (setup.runtimeArguements[0] == "STARTUP") { this.removeDisplay(); }
                 else { this.showDisplay(); }
-            } catch { }
+            }
+            catch { this.showDisplay(); }
         }
 
         public void removeDisplay() {
