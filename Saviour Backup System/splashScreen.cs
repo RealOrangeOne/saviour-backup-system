@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Saviour_Backup_System
@@ -15,12 +15,11 @@ namespace Saviour_Backup_System
         public splashScreen()
         {
             InitializeComponent();
+            display();
         }
 
-        public void display(bool isStartup) {
+        private void display() {
             this.Show();
-            this.desc.Text = "Initialising...";
-            if (isStartup) { this.Hide(); }
         }
     }
 }
