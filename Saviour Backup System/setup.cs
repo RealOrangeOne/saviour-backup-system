@@ -16,31 +16,25 @@ namespace Saviour_Backup_System
         public static string[] runtimeArguements = null;
         public static mainWindow MW;
         public static notificationIcon icon;
-        public static splashScreen SS;
         public static addBackupWizard ABW;
+        public static splashScreen SS;
         public static currentTransfers CT = new currentTransfers();
         public static string username = Environment.UserName; //snapshots the username
 
-        public static void initProgram(string[] args)
-        {
+        public static void initProgram(string[] args) {
             runtimeArguements = args;
-            SS = new splashScreen();
-            try { SS.display((args[0] == "STARTUP")); }
-            catch { SS.display(false); } //if it errors, run it as false
 
-            //add in other code here, just for placeholder!
-            startupBackups();
-
+            SS = new splashScreen(); //displays the splash screen
+            SS.description.Text = "From Setup...";
+            //run any initialising code here!
             SS.Close();
-            SS.Dispose();
+
             icon = new notificationIcon();
             MW = new mainWindow();
-            //databaseTools.init();
-            MW.showDisplay();
             Application.Run(MW);
         }
 
-        private static void startupBackups(){
+        private static void startupBackups() {
             return;
         }
 
