@@ -27,62 +27,30 @@ namespace Saviour_Backup_System
                 copyDatabase();
             }
         }
-        public static backup[] getBackups()
+
+        public static string[] getBackupDirectory(string id)
         {
-            List<backup> backups = null;
             conn.Open();
-            cmd.CommandText = "";
+            cmd.CommandText = "SELECT Backup_Location FROM Recordset WHERE Drive_ID = ?";
+            cmd.Parameters.Add(new SqlCeParameter("Drive_ID", SqlDbType.NText));
+            cmd.Parameters["Drive_ID"].Value = id;
             SqlCeDataReader reader = cmd.ExecuteReader();
-            int index = 0;
+        }
+
+        public static string[] getAutomaticBackups()
+        {
+            conn.Open();
+            List<string> IDs = new List<string>();
+            cmd.CommandText = "SELECT Drive_ID FROM Recordset WHERE Automatic = 1;";
+            SqlCeDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (reader.Read())
             {
-                backup temp = new backup();
-                backups.Add(temp);
-                temp = null;
-                index++;
+                string DriveID = reader.GetString(0);
+                IDs.Add(DriveID);
             }
-            if (backups == null)
-            {
-                return new backup[0];
-            }
-            return backups.ToArray();
-        }
-
-    }
-
-
-    class backup
-    {
-        public string driveID;
-        public string name;
-        public Int64 startDate;
-        public string hash;
-        public Int32 duration;
-
-        public void store()
-        {
-            SqlCeCommand cmd = databaseTools.conn.CreateCommand();
-            cmd.CommandText = "";
-            cmd.ExecuteNonQuery();
-            cmd.Dispose();
-        }
-
-        public void update()
-        {
-            databaseTools.conn.Open();
-            SqlCeCommand cmd = databaseTools.conn.CreateCommand();
-            cmd.CommandText = "";
-            //execute reader or whatever it is
-            databaseTools.conn.Close();
-            cmd.Dispose();
-        }
-
-        public void create(string Drive_ID, string Backup_Name, Int64 Start_Date, string Hash, Int32 Duration ) {
-            driveID = Drive_ID;
-            name = Backup_Name;
-            startDate = Start_Date;
-            hash = Hash;
-            duration = Duration;
+            reader.Close();
+            conn.Close();
+            return IDs.ToArray();
         }
     }
 }
