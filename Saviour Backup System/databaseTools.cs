@@ -16,10 +16,7 @@ namespace Saviour_Backup_System
         public static SqlCeConnection conn = new SqlCeConnection("Data Source = " + databaseName + "; password=12a712d7e6f71ed07822c219318da2c0"); //password is a hash
         private static SqlCeCommand cmd = conn.CreateCommand();
 
-        private static void copyDatabase()
-        {
-            File.WriteAllBytes(@"" + databaseName, Resources.saviour); //copy file from resources to project file
-        }
+        private static void copyDatabase() { File.WriteAllBytes(@"" + databaseName, Resources.saviour); } //copy the file from resources
 
 
         public static void init() {
@@ -28,13 +25,32 @@ namespace Saviour_Backup_System
             }
         }
 
-        public static string[] getBackupDirectory(string id)
-        {
+        public static string getDriveName(string id) {
+            string name = "";
+            conn.Open();
+            cmd.CommandText = "SELECT Name FROM Drive WHERE ID = ?;";
+            cmd.Parameters.Add(new SqlCeParameter("Drive_ID", SqlDbType.NText));
+            cmd.Parameters["Drive_ID"].Value = id;
+            SqlCeDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) { name = reader.GetString(0); }
+            conn.Close();
+            reader.Close();
+            cmd.Parameters.Clear();
+            return name;
+        }
+
+        public static string getBackupDirectory(string id) {
+            string directory = "";
             conn.Open();
             cmd.CommandText = "SELECT Backup_Location FROM Recordset WHERE Drive_ID = ?";
             cmd.Parameters.Add(new SqlCeParameter("Drive_ID", SqlDbType.NText));
             cmd.Parameters["Drive_ID"].Value = id;
             SqlCeDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) { directory = reader.GetString(0); }
+            conn.Close();
+            reader.Close();
+            cmd.Parameters.Clear();
+            return directory;
         }
 
         public static string[] getAutomaticBackups()
