@@ -105,7 +105,7 @@ namespace Saviour_Backup_System
             cmd.Parameters.Add(new SqlCeParameter("File System", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Type", SqlDbType.NText));
             cmd.Prepare();
-            cmd.Parameters["Drive ID"].Value = tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive));
+            cmd.Parameters["Drive ID"].Value = USBTools.calculateDriveID(drive);
             cmd.Parameters["Drive Name"].Value = drive.VolumeLabel;
             cmd.Parameters["Capacity"].Value = drive.TotalSize;
             cmd.Parameters["File System"].Value = drive.DriveFormat;
@@ -123,7 +123,7 @@ namespace Saviour_Backup_System
             cmd.Parameters.Add(new SqlCeParameter("Previous Backups", SqlDbType.Int));
             cmd.Prepare();
             cmd.Parameters["Name"].Value = backupNameInput.Text;
-            cmd.Parameters["Drive ID"].Value = tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive));
+            cmd.Parameters["Drive ID"].Value = USBTools.calculateDriveID(drive);
             cmd.Parameters["Creation Date"].Value = tools.getUnixTimeStamp();
             cmd.Parameters["Backup Location"].Value = folderPath.Text;
             cmd.Parameters["Automatic"].Value = (insertionSwitch.Value) ? 1 : 0; //hopefully this is converted to a bit properly by SQLCE!
