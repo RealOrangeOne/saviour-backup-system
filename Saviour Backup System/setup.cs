@@ -54,7 +54,18 @@ namespace Saviour_Backup_System
             }
             foreach (string id in drivesToBackup)
             {
-
+                string directory = databaseTools.getBackupDirectory(id);
+                string name = databaseTools.getDriveName(id);
+                DriveInfo backupDrive;
+                foreach (DriveInfo drive in USBTools.getConnectedDrives())
+                {
+                    if (drive.VolumeLabel == name)
+                    {
+                        CT.startCopy(drive, directory, true);
+                        break;
+                    }
+                    else { continue; }
+                }
             }
         }
 
