@@ -23,6 +23,14 @@ namespace Saviour_Backup_System
             InitializeComponent();
         }
 
+        public void startCopy(DriveInfo drive, string endDirectory, bool visible) { //used for validation to make sure the copy wont fail.
+            if (!Directory.Exists(drive.Name)) { MessageBox.Show("The drive directory does not exist."); }
+
+            else if (!Directory.Exists(endDirectory)) { MessageBox.Show("The end directory does not exist."); }
+
+            else { copyFiles(drive.Name.Substring(0, 1), endDirectory, visible); }
+        }
+
         private void copyFiles(string driveLetter, string endDirectory, bool display) //actually starts the backups (and loads the dialogs)
         {
             backups++; //appends to the number of backups running
