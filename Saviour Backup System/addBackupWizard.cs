@@ -41,6 +41,16 @@ namespace Saviour_Backup_System
                 drivesDropdown.Items.Add(drive.Name + " " + drive.VolumeLabel);
             }
         }
+        private void clearControls()
+        {
+            backupNameInput.Text = "";
+            drivesDropdown.Text = "";
+            compressionTypeDropdown.Text = "";
+            insertionSwitch.Value = false;
+            unifiedFileSwitch.Value = false;
+            previousBackupInput.Value = 0;
+            folderPath.Text = "";
+        }
         private void lockControls(bool state)
         {
             backupNameInput.ReadOnly = state;
@@ -77,13 +87,17 @@ namespace Saviour_Backup_System
                     }
                 }
             }
-
             else if (compressionTypeDropdown.Text == "None" && unifiedFileSwitch.Value == true) {
                 MessageBox.Show("You cannot have a unified file without some form of compression, please select again.", "Compression Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
+            } else {
+                statusProgress.Text = "Initialising database connection...";
                 createRecord();
+                statusProgress.Text = "Complete!";
+                statusProgress.ProgressType = DevComponents.DotNetBar.eProgressItemType.Standard;
+                statusProgress.Value = statusProgress.Maximum;
+                MessageBox.Show("Record created successfully!\nYou may now backup your drive.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clearControls();
+                this.Close();
             }
             while (this.Size.Height != 299) {
                 initHeight--;
@@ -97,6 +111,7 @@ namespace Saviour_Backup_System
             SqlCeCommand cmd = conn.CreateCommand();
             DriveInfo drive = USBTools.getDriveObject(drivesDropdown.Text.Substring(0, 1));
             conn.Open();
+            statusProgress.Text = "Connection established...";
 
             cmd.CommandText = "INSERT INTO Drive (ID, Name, Capacity, File_System, Type) VALUES (?,?,?,?,?)";
             cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
@@ -112,9 +127,10 @@ namespace Saviour_Backup_System
             cmd.Parameters["Type"].Value = USBTools.getDriveType(drive);
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
+            statusProgress.Text = "Drive Record Created...";
 
-            cmd.CommandText = "INSERT INTO Recordset (Name, Drive_ID, Creation_Date, Backup_Location, Automatic, Compression, Previous_Backups) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            cmd.Parameters.Add(new SqlCeParameter("Name", SqlDbType.Int));
+            cmd.CommandText = "INSERT INTO Recordset VALUES (?, ?, ?, ?, ?, ?, ?)";
+            cmd.Parameters.Add(new SqlCeParameter("Name", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Creation Date", SqlDbType.BigInt));
             cmd.Parameters.Add(new SqlCeParameter("Backup Location", SqlDbType.NText));
@@ -126,17 +142,20 @@ namespace Saviour_Backup_System
             cmd.Parameters["Drive ID"].Value = USBTools.calculateDriveID(drive);
             cmd.Parameters["Creation Date"].Value = tools.getUnixTimeStamp();
             cmd.Parameters["Backup Location"].Value = folderPath.Text;
-            cmd.Parameters["Automatic"].Value = (insertionSwitch.Value) ? 1 : 0; //hopefully this is converted to a bit properly by SQLCE!
-            cmd.Parameters["Compression"].Value = (unifiedFileSwitch.Value) ? 1 : 0;
+            cmd.Parameters["Automatic"].Value = insertionSwitch.Value;
+            cmd.Parameters["Compression"].Value = unifiedFileSwitch.Value;
             cmd.Parameters["Previous Backups"].Value = previousBackupInput.Value;
             cmd.ExecuteNonQuery();
-
             cmd.Parameters.Clear();
-            MessageBox.Show("Record created successfully!\nYou may now backup your drive.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            statusProgress.Text = "Recordset created...";
             conn.Close();
             conn.Dispose();
             this.Close();
 
         }
+
+        private void insertionSwitch_Click(object sender, EventArgs e) { insertionSwitch.Value = !insertionSwitch.Value; }
+
+        private void unifiedFileSwitch_Click(object sender, EventArgs e) { unifiedFileSwitch.Value = !unifiedFileSwitch.Value; }
     }
 }
