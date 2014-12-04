@@ -105,5 +105,9 @@ namespace Saviour_Backup_System
             double answer = (10000 - ((free / capacity) * 10000));
             return (int)answer;
         }
+
+        public static string calculateDriveID(DriveInfo drive) {
+            return tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive)); ;
+        }
     }
 }
