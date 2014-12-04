@@ -26,6 +26,8 @@ namespace Saviour_Backup_System
 
             SS = new splashScreen(); //displays the splash screen
             SS.description.Text = "From Setup...";
+            databaseTools.init();
+            startupBackups();
             //run any initialising code here!
             SS.Close();
 
@@ -35,7 +37,25 @@ namespace Saviour_Backup_System
         }
 
         private static void startupBackups() {
-            return;
+            string[] IDs = databaseTools.getAutomaticBackups();
+            DriveInfo[] drives = USBTools.getConnectedDrives();
+            List<string> driveIDs = new List<string>();
+            List<string> drivesToBackup = new List<string>();
+            foreach (DriveInfo drive in drives)
+            {
+                driveIDs.Add(USBTools.calculateDriveID(drive));
+            }
+            foreach (string id in IDs)
+            {
+                if (driveIDs.Contains(id))
+                {
+                    drivesToBackup.Add(id);
+                }
+            }
+            foreach (string id in drivesToBackup)
+            {
+
+            }
         }
 
         public static void closeProgram() {
