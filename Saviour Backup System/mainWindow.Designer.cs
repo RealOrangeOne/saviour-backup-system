@@ -248,7 +248,6 @@
             // 
             // buttonItem4
             // 
-            this.buttonItem4.Image = global::Saviour_Backup_System.Properties.Resources.restoreIcon;
             this.buttonItem4.ImageFixedSize = new System.Drawing.Size(55, 55);
             this.buttonItem4.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.buttonItem4.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
@@ -293,7 +292,6 @@
             // 
             // buttonItem2
             // 
-            this.buttonItem2.Image = global::Saviour_Backup_System.Properties.Resources.backupIcon;
             this.buttonItem2.ImageFixedSize = new System.Drawing.Size(55, 55);
             this.buttonItem2.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.buttonItem2.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
