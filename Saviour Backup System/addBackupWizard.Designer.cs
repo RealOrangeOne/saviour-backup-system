@@ -89,7 +89,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.drivesDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.drivesDropdown.Enabled = false;
             this.drivesDropdown.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.drivesDropdown.FormattingEnabled = true;
             this.drivesDropdown.Location = new System.Drawing.Point(302, 43);
@@ -164,6 +163,7 @@
             this.insertionSwitch.Size = new System.Drawing.Size(64, 23);
             this.insertionSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.insertionSwitch.TabIndex = 13;
+            this.insertionSwitch.Click += new System.EventHandler(this.insertionSwitch_Click);
             // 
             // unifiedFileSwitch
             // 
@@ -183,6 +183,7 @@
             this.unifiedFileSwitch.Size = new System.Drawing.Size(64, 23);
             this.unifiedFileSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.unifiedFileSwitch.TabIndex = 15;
+            this.unifiedFileSwitch.Click += new System.EventHandler(this.unifiedFileSwitch_Click);
             // 
             // label6
             // 
@@ -292,6 +293,7 @@
             // 
             // styleManager1
             // 
+            this.styleManager1.ManagerColorTint = System.Drawing.Color.Black;
             this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Black;
             this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(26))))));
             // 
