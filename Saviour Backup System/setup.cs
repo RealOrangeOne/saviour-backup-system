@@ -19,6 +19,7 @@ namespace Saviour_Backup_System
         public static addBackupWizard ABW;
         public static splashScreen SS;
         public static currentTransfers CT = new currentTransfers();
+        public static backupViewer BV;
         public static string username = Environment.UserName; //snapshots the username
 
         public static void initProgram(string[] args) {
@@ -56,7 +57,6 @@ namespace Saviour_Backup_System
             {
                 string directory = databaseTools.getBackupDirectory(id);
                 string name = databaseTools.getDriveName(id);
-                DriveInfo backupDrive;
                 foreach (DriveInfo drive in USBTools.getConnectedDrives())
                 {
                     if (drive.VolumeLabel == name)
