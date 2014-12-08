@@ -257,6 +257,7 @@
             this.previousBackupInput.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.previousBackupInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.previousBackupInput.Location = new System.Drawing.Point(471, 103);
+            this.previousBackupInput.MaxValue = 999;
             this.previousBackupInput.MinValue = -1;
             this.previousBackupInput.Name = "previousBackupInput";
             this.previousBackupInput.ShowUpDown = true;
