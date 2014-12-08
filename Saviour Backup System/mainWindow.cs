@@ -188,5 +188,11 @@ namespace Saviour_Backup_System
         {
 
         }
+
+        private void viewAllRulesButton_Click(object sender, EventArgs e)
+        {
+            setup.BV = new backupViewer();
+            setup.BV.Show();
+        }
     }
 }

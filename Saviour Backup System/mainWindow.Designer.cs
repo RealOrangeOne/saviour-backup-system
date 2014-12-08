@@ -204,6 +204,7 @@
             this.viewAllRulesButton.Name = "viewAllRulesButton";
             this.viewAllRulesButton.SubItemsExpandWidth = 14;
             this.viewAllRulesButton.Text = "View All Rules";
+            this.viewAllRulesButton.Click += new System.EventHandler(this.viewAllRulesButton_Click);
             // 
             // currentTransfersButton
             // 
