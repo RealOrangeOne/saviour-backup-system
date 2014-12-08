@@ -19,8 +19,27 @@ namespace Saviour_Backup_System
         {
             InitializeComponent();
             populateDropdown();
-            defaultText = introTextBox.Text; //stores it so we can append to the end at runtime
+            assignToolTips();
             this.Size = new Size(583, 299);
+        }
+
+        private void assignToolTips() {
+            ToolTip tempTip = new ToolTip();
+            tempTip.AutoPopDelay = 5000;
+            tempTip.InitialDelay = 1000;
+            tempTip.ReshowDelay = 500;
+            tempTip.ShowAlways = true;
+
+            //huge list of tooltips to use!
+            tempTip.SetToolTip(this.backupNameInput, "Name the backup\nAn easy name for the backup, or even a description.");
+            tempTip.SetToolTip(this.drivesDropdown, "Select the drive\nWhich drive would you like to backup?");
+            tempTip.SetToolTip(this.compressionTypeDropdown, "Compression?\nWould you like to compress the backup to save space on your computer?");
+            tempTip.SetToolTip(this.previousBackupInput, "Previous backups\nHow many past backups would you like to store, enter -1 for all");
+            tempTip.SetToolTip(this.insertionSwitch, "Automated\nWould you like to backup the drive as soon as it is inserted to the computer?");
+            tempTip.SetToolTip(this.unifiedFileSwitch, "Single File\nWould you like to store the backup in a single file?");
+            tempTip.SetToolTip(this.folderPath, "Location\nWhere would you like to store the backup?");
+            tempTip.SetToolTip(this.createButton, "Let's Go!\nClick to create the backup record, this can take a few seconds to run.");
+            tempTip.SetToolTip(this.directoryBrowseButton, "Where?\nClick here to browse your computer to find where to store the backup.");
         }
 
         private void directoryBrowseButton_Click(object sender, EventArgs e)
