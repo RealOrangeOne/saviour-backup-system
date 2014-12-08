@@ -62,6 +62,7 @@ namespace Saviour_Backup_System
             folderPath.ReadOnly = state;
         }
         private void createButton_Click(object sender, EventArgs e) {
+            DriveInfo drive = USBTools.getDriveObject(drivesDropdown.Text.Substring(0, 1));
             lockControls(true);
             if ((folderPath.Text == "") || (previousBackupInput.Text == "") || (compressionTypeDropdown.Text == "") || (drivesDropdown.Text == "") || (backupNameInput.Text == "")) {
                     MessageBox.Show("You have not filled in every element, Please try again!", "Not everything is complete", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,6 +90,8 @@ namespace Saviour_Backup_System
             }
             else if (compressionTypeDropdown.Text == "None" && unifiedFileSwitch.Value == true) {
                 MessageBox.Show("You cannot have a unified file without some form of compression, please select again.", "Compression Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } else if (drive.VolumeLabel == ""){
+                MessageBox.Show("You cannot backup a drive with no label, please rename it and try again","Can't use default name", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else {
                 statusProgress.Text = "Initialising database connection...";
                 createRecord();
@@ -116,13 +119,13 @@ namespace Saviour_Backup_System
             cmd.CommandText = "INSERT INTO Drive (ID, Name, Capacity, File_System, Type) VALUES (?,?,?,?,?)";
             cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Drive Name", SqlDbType.NText));
-            cmd.Parameters.Add(new SqlCeParameter("Capacity", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlCeParameter("Capacity", SqlDbType.BigInt));
             cmd.Parameters.Add(new SqlCeParameter("File System", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Type", SqlDbType.NText));
             cmd.Prepare();
             cmd.Parameters["Drive ID"].Value = USBTools.calculateDriveID(drive);
             cmd.Parameters["Drive Name"].Value = drive.VolumeLabel;
-            cmd.Parameters["Capacity"].Value = drive.TotalSize;
+            cmd.Parameters["Capacity"].Value = Convert.ToInt64(drive.TotalSize);
             cmd.Parameters["File System"].Value = drive.DriveFormat;
             cmd.Parameters["Type"].Value = USBTools.getDriveType(drive);
             cmd.ExecuteNonQuery();
