@@ -68,5 +68,11 @@ namespace Saviour_Backup_System
             conn.Close();
             return IDs.ToArray();
         }
+        public static string getHashofRecentBackup(string id)
+        {
+            conn.Open();
+            cmd.CommandText = "SELECT Hash FROM Backups WHERE ID";
+            return;
+        }
     }
 }
