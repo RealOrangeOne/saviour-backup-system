@@ -109,5 +109,7 @@ namespace Saviour_Backup_System
         public static string calculateDriveID(DriveInfo drive) {
             return tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive)); ;
         }
+
+
     }
 }
