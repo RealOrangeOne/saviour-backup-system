@@ -28,7 +28,16 @@ namespace Saviour_Backup_System
 
             else if (!Directory.Exists(endDirectory)) { MessageBox.Show("The end directory does not exist."); }
 
-            else { copyFiles(drive.Name.Substring(0, 1), endDirectory, visible); }
+            else { 
+                string hash = tools.hashDirectory(drive.Name);
+                copyFiles(drive.Name.Substring(0, 1), endDirectory, visible); 
+            }
+        }
+
+        public void createBackupRecord(DriveInfo drive, string hash) {
+            string id = USBTools.calculateDriveID(drive);
+
+
         }
 
         private void copyFiles(string driveLetter, string endDirectory, bool display) //actually starts the backups (and loads the dialogs)
