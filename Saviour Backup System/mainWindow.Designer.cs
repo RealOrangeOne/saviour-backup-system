@@ -832,7 +832,6 @@
             this.backupDetailsPanel.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.backupDetailsPanel.TabIndex = 4;
             this.backupDetailsPanel.Text = "Backup Settings";
-            this.backupDetailsPanel.Click += new System.EventHandler(this.backupDetailsPanel_Click);
             // 
             // label3
             // 

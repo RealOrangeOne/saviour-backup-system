@@ -184,11 +184,6 @@ namespace Saviour_Backup_System
             setup.CT.ShowDialog();
         }
 
-        private void backupDetailsPanel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void viewAllRulesButton_Click(object sender, EventArgs e)
         {
             setup.BV = new backupViewer();
