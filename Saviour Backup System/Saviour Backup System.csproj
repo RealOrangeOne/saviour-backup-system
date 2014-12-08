@@ -97,6 +97,12 @@
     <Compile Include="addBackupWizard.Designer.cs">
       <DependentUpon>addBackupWizard.cs</DependentUpon>
     </Compile>
+    <Compile Include="backupViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="backupViewer.Designer.cs">
+      <DependentUpon>backupViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="currentTransfers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="addBackupWizard.resx">
       <DependentUpon>addBackupWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="backupViewer.resx">
+      <DependentUpon>backupViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="currentTransfers.resx">
       <DependentUpon>currentTransfers.cs</DependentUpon>
