@@ -175,6 +175,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "transferWindow";
             this.Text = "Backup Process";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.transferWindow_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.transferWindow_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
