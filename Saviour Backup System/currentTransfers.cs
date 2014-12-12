@@ -30,17 +30,28 @@ namespace Saviour_Backup_System
 
             else { 
                 string hash = tools.hashDirectory(drive.Name);
-                copyFiles(drive.Name.Substring(0, 1), endDirectory, visible); 
+                string DBHash = databaseTools.getHashofRecentBackup(USBTools.calculateDriveID(drive)); //get the hash from the database
+                if (!(DBHash == "NONE")) {
+                    if (DBHash == hash) //if the hashes are the same...
+                    {
+                        MessageBox.Show("No changes have been made to files on drive " + drive.VolumeLabel + ", Will not backup.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else
+                    {
+                        copyFiles(drive.Name.Substring(0, 1), endDirectory, visible, drive);
+                    }
+                    
+                }
+                else
+                {
+
+                }
+                copyFiles(drive.Name.Substring(0, 1), endDirectory, visible ,drive); 
             }
         }
 
-        public void createBackupRecord(DriveInfo drive, string hash) {
-            string id = USBTools.calculateDriveID(drive);
-
-
-        }
-
-        private void copyFiles(string driveLetter, string endDirectory, bool display) //actually starts the backups (and loads the dialogs)
+        private void copyFiles(string driveLetter, string endDirectory, bool display, DriveInfo drive) //actually starts the backups (and loads the dialogs)
         {
             backups++; //appends to the number of backups running
             progressBars.Add(new copyProgressBar());
@@ -50,7 +61,7 @@ namespace Saviour_Backup_System
 
             copyFilesList.Add(new CopyFiles.CopyFiles(driveLetter + ":\\", endDirectory));
 
-            transfersList.Add(new transferWindow(backups));
+            transfersList.Add(new transferWindow(backups, drive));
             transfersList[backups].SynchronizationObject = this;
             copyFilesList[backups].CopyAsync(transfersList[backups]);
 
@@ -83,7 +94,7 @@ namespace Saviour_Backup_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            copyFiles("F", "K:\\Temp\\CopyTemp", true);
+            copyFiles("F", "E:\\Temp\\TempCopy", true, USBTools.getDriveObject("F"));
         }
 
         private void currentTransfers_FormClosing(object sender, FormClosingEventArgs e)
