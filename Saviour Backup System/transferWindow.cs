@@ -7,21 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using CopyFiles;
 
 
 namespace Saviour_Backup_System
 {
-    public partial class transferWindow : Form, CopyFiles.ICopyFilesDiag
+    public partial class transferWindow : Form, CopyFiles.ICopyFilesDiag, IDisposable
     {
         public System.ComponentModel.ISynchronizeInvoke SynchronizationObject { get; set; }
         int arrayIndex;
-        public transferWindow(int backups)
+        DriveInfo copyingDrive;
+        Int64 startDate = tools.getUnixTimeStamp();
+        public transferWindow(int backups, DriveInfo drive)
         {
+            copyingDrive = drive;
             InitializeComponent();
             arrayIndex = backups;
             currentFileProgress.Maximum = 1000;
+
         }
+        ~transferWindow() //deconstructor (hopefully ran when it closes)
+        {
+            MessageBox.Show("Hi there.");
+        }
+
         public void update(Int32 totalFiles, Int32 copiedFiles, Int64 totalBytes, Int64 copiedBytes, string currentFilename)
         {
             totalFilesProgress.Maximum = totalFiles;
@@ -57,6 +67,15 @@ namespace Saviour_Backup_System
         private void minimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void transferWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
+
+        private void transferWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
         }
     }
 }
