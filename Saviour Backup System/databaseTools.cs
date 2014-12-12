@@ -68,11 +68,56 @@ namespace Saviour_Backup_System
             conn.Close();
             return IDs.ToArray();
         }
+
+        public static string getBackupName(DriveInfo drive)
+        {
+            string name = "";
+            conn.Open();
+            cmd.CommandText = "SELECT Name FROM Recordset WHERE Drive_ID = ?;";
+            cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
+            cmd.Parameters["Drive ID"].Value = USBTools.calculateDriveID(drive);
+            SqlCeDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                name = reader.GetString(0);
+            }
+            return name;
+        }
+
+        public static void createBackupRecord(DriveInfo drive, Int64 startDate, Int64 duration)
+        {
+            string id = USBTools.calculateDriveID(drive);
+            conn.Open();
+            cmd.CommandText = "INSERT INTO Backups VALUES (?,?,?,?,?);";
+            cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
+            cmd.Parameters.Add(new SqlCeParameter("Start Date", SqlDbType.BigInt));
+            cmd.Parameters.Add(new SqlCeParameter("Backup Name", SqlDbType.NText));
+            cmd.Parameters.Add(new SqlCeParameter("Hash", SqlDbType.NText));
+            cmd.Parameters.Add(new SqlCeParameter("Duration", SqlDbType.Int));
+
+            cmd.Parameters["Drive ID"].Value = id;
+            cmd.Parameters["Start Date"].Value = startDate;
+            cmd.Parameters["Backup Name"].Value = getBackupName(drive);
+            cmd.Parameters["Hash"].Value = tools.hashDirectory(drive.Name);
+            cmd.Parameters["Duration"].Value = duration;
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            conn.Close();
+        }
+
+
         public static string getHashofRecentBackup(string id)
         {
             conn.Open();
-            cmd.CommandText = "SELECT Hash FROM Backups WHERE ID";
-            return;
+            string hash = "NONE";
+            cmd.CommandText = "SELECT Hash FROM Backups WHERE Drive_ID Like ?;";
+            cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
+            cmd.Parameters["Drive ID"].Value = id;
+            SqlCeDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) {
+                hash = reader.GetString(0);
+            }
+            return hash;
         }
     }
 }
