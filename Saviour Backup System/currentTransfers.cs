@@ -5,9 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace Saviour_Backup_System
 {
@@ -28,26 +28,23 @@ namespace Saviour_Backup_System
 
             else if (!Directory.Exists(endDirectory)) { MessageBox.Show("The end directory does not exist."); }
 
-            else { 
+            else { //error checking is done (just in case something slips through.
                 string hash = tools.hashDirectory(drive.Name);
                 string DBHash = databaseTools.getHashofRecentBackup(USBTools.calculateDriveID(drive)); //get the hash from the database
-                if (!(DBHash == "NONE")) {
-                    if (DBHash == hash) //if the hashes are the same...
-                    {
+                if (DBHash == "NONE") {
+                    if (DBHash == hash) { //if the hash in the database matches the drive, don't backup because nothing will have changed.
                         MessageBox.Show("No changes have been made to files on drive " + drive.VolumeLabel + ", Will not backup.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
-                    else
-                    {
+                    else { //The actual backup case
+                        databaseTools.createBackupRecord(drive, tools.getUnixTimeStamp(), 0L, hash);
                         copyFiles(drive.Name.Substring(0, 1), endDirectory, visible, drive);
                     }
-                    
                 }
-                else
-                {
-
+                else {
+                    MessageBox.Show("An error occured when checking the drive. Please try again.", "Hash Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                copyFiles(drive.Name.Substring(0, 1), endDirectory, visible ,drive); 
             }
         }
 
@@ -94,7 +91,9 @@ namespace Saviour_Backup_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            copyFiles("F", "E:\\Temp\\TempCopy", true, USBTools.getDriveObject("F"));
+            MessageBox.Show("Starting...");
+            startCopy(USBTools.getDriveObject("F"), "E:\\Temp\\CopyTemp", true);
+            MessageBox.Show("Process Complete!");
         }
 
         private void currentTransfers_FormClosing(object sender, FormClosingEventArgs e)
