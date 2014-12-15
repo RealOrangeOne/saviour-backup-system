@@ -18,18 +18,13 @@ namespace Saviour_Backup_System
         public System.ComponentModel.ISynchronizeInvoke SynchronizationObject { get; set; }
         int arrayIndex;
         DriveInfo copyingDrive;
-        Int64 startDate = tools.getUnixTimeStamp();
-        public transferWindow(int backups, DriveInfo drive)
-        {
+
+        public transferWindow(int backups, DriveInfo drive) {
             copyingDrive = drive;
             InitializeComponent();
             arrayIndex = backups;
             currentFileProgress.Maximum = 1000;
 
-        }
-        ~transferWindow() //deconstructor (hopefully ran when it closes)
-        {
-            MessageBox.Show("Hi there.");
         }
 
         public void update(Int32 totalFiles, Int32 copiedFiles, Int64 totalBytes, Int64 copiedBytes, string currentFilename)
@@ -40,7 +35,7 @@ namespace Saviour_Backup_System
             if (totalBytes != 0) {
                 currentFileProgress.Value = Convert.ToInt32((1000f / (totalBytes / 1024f)) * (copiedBytes / 1024f));
             }
-            totalFilesProgress.Text = "Copying File " + copiedFiles + " of " + totalFiles + ".";
+            totalFilesProgress.Text = "Copying Bytes " + copiedFiles + " of " + totalFiles + ".";
             currentFile.Text = currentFilename;
             setup.CT.progressBars[arrayIndex].Value = totalFilesProgress.Value;
             setup.CT.progressBars[arrayIndex].Maximum = totalFiles;
@@ -67,15 +62,6 @@ namespace Saviour_Backup_System
         private void minimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void transferWindow_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
-
-        private void transferWindow_FormClosed(object sender, FormClosedEventArgs e)
-        {
         }
     }
 }
