@@ -84,7 +84,7 @@ namespace Saviour_Backup_System
             return name;
         }
 
-        public static void createBackupRecord(DriveInfo drive, Int64 startDate, Int64 duration)
+        public static void createBackupRecord(DriveInfo drive, Int64 startDate, Int64 duration, string hash)
         {
             string id = USBTools.calculateDriveID(drive);
             conn.Open();
@@ -98,8 +98,8 @@ namespace Saviour_Backup_System
             cmd.Parameters["Drive ID"].Value = id;
             cmd.Parameters["Start Date"].Value = startDate;
             cmd.Parameters["Backup Name"].Value = getBackupName(drive);
-            cmd.Parameters["Hash"].Value = tools.hashDirectory(drive.Name);
-            cmd.Parameters["Duration"].Value = duration;
+            cmd.Parameters["Hash"].Value = hash;
+            cmd.Parameters["Duration"].Value = (int)duration;
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
             conn.Close();
