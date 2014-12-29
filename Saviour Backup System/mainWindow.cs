@@ -88,7 +88,6 @@ namespace Saviour_Backup_System
             displayDriveDetails(USBTools.getDriveObject(selectedDevice.Substring(0,1)));
         }
         
-        
         private void displayDriveDetails(DriveInfo drive) {
             selectedDrive = drive;
             driveNameDisplay.Text = tools.Trim(selectedDrive.VolumeLabel, 16);
@@ -107,8 +106,10 @@ namespace Saviour_Backup_System
                     driveIconBox.Image = Properties.Resources.hddIcon;
                     break;
             }
+            backupDirectoryDisplay.Text = databaseTools.getBackupDirectory(USBTools.calculateDriveID(selectedDrive));
+            creationDateDisplay.Text = databaseTools.getBackupCreationDate(USBTools.calculateDriveID(selectedDrive)).ToString();
+            if (creationDateDisplay.Text == 0.ToString()) { creationDateDisplay.Text = "NONE"; }
         }
-
 
         private void formatDriveCapacity()
         {
@@ -188,6 +189,12 @@ namespace Saviour_Backup_System
         {
             setup.BV = new backupViewer();
             setup.BV.Show();
+        }
+
+        private void backupDeviceButton_Click(object sender, EventArgs e)
+        {
+            setup.CT.startCopy(selectedDrive, databaseTools.getBackupDirectory(USBTools.calculateDriveID(selectedDrive)), true);
+            MessageBox.Show("Backup initiated for drive '" + selectedDrive.VolumeLabel + "'", "Backup started", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
