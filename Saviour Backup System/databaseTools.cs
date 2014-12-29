@@ -26,7 +26,7 @@ namespace Saviour_Backup_System
         }
 
         public static string getDriveName(string id) {
-            string name = "";
+            string name = "NONE";
             conn.Open();
             cmd.CommandText = "SELECT Name FROM Drive WHERE ID = ?;";
             cmd.Parameters.Add(new SqlCeParameter("Drive_ID", SqlDbType.NText));
@@ -40,18 +40,40 @@ namespace Saviour_Backup_System
         }
 
         public static string getBackupDirectory(string id) {
-            string directory = "";
+            string directory = "NONE";
             conn.Open();
             cmd.CommandText = "SELECT Backup_Location FROM Recordset WHERE Drive_ID = ?";
             cmd.Parameters.Add(new SqlCeParameter("Drive_ID", SqlDbType.NText));
             cmd.Parameters["Drive_ID"].Value = id;
-            SqlCeDataReader reader = cmd.ExecuteReader();
-            while (reader.Read()) { directory = reader.GetString(0); }
+            try {
+                SqlCeDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()) { directory = reader.GetString(0); }
+                reader.Close(); 
+            } catch { }
             conn.Close();
-            reader.Close();
             cmd.Parameters.Clear();
             return directory;
         }
+
+        public static Int64 getBackupCreationDate(string id)
+        {
+            Int64 date = 0;
+            conn.Open();
+            cmd.CommandText = "SELECT Creation_Date FROM Recordset WHERE Drive_ID = ?";
+            cmd.Parameters.Add(new SqlCeParameter("Creation Date", SqlDbType.BigInt));
+            cmd.Parameters["Creation Date"].Value = id;
+            try
+            {
+                SqlCeDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()) { date = reader.GetInt64(0); }
+                reader.Close();
+            }
+            catch { }
+            conn.Close();
+            cmd.Parameters.Clear();
+            return date;
+        }
+
 
         public static string[] getAutomaticBackups()
         {
