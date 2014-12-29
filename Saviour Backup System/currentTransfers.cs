@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using System.Diagnostics;
 
 namespace Saviour_Backup_System
 {
@@ -18,8 +17,7 @@ namespace Saviour_Backup_System
         public List<DevComponents.DotNetBar.Controls.ProgressBarX> progressBars = new List<DevComponents.DotNetBar.Controls.ProgressBarX>();
         public int backups = -1; //used for index in arrays
 
-        public currentTransfers()
-        {
+        public currentTransfers() {
             InitializeComponent();
         }
 
@@ -35,13 +33,11 @@ namespace Saviour_Backup_System
                     if (DBHash == hash) { //if the hash in the database matches the drive, don't backup because nothing will have changed.
                         MessageBox.Show("No changes have been made to files on drive " + drive.VolumeLabel + ", Will not backup.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
-                    }
-                    else { //The actual backup case
+                    } else { //The actual backup case
                         databaseTools.createBackupRecord(drive, tools.getUnixTimeStamp(), 0L, hash);
                         copyFiles(drive.Name.Substring(0, 1), endDirectory, visible, drive);
                     }
-                }
-                else {
+                } else {
                     MessageBox.Show("An error occured when checking the drive. Please try again.", "Hash Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
