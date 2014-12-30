@@ -171,8 +171,6 @@ namespace Saviour_Backup_System
             cmd.Parameters.Clear();
             statusProgress.Text = "Recordset created...";
             conn.Close();
-            conn.Dispose();
-            this.Close();
 
         }
 
