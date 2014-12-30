@@ -79,7 +79,7 @@ namespace Saviour_Backup_System
                     driveTypeDecoded = "Drive Without Root Directory";
                     break;
                 case DriveType.Ram:
-                    driveTypeDecoded = "RAM Drive";
+                    driveTypeDecoded = "RAM Disk";
                     break;
                 case DriveType.Removable:
                     driveTypeDecoded = "Removable Drive";
