@@ -20,7 +20,6 @@ namespace Saviour_Backup_System
         public currentTransfers() {
             InitializeComponent();
         }
-
         public void startCopy(DriveInfo drive, string endDirectory, bool visible) { //used for validation to make sure the copy wont fail.
             if (!Directory.Exists(drive.Name)) { MessageBox.Show("The drive directory does not exist."); }
 
@@ -34,8 +33,7 @@ namespace Saviour_Backup_System
                         MessageBox.Show("No changes have been made to files on drive " + drive.VolumeLabel + ", Will not backup.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     } else { //The actual backup case
-                        databaseTools.createBackupRecord(drive, tools.getUnixTimeStamp(), 0L, hash);
-                        copyFiles(drive.Name.Substring(0, 1), endDirectory, visible, drive);
+                        copyFiles(drive.Name.Substring(0, 1), endDirectory, visible, drive, hash);
                     }
                 } else {
                     MessageBox.Show("An error occured when checking the drive. Please try again.", "Hash Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -44,7 +42,7 @@ namespace Saviour_Backup_System
             }
         }
 
-        private void copyFiles(string driveLetter, string endDirectory, bool display, DriveInfo drive) //actually starts the backups (and loads the dialogs)
+        private void copyFiles(string driveLetter, string endDirectory, bool display, DriveInfo drive, string hash) //actually starts the backups (and loads the dialogs)
         {
             backups++; //appends to the number of backups running
             progressBars.Add(new copyProgressBar());
@@ -54,11 +52,11 @@ namespace Saviour_Backup_System
 
             copyFilesList.Add(new CopyFiles.CopyFiles(driveLetter + ":\\", endDirectory));
 
-            transfersList.Add(new transferWindow(backups, drive));
+            transfersList.Add(new transferWindow(backups, drive, hash));
             transfersList[backups].SynchronizationObject = this;
             copyFilesList[backups].CopyAsync(transfersList[backups]);
 
-            if (!display) { transfersList[backups].Hide(); } //if it is a startup backup process, dont display the dialog.
+            if (!display) { transfersList[backups].Hide(); } //if it is a startup backup process, quickly hide the dialog.
         }
 
         private class copyProgressLabel : Label {
@@ -84,18 +82,27 @@ namespace Saviour_Backup_System
                 this.ColorTable = DevComponents.DotNetBar.eProgressBarItemColor.Paused;
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Starting...");
-            startCopy(USBTools.getDriveObject("F"), "E:\\Temp\\CopyTemp", true);
-            MessageBox.Show("Process Complete!");
         }
 
         private void currentTransfers_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Hide();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to clear?\nThis will cancel all active transfers!", "Clear Window", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (result == System.Windows.Forms.DialogResult.Yes) {
+                foreach (transferWindow TW in transfersList) { TW.cancelCopy(); } //cancels all the copies as quickly as possible
+                copyFilesList.Clear();
+                layoutPanel.Controls.Clear();
+                progressBars.Clear();
+                MessageBox.Show("All items have been cleared!");
+            }
+            else { return; }
         }
     }
 }
