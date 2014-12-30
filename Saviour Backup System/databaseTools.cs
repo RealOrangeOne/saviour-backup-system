@@ -23,12 +23,14 @@ namespace Saviour_Backup_System
             if (!File.Exists(databaseName)) { //if the database doesnt exists (program hasnt been run before)
                 copyDatabase();
             }
+            conn.Open();
+            conn.Close();
         }
 
         public static string getDriveName(string id) {
             string name = "NONE";
             conn.Open();
-            cmd.CommandText = "SELECT Name FROM Drive WHERE ID = ?;";
+            cmd.CommandText = "SELECT Name FROM Drive WHERE ID LIKE ?;";
             cmd.Parameters.Add(new SqlCeParameter("Drive_ID", SqlDbType.NText));
             cmd.Parameters["Drive_ID"].Value = id;
             SqlCeDataReader reader = cmd.ExecuteReader();
@@ -42,7 +44,7 @@ namespace Saviour_Backup_System
         public static string getBackupDirectory(string id) {
             string directory = "NONE";
             conn.Open();
-            cmd.CommandText = "SELECT Backup_Location FROM Recordset WHERE Drive_ID = ?";
+            cmd.CommandText = "SELECT Backup_Location FROM Recordset WHERE Drive_ID LIKE ?";
             cmd.Parameters.Add(new SqlCeParameter("Drive_ID", SqlDbType.NText));
             cmd.Parameters["Drive_ID"].Value = id;
             try {
@@ -59,9 +61,9 @@ namespace Saviour_Backup_System
         {
             Int64 date = 0;
             conn.Open();
-            cmd.CommandText = "SELECT Creation_Date FROM Recordset WHERE Drive_ID = ?";
-            cmd.Parameters.Add(new SqlCeParameter("Creation Date", SqlDbType.BigInt));
-            cmd.Parameters["Creation Date"].Value = id;
+            cmd.CommandText = "SELECT Creation_Date FROM Recordset WHERE Drive_ID LIKE ?";
+            cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
+            cmd.Parameters["Drive ID"].Value = id;
             try
             {
                 SqlCeDataReader reader = cmd.ExecuteReader();
@@ -95,7 +97,7 @@ namespace Saviour_Backup_System
         {
             string name = "";
             conn.Open();
-            cmd.CommandText = "SELECT Name FROM Recordset WHERE Drive_ID = ?;";
+            cmd.CommandText = "SELECT Name FROM Recordset WHERE Drive_ID LIKE ?;";
             cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
             cmd.Parameters["Drive ID"].Value = USBTools.calculateDriveID(drive);
             SqlCeDataReader reader = cmd.ExecuteReader();
@@ -103,12 +105,16 @@ namespace Saviour_Backup_System
             {
                 name = reader.GetString(0);
             }
+            cmd.Parameters.Clear();
+            reader.Close();
+            conn.Close();
             return name;
         }
 
         public static void createBackupRecord(DriveInfo drive, Int64 startDate, Int64 duration, string hash)
         {
             string id = USBTools.calculateDriveID(drive);
+            string backupName = getBackupName(drive);
             conn.Open();
             cmd.CommandText = "INSERT INTO Backups VALUES (?,?,?,?,?);";
             cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
@@ -119,7 +125,7 @@ namespace Saviour_Backup_System
 
             cmd.Parameters["Drive ID"].Value = id;
             cmd.Parameters["Start Date"].Value = startDate;
-            cmd.Parameters["Backup Name"].Value = getBackupName(drive);
+            cmd.Parameters["Backup Name"].Value = backupName;
             cmd.Parameters["Hash"].Value = hash;
             cmd.Parameters["Duration"].Value = (int)duration;
             cmd.ExecuteNonQuery();
@@ -139,6 +145,9 @@ namespace Saviour_Backup_System
             while (reader.Read()) {
                 hash = reader.GetString(0);
             }
+            cmd.Parameters.Clear();
+            reader.Close();
+            conn.Close();
             return hash;
         }
     }
