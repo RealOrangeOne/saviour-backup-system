@@ -69,13 +69,16 @@ namespace Saviour_Backup_System
 
         private void connectedDrivesListRefresh_Click(object sender, EventArgs e)
         {
+            toolStripProgress.Visible = true;
             foreach (ListViewItem i in connectedDrivesList.SelectedItems){ i.Selected = false; } //Deselected all elements in the list first
             clearDriveDetails();
             refreshDriveList();
+            toolStripProgress.Visible = false;
         }
 
 
         private void connectedDrivesList_Selection(object sender, ListViewItemSelectionChangedEventArgs e) {
+            toolStripProgress.Visible = true;
             if (!e.IsSelected) {
                 deviceTab.Visible = false;
                 backupRestoreTab.Select();
@@ -86,9 +89,11 @@ namespace Saviour_Backup_System
             populateDeviceTab();
             string selectedDevice = connectedDrivesList.SelectedItems[0].Text;
             displayDriveDetails(USBTools.getDriveObject(selectedDevice.Substring(0,1)));
+            toolStripProgress.Visible = false;
         }
         
         private void displayDriveDetails(DriveInfo drive) {
+            toolStripProgress.Visible = true;
             selectedDrive = drive;
             driveNameDisplay.Text = tools.Trim(selectedDrive.VolumeLabel, 16);
             driveLetterDisplay.Text = selectedDrive.Name;
@@ -106,9 +111,11 @@ namespace Saviour_Backup_System
                     driveIconBox.Image = Properties.Resources.hddIcon;
                     break;
             }
+            long timeStamp = databaseTools.getBackupCreationDate(USBTools.calculateDriveID(selectedDrive));
             backupDirectoryDisplay.Text = databaseTools.getBackupDirectory(USBTools.calculateDriveID(selectedDrive));
-            creationDateDisplay.Text = databaseTools.getBackupCreationDate(USBTools.calculateDriveID(selectedDrive)).ToString();
-            if (creationDateDisplay.Text == 0.ToString()) { creationDateDisplay.Text = "NONE"; }
+            if (timeStamp == 0L) { creationDateDisplay.Text = "NONE"; }
+            else { creationDateDisplay.Text = tools.unixDateTime(timeStamp).ToString(); }
+            toolStripProgress.Visible = false;
         }
 
         private void formatDriveCapacity()
@@ -182,7 +189,7 @@ namespace Saviour_Backup_System
 
         private void currentTransfersButton_Click(object sender, EventArgs e)
         {
-            setup.CT.ShowDialog();
+            setup.CT.Show();
         }
 
         private void viewAllRulesButton_Click(object sender, EventArgs e)
@@ -193,8 +200,19 @@ namespace Saviour_Backup_System
 
         private void backupDeviceButton_Click(object sender, EventArgs e)
         {
-            setup.CT.startCopy(selectedDrive, databaseTools.getBackupDirectory(USBTools.calculateDriveID(selectedDrive)), true);
-            MessageBox.Show("Backup initiated for drive '" + selectedDrive.VolumeLabel + "'", "Backup started", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (backupDirectoryDisplay.Text != "NONE") {
+                toolStripProgress.Visible = true;
+                setup.CT.startCopy(selectedDrive, databaseTools.getBackupDirectory(USBTools.calculateDriveID(selectedDrive)), true);
+                MessageBox.Show("Backup initiated for drive '" + selectedDrive.VolumeLabel + "'", "Backup started", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                toolStripProgress.Visible = false;
+            }
+            else { MessageBox.Show("You cannot backup a drive without a record. Please create one before continueing!", "No Backup Exists", MessageBoxButtons.OK, MessageBoxIcon.Stop); }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(databaseTools.conn.State.ToString());
         }
     }
 }
