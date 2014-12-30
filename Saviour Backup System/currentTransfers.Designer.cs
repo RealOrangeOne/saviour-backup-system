@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.layoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -97,7 +98,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(286, 30);
+            this.button1.Location = new System.Drawing.Point(367, 33);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -105,11 +106,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // ClearButton
+            // 
+            this.ClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearButton.Location = new System.Drawing.Point(505, 33);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearButton.TabIndex = 5;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
             // currentTransfers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 450);
+            this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.layoutPanel);
             this.Controls.Add(this.label1);
@@ -130,6 +143,7 @@
         private System.Windows.Forms.FlowLayoutPanel layoutPanel;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button ClearButton;
 
     }
 }
