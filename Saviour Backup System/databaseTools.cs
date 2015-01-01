@@ -150,5 +150,18 @@ namespace Saviour_Backup_System
             conn.Close();
             return hash;
         }
+
+        public static DataTable getAllDriveBackups()
+        {
+            DataTable table = new DataTable();
+            conn.Open();
+            cmd.CommandText =
+                "SELECT Recordset.Name as Backup_Name, Recordset.Creation_Date, Recordset.Backup_Location, Drive.Name, Drive.Capacity FROM Recordset, Drive"; //write this out in compactview frst;
+            using (SqlCeDataAdapter adapter = new SqlCeDataAdapter(cmd.CommandText, conn)) {
+                adapter.Fill(table);
+                conn.Close();
+                return table;
+            }
+        }
     }
 }
