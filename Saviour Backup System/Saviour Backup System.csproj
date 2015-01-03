@@ -97,6 +97,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="7-Zip SDK\CommandLineParser.cs" />
+    <Compile Include="7-Zip SDK\CRC.cs" />
+    <Compile Include="7-Zip SDK\ICoder.cs" />
+    <Compile Include="7-Zip SDK\IMatchFinder.cs" />
+    <Compile Include="7-Zip SDK\InBuffer.cs" />
+    <Compile Include="7-Zip SDK\LzBinTree.cs" />
+    <Compile Include="7-Zip SDK\LzInWindow.cs" />
+    <Compile Include="7-Zip SDK\LzmaBase.cs" />
+    <Compile Include="7-Zip SDK\LzmaDecoder.cs" />
+    <Compile Include="7-Zip SDK\LzmaEncoder.cs" />
+    <Compile Include="7-Zip SDK\LzOutWindow.cs" />
+    <Compile Include="7-Zip SDK\OutBuffer.cs" />
+    <Compile Include="7-Zip SDK\RangeCoder.cs" />
+    <Compile Include="7-Zip SDK\RangeCoderBit.cs" />
+    <Compile Include="7-Zip SDK\RangeCoderBitTree.cs" />
     <Compile Include="addBackupWizard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +270,7 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
