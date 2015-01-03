@@ -14,7 +14,6 @@ namespace Saviour_Backup_System
 {
     public partial class addBackupWizard : Form
     {
-        private string defaultText;
         public addBackupWizard()
         {
             InitializeComponent();

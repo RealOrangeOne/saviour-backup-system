@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addBackupWizard));
             this.backupNameInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -141,9 +142,7 @@
             this.introTextBox.Size = new System.Drawing.Size(175, 176);
             this.introTextBox.TabIndex = 12;
             this.introTextBox.TabStop = false;
-            this.introTextBox.Text = "In order for Saviour Backup System to backup your device, you need to add a backu" +
-    "p record.\n\nBe careful when filling in the details, they may not be able to be ch" +
-    "anged later.";
+            this.introTextBox.Text = resources.GetString("introTextBox.Text");
             // 
             // insertionSwitch
             // 
