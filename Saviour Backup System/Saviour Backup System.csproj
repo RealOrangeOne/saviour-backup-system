@@ -87,6 +87,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -124,6 +125,7 @@
     <Compile Include="backupViewer.Designer.cs">
       <DependentUpon>backupViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="compression.cs" />
     <Compile Include="currentTransfers.cs">
       <SubType>Form</SubType>
     </Compile>
