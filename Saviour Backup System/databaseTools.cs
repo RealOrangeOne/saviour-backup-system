@@ -151,6 +151,23 @@ namespace Saviour_Backup_System
             return hash;
         }
 
+        public static bool isCompression(string id)
+        {
+            conn.Open();
+            bool compression = false;
+            cmd.CommandText = "SELECT Compression FROM Recordset WHERE Drive_ID Like ?;";
+            cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
+            cmd.Parameters["Drive ID"].Value = id;
+            SqlCeDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) {
+                compression = reader.GetBoolean(0);
+            }
+            cmd.Parameters.Clear();
+            reader.Close();
+            conn.Close();
+            return compression;
+        }
+
         public static DataTable getAllDriveBackups()
         {
             DataTable table = new DataTable();
