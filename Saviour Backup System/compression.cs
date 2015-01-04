@@ -15,23 +15,19 @@ namespace Saviour_Backup_System
         private volatile static string Goutput;
         private volatile static string GfileName;
 
-        public static void Compress(string directory, string outputFile, bool LZMA) {
+        public static void Compress(string directory, string outputFile) {
             GfileName = outputFile.Split('.')[0]; Gdirectory = directory; Goutput = outputFile; //store as globals
             compressToZip();
-            if (!LZMA) { //We dont need to do LZMA, so just, dont!
-                File.Copy(Gdirectory + "\\" + GfileName + ".zip", Gdirectory.Replace("\\Temp", "") + GfileName + ".backup");
-            }
-            else if (has7Zip() && LZMA) {
+            if (has7Zip()) {
                 DialogResult result = MessageBox.Show("7-Zip has been detected on your computer\nWould you like to use this instead?", "Use 7-Zip?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes) {
                     threads.Add(new Thread(new ThreadStart(compression7Zip)));
                     threads[threads.Count].Start();
                     return;
-                } else if (LZMA) {
-                    //Code to interface with 7z.exe goes here!
                 }
+            } else {
+                //7z.exe interface code goes here!
             }
-            
         }
         private static void compression7Zip() { //need to write this!
             string directory = Gdirectory;
