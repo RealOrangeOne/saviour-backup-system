@@ -19,7 +19,7 @@ namespace Saviour_Backup_System
 
         private void button1_Click(object sender, EventArgs e) {
             dataGridView.DataSource = databaseTools.getAllDriveBackups();
-            /*this will need editing to make it more people readable, and format dates etc.*/
+            /* this will need editing to make it more people readable, and format dates etc.*/
         }
     }
 }
