@@ -12,11 +12,10 @@ namespace Saviour_Backup_System
     {
         private static List<Thread> threads = new List<Thread>();
         private volatile static string Gdirectory;
-        private volatile static string Goutput;
         private volatile static string GfileName;
 
         public static void Compress(string directory, string outputFile) {
-            GfileName = outputFile.Split('.')[0]; Gdirectory = directory; Goutput = outputFile; //store as globals
+            GfileName = outputFile; Gdirectory = directory; //store as globals
             compressToZip();
             if (has7Zip()) {
                 DialogResult result = MessageBox.Show("7-Zip has been detected on your computer\nWould you like to use this instead?", "Use 7-Zip?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -28,15 +27,17 @@ namespace Saviour_Backup_System
             } else {
                 //7z.exe interface code goes here!
             }
+            MessageBox.Show("Compression for drive" + "DRIVE NAME" + "has completed.", "Compression Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private static void compression7Zip() { //need to write this!
-            string directory = Gdirectory;
-            string outputFile = Goutput;
-            return;
+            string fileToCompress = Gdirectory + GfileName + ".zip";
+            string outputFile = Gdirectory.Replace("\\Temp", GfileName + ".SB");
+            MessageBox.Show("Compression of your drive has begun. Be aware this can take a lot of time to run", "Compression Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CompressFileLZMA(fileToCompress, outputFile);
         }
 
         private static void compressToZip() {
-            ZipFile.CreateFromDirectory(Gdirectory, Gdirectory.Replace("\\Temp", "") + GfileName + ".zip");
+            ZipFile.CreateFromDirectory(Gdirectory, Gdirectory + GfileName + ".zip"); //create the zip file inside the temp directory still.
         }
 
         private static void CompressFileLZMA(string inFile, string outFile)
@@ -44,7 +45,6 @@ namespace Saviour_Backup_System
             SevenZip.Compression.LZMA.Encoder coder = new SevenZip.Compression.LZMA.Encoder();
             FileStream input = new FileStream(inFile, FileMode.Open);
             FileStream output = new FileStream(outFile, FileMode.Create);
-
             // Write the encoder properties
             coder.WriteCoderProperties(output);
 
