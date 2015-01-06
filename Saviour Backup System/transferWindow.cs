@@ -23,13 +23,14 @@ namespace Saviour_Backup_System
         private Stopwatch SW = new Stopwatch();
         string driveHash;
         bool finalised = false;
-
-        public transferWindow(int backups, DriveInfo drive, string hash) {
+        string Gdirectory;
+        public transferWindow(int backups, DriveInfo drive, string hash, string directory) {
             driveHash = hash;
             copyingDrive = drive;
             InitializeComponent();
             arrayIndex = backups;
             currentFileProgress.Maximum = 1000;
+            Gdirectory = directory;
             SW.Start(); //starts the stopwatch to count how long the copy takes
         }
 
@@ -41,6 +42,7 @@ namespace Saviour_Backup_System
             setup.CT.progressBars[arrayIndex].Value = 100;
             setup.CT.progressBars[arrayIndex].Maximum = 100;
             setup.CT.progressBars[arrayIndex].Text = "Complete!";
+            compression.Compress(Gdirectory, DateTime.Now.ToString());
         }
 
         public void update(Int32 totalFiles, Int32 copiedFiles, Int64 totalBytes, Int64 copiedBytes, string currentFilename)
