@@ -14,8 +14,7 @@ using CopyFiles;
 
 namespace Saviour_Backup_System
 {
-    public partial class transferWindow : Form, CopyFiles.ICopyFilesDiag, IDisposable
-    {
+    public partial class transferWindow : Form, CopyFiles.ICopyFilesDiag, IDisposable {
         public System.ComponentModel.ISynchronizeInvoke SynchronizationObject { get; set; }
         private int arrayIndex;
         public Int64 startTime = tools.getUnixTimeStamp(); //snapshots it.
@@ -42,7 +41,13 @@ namespace Saviour_Backup_System
             setup.CT.progressBars[arrayIndex].Value = 100;
             setup.CT.progressBars[arrayIndex].Maximum = 100;
             setup.CT.progressBars[arrayIndex].Text = "Complete!";
-            compression.Compress(Gdirectory, DateTime.Now.ToString());
+            if (databaseTools.isCompression(USBTools.calculateDriveID(copyingDrive)) {
+                compression.Compress(Gdirectory, DateTime.Now.ToString(), copyingDrive);
+            }
+            else { 
+                MessageBox.Show("Backup for drive '" + copyingDrive.Name + "' is now complete.", "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         public void update(Int32 totalFiles, Int32 copiedFiles, Int64 totalBytes, Int64 copiedBytes, string currentFilename)
