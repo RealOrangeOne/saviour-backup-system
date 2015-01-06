@@ -14,7 +14,7 @@ namespace Saviour_Backup_System
         private volatile static string Gdirectory;
         private volatile static string GfileName;
 
-        public static void Compress(string directory, string outputFile) {
+        public static void Compress(string directory, string outputFile, DriveInfo drive) {
             GfileName = outputFile; Gdirectory = directory; //store as globals
             compressToZip();
             if (has7Zip()) {
@@ -27,7 +27,7 @@ namespace Saviour_Backup_System
             } else {
                 //7z.exe interface code goes here!
             }
-            MessageBox.Show("Compression for drive" + "DRIVE NAME" + "has completed.", "Compression Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Compression for drive '" + drive.Name + "' has completed.", "Compression Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private static void compression7Zip() { //need to write this!
             string fileToCompress = Gdirectory + GfileName + ".zip";
