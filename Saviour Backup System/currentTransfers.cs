@@ -20,6 +20,8 @@ namespace Saviour_Backup_System
         public currentTransfers() {
             InitializeComponent();
         }
+
+
         public void startCopy(DriveInfo drive, string endDirectory, bool visible) { //used for validation to make sure the copy wont fail.
             if (!Directory.Exists(drive.Name)) { MessageBox.Show("The drive directory does not exist."); }
 
@@ -33,7 +35,13 @@ namespace Saviour_Backup_System
                         MessageBox.Show("No changes have been made to files on drive " + drive.VolumeLabel + ", Will not backup.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     } else { //The actual backup case
-                        copyFiles(drive.Name.Substring(0, 1), endDirectory, visible, drive, hash);
+                        string addition = ""; //stores any extra directory needed.
+                        if (databaseTools.isCompression(USBTools.calculateDriveID(drive)))
+                        {
+                            addition = "\\Temp";
+                        }
+                        else {addition = "\\" + DateTime.Now.ToString(); }
+                        copyFiles(drive.Name.Substring(0, 1), endDirectory + addition, visible, drive, hash);
                     }
                 } else {
                     MessageBox.Show("An error occured when checking the drive. Please try again.", "Hash Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -52,7 +60,7 @@ namespace Saviour_Backup_System
 
             copyFilesList.Add(new CopyFiles.CopyFiles(driveLetter + ":\\", endDirectory));
 
-            transfersList.Add(new transferWindow(backups, drive, hash));
+            transfersList.Add(new transferWindow(backups, drive, hash, endDirectory));
             transfersList[backups].SynchronizationObject = this;
             copyFilesList[backups].CopyAsync(transfersList[backups]);
 
