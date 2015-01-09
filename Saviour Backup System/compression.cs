@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Threading;
 using Microsoft.Win32;
 using System.Windows.Forms;
+using System.Diagnostics;
 namespace Saviour_Backup_System
 {
     class compression
@@ -18,16 +19,22 @@ namespace Saviour_Backup_System
             GfileName = outputFile; Gdirectory = directory; //store as globals
             compressToZip();
             if (has7Zip()) {
-                DialogResult result = MessageBox.Show("7-Zip has been detected on your computer\nWould you like to use this instead?", "Use 7-Zip?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes) {
+                DialogResult result = MessageBox.Show("7-Zip has been detected on your computer, Using this will dramatically improve compression time.\nWould you like to use this instead?", "Use 7-Zip?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No) {
                     threads.Add(new Thread(new ThreadStart(compression7Zip)));
                     threads[threads.Count].Start();
-                    return;
+                } else {
+                    interface7Zip();
                 }
             } else {
-                //7z.exe interface code goes here!
+                interface7Zip();
             }
             MessageBox.Show("Compression for drive '" + drive.Name + "' has completed.", "Compression Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private static void interface7Zip() {
+            string fileDirectory = get7ZipDirectory() + "\\7z.exe";
+            Process.Start("\"" + fileDirectory + "\" a -y -i \"" + Gdirectory + GfileName + ".zip\" \"" + Gdirectory.Replace("\\Temp", "\\") + GfileName + ".sbf");
+
         }
         private static void compression7Zip() { //need to write this!
             string fileToCompress = Gdirectory + GfileName + ".zip";
@@ -83,5 +90,7 @@ namespace Saviour_Backup_System
             if (path == "NULL") { return false;}
             return File.Exists(path + "7z.exe");
         }
+
+        private static string get7ZipDirectory() { return (string) Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\7-Zip", "Path", "NULL"); }
     }
 }
