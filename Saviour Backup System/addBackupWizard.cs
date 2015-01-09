@@ -19,7 +19,7 @@ namespace Saviour_Backup_System
             InitializeComponent();
             populateDropdown();
             assignToolTips();
-            this.Size = new Size(583, 299);
+            this.Size = new Size(583, 269);
         }
 
         private void assignToolTips() {
@@ -32,10 +32,9 @@ namespace Saviour_Backup_System
             //huge list of tooltips to use!
             tempTip.SetToolTip(this.backupNameInput, "Name the backup\nAn easy name for the backup, or even a description.");
             tempTip.SetToolTip(this.drivesDropdown, "Select the drive\nWhich drive would you like to backup?");
-            tempTip.SetToolTip(this.compressionTypeDropdown, "Compression?\nWould you like to compress the backup to save space on your computer?");
             tempTip.SetToolTip(this.previousBackupInput, "Previous backups\nHow many past backups would you like to store, enter -1 for all");
             tempTip.SetToolTip(this.insertionSwitch, "Automated\nWould you like to backup the drive as soon as it is inserted to the computer?");
-            tempTip.SetToolTip(this.unifiedFileSwitch, "Single File\nWould you like to store the backup in a single file?");
+            tempTip.SetToolTip(this.compressionSwitch, "Single File\nWould you like to store the backup in a single file?");
             tempTip.SetToolTip(this.folderPath, "Location\nWhere would you like to store the backup?");
             tempTip.SetToolTip(this.createButton, "Let's Go!\nClick to create the backup record, this can take a few seconds to run.");
             tempTip.SetToolTip(this.directoryBrowseButton, "Where?\nClick here to browse your computer to find where to store the backup.");
@@ -63,9 +62,8 @@ namespace Saviour_Backup_System
         {
             backupNameInput.Text = "";
             drivesDropdown.Text = "";
-            compressionTypeDropdown.Text = "";
             insertionSwitch.Value = false;
-            unifiedFileSwitch.Value = false;
+            compressionSwitch.Value = false;
             previousBackupInput.Value = 0;
             folderPath.Text = "";
         }
@@ -73,24 +71,23 @@ namespace Saviour_Backup_System
         {
             backupNameInput.ReadOnly = state;
             drivesDropdown.Enabled = !state;
-            compressionTypeDropdown.Enabled = !state;
             insertionSwitch.IsReadOnly = state;
-            unifiedFileSwitch.IsReadOnly = state;
+            compressionSwitch.IsReadOnly = state;
             previousBackupInput.Enabled = !state;
             folderPath.ReadOnly = state;
         }
         private void createButton_Click(object sender, EventArgs e) {
             DriveInfo drive = USBTools.getDriveObject(drivesDropdown.Text.Substring(0, 1));
             lockControls(true);
-            if ((folderPath.Text == "") || (previousBackupInput.Text == "") || (compressionTypeDropdown.Text == "") || (drivesDropdown.Text == "") || (backupNameInput.Text == "")) {
+            if ((folderPath.Text == "") || (previousBackupInput.Text == "") ||(drivesDropdown.Text == "") || (backupNameInput.Text == "")) {
                     MessageBox.Show("You have not filled in every element, Please try again!", "Not everything is complete", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lockControls(false);
                     return;
             }
 
             statusProgress.Text = "Initialising...";
-            int initHeight = 299;
-            while (this.Size.Height != 330) {
+            int initHeight = 269;
+            while (this.Size.Height != 302) {
                 initHeight++;
                 this.Size = new Size(583, initHeight);
                 Thread.Sleep(10);
@@ -105,9 +102,6 @@ namespace Saviour_Backup_System
                         MessageBox.Show("Error Creating Folder! Please check the path and try agian.", "Error creating folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            }
-            else if (compressionTypeDropdown.Text == "None" && unifiedFileSwitch.Value == true) {
-                MessageBox.Show("You cannot have a unified file without some form of compression, please select again.", "Compression Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else if (drive.VolumeLabel == ""){
                 MessageBox.Show("You cannot backup a drive with no label, please rename it and try again","Can't use default name", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else {
@@ -120,7 +114,7 @@ namespace Saviour_Backup_System
                 clearControls();
                 this.Close();
             }
-            while (this.Size.Height != 299) {
+            while (this.Size.Height != 269) {
                 initHeight--;
                 this.Size = new Size(583, initHeight);
                 Thread.Sleep(10);
@@ -164,7 +158,7 @@ namespace Saviour_Backup_System
             cmd.Parameters["Creation Date"].Value = tools.getUnixTimeStamp();
             cmd.Parameters["Backup Location"].Value = folderPath.Text;
             cmd.Parameters["Automatic"].Value = insertionSwitch.Value;
-            cmd.Parameters["Compression"].Value = unifiedFileSwitch.Value;
+            cmd.Parameters["Compression"].Value = compressionSwitch.Value;
             cmd.Parameters["Previous Backups"].Value = previousBackupInput.Value;
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
@@ -175,6 +169,12 @@ namespace Saviour_Backup_System
 
         private void insertionSwitch_Click(object sender, EventArgs e) { insertionSwitch.Value = !insertionSwitch.Value; }
 
-        private void unifiedFileSwitch_Click(object sender, EventArgs e) { unifiedFileSwitch.Value = !unifiedFileSwitch.Value; }
+        private void unifiedFileSwitch_Click(object sender, EventArgs e) { 
+            compressionSwitch.Value = !compressionSwitch.Value;
+            if(compressionSwitch.Value) {
+                DialogResult result = MessageBox.Show("Compression can take a long time to complete, and your computer will need to be on all this time.\nAre you sure you want to do this?", "Compression Time Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                compressionSwitch.Value = (result == System.Windows.Forms.DialogResult.Yes);
+            }
+        }
     }
 }
