@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cd-black-red.ico" />
+    <None Include="Resources\deleteIcon.jpg" />
     <None Include="Resources\saviour.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
