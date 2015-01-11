@@ -29,13 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
-            this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
             this.qatCustomizeItem1 = new DevComponents.DotNetBar.QatCustomizeItem();
+            this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +60,7 @@
             this.ribbonControl1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.ribbonControl1.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.qatCustomizeItem1});
-            this.ribbonControl1.Size = new System.Drawing.Size(594, 30);
+            this.ribbonControl1.Size = new System.Drawing.Size(680, 30);
             this.ribbonControl1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonControl1.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
             this.ribbonControl1.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
@@ -75,61 +81,129 @@
             this.ribbonControl1.TabIndex = 0;
             this.ribbonControl1.Text = "ribbonControl1";
             // 
+            // qatCustomizeItem1
+            // 
+            this.qatCustomizeItem1.Name = "qatCustomizeItem1";
+            // 
             // styleManager
             // 
             this.styleManager.ManagerColorTint = System.Drawing.Color.Black;
             this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Black;
             this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(26))))));
             // 
-            // qatCustomizeItem1
-            // 
-            this.qatCustomizeItem1.Name = "qatCustomizeItem1";
-            // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AllowUserToDeleteRows = false;
+            this.dataGridView.AllowUserToResizeColumns = false;
+            this.dataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(12, 95);
+            this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView.Location = new System.Drawing.Point(0, 82);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(380, 272);
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.ShowEditingIcon = false;
+            this.dataGridView.Size = new System.Drawing.Size(544, 196);
             this.dataGridView.TabIndex = 1;
             // 
-            // comboBox1
+            // refreshButton
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(398, 124);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(184, 21);
-            this.comboBox1.TabIndex = 2;
+            this.refreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refreshButton.Location = new System.Drawing.Point(550, 245);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(123, 33);
+            this.refreshButton.TabIndex = 4;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // button2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(398, 103);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 18);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Drive:";
+            this.button2.Location = new System.Drawing.Point(12, 53);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(67, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Select All";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // deleteButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(398, 334);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 33);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.deleteButton.BackColor = System.Drawing.Color.Transparent;
+            this.deleteButton.BackgroundImage = global::Saviour_Backup_System.Properties.Resources.deleteIcon;
+            this.deleteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.deleteButton.Location = new System.Drawing.Point(572, 132);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(37, 37);
+            this.deleteButton.TabIndex = 6;
+            this.deleteButton.UseVisualStyleBackColor = false;
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(615, 132);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(37, 37);
+            this.editButton.TabIndex = 7;
+            this.editButton.Text = "button3";
+            this.editButton.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(615, 175);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(37, 37);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button
+            // 
+            this.button.Location = new System.Drawing.Point(572, 175);
+            this.button.Name = "button";
+            this.button.Size = new System.Drawing.Size(37, 37);
+            this.button.TabIndex = 8;
+            this.button.Text = "button3";
+            this.button.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(615, 89);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(37, 37);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(572, 89);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(37, 37);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "button3";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // backupViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 379);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(680, 300);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button);
+            this.Controls.Add(this.editButton);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -137,7 +211,6 @@
             this.Text = "Backup Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -147,8 +220,13 @@
         private DevComponents.DotNetBar.QatCustomizeItem qatCustomizeItem1;
         private DevComponents.DotNetBar.StyleManager styleManager;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button5;
     }
 }
