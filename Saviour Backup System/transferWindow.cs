@@ -41,7 +41,7 @@ namespace Saviour_Backup_System
             setup.CT.progressBars[arrayIndex].Value = 100;
             setup.CT.progressBars[arrayIndex].Maximum = 100;
             setup.CT.progressBars[arrayIndex].Text = "Complete!";
-            if (databaseTools.isCompression(USBTools.calculateDriveID(copyingDrive)) {
+            if (databaseTools.isCompression(USBTools.calculateDriveID(copyingDrive))) {
                 compression.Compress(Gdirectory, DateTime.Now.ToString(), copyingDrive);
             }
             else { 
