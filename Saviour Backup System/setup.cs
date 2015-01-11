@@ -28,8 +28,7 @@ namespace Saviour_Backup_System
             SS = new splashScreen(); //displays the splash screen
             SS.description.Text = "From Setup...";
             databaseTools.init();
-            //startupBackups(); **this needs to be edited so that it uses newer code!
-            //run any initialising code here!
+            startupBackups();
             SS.Close();
 
             icon = new notificationIcon();
@@ -42,29 +41,20 @@ namespace Saviour_Backup_System
             DriveInfo[] drives = USBTools.getConnectedDrives();
             List<string> driveIDs = new List<string>();
             List<string> drivesToBackup = new List<string>();
-            foreach (DriveInfo drive in drives)
-            {
-                driveIDs.Add(USBTools.calculateDriveID(drive));
-            }
-            foreach (string id in IDs)
-            {
-                if (driveIDs.Contains(id))
-                {
-                    drivesToBackup.Add(id);
-                }
-            }
-            foreach (string id in drivesToBackup)
-            {
+
+            foreach (DriveInfo drive in drives) { driveIDs.Add(USBTools.calculateDriveID(drive)); }
+
+            foreach (string id in IDs) { if (driveIDs.Contains(id)) { drivesToBackup.Add(id); } }
+
+            foreach (string id in drivesToBackup) {
                 string directory = databaseTools.getBackupDirectory(id);
                 string name = databaseTools.getDriveName(id);
-                foreach (DriveInfo drive in USBTools.getConnectedDrives())
-                {
-                    if (drive.VolumeLabel == name)
-                    {
-                        CT.startCopy(drive, directory, true);
+
+                foreach (DriveInfo drive in USBTools.getConnectedDrives()) {
+                    if (drive.VolumeLabel == name) {
+                        CT.startCopy(drive, directory, false);
                         break;
-                    }
-                    else { continue; }
+                    } else { continue; }
                 }
             }
         }
