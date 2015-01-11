@@ -173,7 +173,7 @@ namespace Saviour_Backup_System
             DataTable table = new DataTable();
             conn.Open();
             cmd.CommandText =
-                "SELECT Recordset.Name as Backup_Name, Recordset.Creation_Date, Recordset.Backup_Location, Drive.Name, Drive.Capacity FROM Recordset, Drive";
+                "SELECT Recordset.Name, Recordset.Creation_Date, Recordset.Backup_Location, Drive.Name, Drive.Capacity FROM Recordset, Drive";
             using (SqlCeDataAdapter adapter = new SqlCeDataAdapter(cmd.CommandText, conn)) {
                 adapter.Fill(table);
                 conn.Close();
