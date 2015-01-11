@@ -103,8 +103,8 @@
             this.ribbonControl.CanCustomize = false;
             this.ribbonControl.CaptionVisible = true;
             this.ribbonControl.Controls.Add(this.ribbonPanel2);
-            this.ribbonControl.Controls.Add(this.ribbonPanel3);
             this.ribbonControl.Controls.Add(this.ribbonPanel4);
+            this.ribbonControl.Controls.Add(this.ribbonPanel3);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.backupRestoreTab,
