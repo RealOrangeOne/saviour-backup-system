@@ -307,7 +307,6 @@
         private System.Windows.Forms.TextBox backupNameInput;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox drivesDropdown;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox folderPath;
         private System.Windows.Forms.Button directoryBrowseButton;
@@ -318,8 +317,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label3;
         private DevComponents.Editors.IntegerInput previousBackupInput;
-        private System.Windows.Forms.Button createButton;
         private DevComponents.DotNetBar.Controls.ProgressBarX statusProgress;
         private DevComponents.DotNetBar.StyleManager styleManager1;
+        public System.Windows.Forms.Button createButton;
+        public System.Windows.Forms.ComboBox drivesDropdown;
     }
 }
