@@ -31,7 +31,7 @@ namespace Saviour_Backup_System
             tempTip.SetToolTip(this.refreshButton, "Refresh List\nRefresh the list of backups.");
         }
         private void button1_Click(object sender, EventArgs e) { //refresh button
-            refreshButton.Text = "Refreshing..."
+            refreshButton.Text = "Refreshing...";
             DataTable table = databaseTools.getAllDriveBackups();
             for (int i = 0; i > table.Rows.Count; i++) {
                 table.Rows[i].SetField(1, tools.unixDateTime( (long)table.Rows[i][1] ).ToString()); //convert time to better format
