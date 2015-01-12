@@ -65,6 +65,13 @@ namespace Saviour_Backup_System
             setup.ABW.ShowDialog();
         }
 
-        private void backupViewer_Load(object sender, EventArgs e) { refreshButton.PerformClick(); } //refresh the database view when form loaded
+        private void backupViewer_Load(object sender, EventArgs e) { refreshButton.PerformClick(); }
+
+        private void deleteButton_Click(object sender, EventArgs e) { 
+            selectedDriveCreationDate = (Int64)dataGridView.SelectedRows[0].Cells[1].Value;
+            string driveLabel = (string)dataGridView.SelectedRows[0].Cells[0].Value;
+            databaseTools.deleteDriveRecord(selectedDriveCreationDate);
+            MessageBox.Show("Drive '" + driveLabel + "' has been removed.", "Drive Record Removed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

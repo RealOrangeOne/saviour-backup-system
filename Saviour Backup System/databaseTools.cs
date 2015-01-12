@@ -181,8 +181,18 @@ namespace Saviour_Backup_System
             }
         }
 
+        public static void deleteDriveRecord(Int64 creationDate) {
+            conn.Open();
+            cmd.CommandText = "DELETE FROM RecordSet, Drive WHERE Creation_Date=? AND Recordset.Drive_ID = Drive.ID;";
+            cmd.Parameters.Add(new SqlCeParameter("Creation Date", SqlDbType.BigInt));
+            cmd.Parameters["Creation Date"].Value = creationDate;
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            conn.Close();
+        }
+
         public static void updateDriveRecord(string backupName, string backupLocation, bool automatic, bool compression, int previousBackups, Int64 creationDate)
-        {;
+        {
             conn.Open();
             cmd.CommandText = "UPDATE Recordset SET Name=?, Backup_Location=?, Automatic=?, Compression=?, Previous_Backups=? WHERE Creation_Date=?;";
             cmd.Parameters.Add(new SqlCeParameter("Backup Name", SqlDbType.NText));
