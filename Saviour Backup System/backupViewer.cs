@@ -31,6 +31,7 @@ namespace Saviour_Backup_System
             tempTip.SetToolTip(this.refreshButton, "Refresh List\nRefresh the list of backups.");
         }
         private void button1_Click(object sender, EventArgs e) { //refresh button
+            refreshButton.Text = "Refreshing..."
             DataTable table = databaseTools.getAllDriveBackups();
             for (int i = 0; i > table.Rows.Count; i++) {
                 table.Rows[i].SetField(1, tools.unixDateTime( (long)table.Rows[i][1] ).ToString()); //convert time to better format
@@ -44,6 +45,7 @@ namespace Saviour_Backup_System
             table.Columns[4].ColumnName = "Drive Capacity";
 
             dataGridView.DataSource = table; // add table to display
+            refreshButton.Text = "Refresh";
 
         }
 
@@ -62,5 +64,7 @@ namespace Saviour_Backup_System
             setup.ABW.drivesDropdown.Enabled = false;
             setup.ABW.ShowDialog();
         }
+
+        private void backupViewer_Load(object sender, EventArgs e) { refreshButton.PerformClick(); } //refresh the database view when form loaded
     }
 }
