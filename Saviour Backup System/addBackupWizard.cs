@@ -106,6 +106,7 @@ namespace Saviour_Backup_System
                 MessageBox.Show("You cannot backup a drive with no label, please rename it and try again","Can't use default name", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else {
                 statusProgress.Text = "Initialising database connection...";
+                if (createButton.Text == "Update") { setup.BV.passBack(backupNameInput.Text, folderPath.Text, insertionSwitch.Value, compressionSwitch.Value, previousBackupInput.Value); return; }
                 createRecord();
                 statusProgress.Text = "Complete!";
                 statusProgress.ProgressType = DevComponents.DotNetBar.eProgressItemType.Standard;
