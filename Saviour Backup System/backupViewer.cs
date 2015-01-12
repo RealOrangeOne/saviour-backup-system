@@ -12,6 +12,7 @@ namespace Saviour_Backup_System
 {
     public partial class backupViewer : Form
     {
+        private Int64 selectedDriveCreationDate = 0;
         public backupViewer() {
             InitializeComponent();
         }
@@ -34,5 +35,20 @@ namespace Saviour_Backup_System
         }
 
         private void button2_Click(object sender, EventArgs e){ dataGridView.SelectAll(); }
+
+        public void passBack(string backupName, string BackupLocation, bool automatic, bool compression, int previousBackups)
+        {
+            databaseTools.updateDriveRecord(backupName, BackupLocation, automatic, compression, previousBackups, selectedDriveCreationDate);
+            setup.ABW.Close();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            selectedDriveCreationDate = (Int64)dataGridView.SelectedRows[0].Cells[1].Value;
+            setup.ABW = new addBackupWizard();
+            setup.ABW.createButton.Text = "Update";
+            setup.ABW.drivesDropdown.Enabled = false;
+            setup.ABW.ShowDialog();
+        }
     }
 }
