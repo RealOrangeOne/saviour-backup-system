@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
             this.qatCustomizeItem1 = new DevComponents.DotNetBar.QatCustomizeItem();
             this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
@@ -37,8 +37,6 @@
             this.refreshButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button = new System.Windows.Forms.Button();
             this.addBackup = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -98,14 +96,14 @@
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeColumns = false;
             this.dataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView.Location = new System.Drawing.Point(0, 64);
@@ -151,24 +149,6 @@
             this.editButton.TabIndex = 7;
             this.editButton.UseVisualStyleBackColor = false;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(615, 175);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(37, 37);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button
-            // 
-            this.button.Location = new System.Drawing.Point(572, 175);
-            this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(37, 37);
-            this.button.TabIndex = 8;
-            this.button.Text = "button3";
-            this.button.UseVisualStyleBackColor = true;
             // 
             // addBackup
             // 
@@ -217,8 +197,6 @@
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.addBackup);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.refreshButton);
@@ -243,8 +221,6 @@
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button editButton;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button;
         private System.Windows.Forms.Button addBackup;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label titleLabel;
