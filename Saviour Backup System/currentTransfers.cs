@@ -30,21 +30,22 @@ namespace Saviour_Backup_System
             else { //error checking is done (just in case something slips through.
                 string hash = tools.hashDirectory(drive.Name);
                 string DBHash = databaseTools.getHashofRecentBackup(USBTools.calculateDriveID(drive)); //get the hash from the database
-                if (DBHash == "NONE") {
+                MessageBox.Show("hash:" + hash + "\nDBHash:" + DBHash);
+                if (DBHash != "NONE") {//if the hash is found in the database
                     if (DBHash == hash) { //if the hash in the database matches the drive, don't backup because nothing will have changed.
                         MessageBox.Show("No changes have been made to files on drive " + drive.VolumeLabel + ", Will not backup.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     } else { //The actual backup case
-                        string addition = ""; //stores any extra directory needed.
+                        string addition; //stores any extra directory needed, mainly for adding temp.
                         if (databaseTools.isCompression(USBTools.calculateDriveID(drive)))
                         {
                             addition = "\\Temp";
                         }
-                        else {addition = "\\" + DateTime.Now.ToString(); }
+                        else {addition = "\\" + drive.VolumeLabel + "-" + DateTime.Now.ToString(); }
                         copyFiles(drive.Name.Substring(0, 1), endDirectory + addition, visible, drive, hash);
                     }
                 } else {
-                    MessageBox.Show("An error occured when checking the drive. Please try again.", "Hash Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("An error occured when getting the drive hash. Please try again.", "Hash Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
