@@ -22,6 +22,9 @@ namespace Saviour_Backup_System
             this.Size = new Size(583, 269);
         }
 
+        /// <summary>
+        /// Add the tooltips to controls
+        /// </summary>
         private void assignToolTips() {
             ToolTip tempTip = new ToolTip();
             tempTip.AutoPopDelay = 5000;
@@ -40,6 +43,11 @@ namespace Saviour_Backup_System
             tempTip.SetToolTip(this.directoryBrowseButton, "Where?\nClick here to browse your computer to find where to store the backup.");
         }
 
+        /// <summary>
+        /// Browse through window directory to select backup directory
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void directoryBrowseButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -50,6 +58,9 @@ namespace Saviour_Backup_System
             folderBrowserDialog.Dispose(); //memory management
         }
 
+        /// <summary>
+        /// Fill dropdown with available drives
+        /// </summary>
         private void populateDropdown()
         {
             DriveInfo[] drives = USBTools.getConnectedDrives();
@@ -58,6 +69,10 @@ namespace Saviour_Backup_System
                 drivesDropdown.Items.Add(drive.Name + " " + drive.VolumeLabel);
             }
         }
+
+        /// <summary>
+        /// Remove all content from inputs
+        /// </summary>
         private void clearControls()
         {
             backupNameInput.Text = "";
@@ -67,6 +82,11 @@ namespace Saviour_Backup_System
             previousBackupInput.Value = 0;
             folderPath.Text = "";
         }
+
+        /// <summary>
+        /// Mark all controls as read only, or unmark
+        /// </summary>
+        /// <param name="state"></param>
         private void lockControls(bool state)
         {
             backupNameInput.ReadOnly = state;
@@ -76,6 +96,12 @@ namespace Saviour_Backup_System
             previousBackupInput.Enabled = !state;
             folderPath.ReadOnly = state;
         }
+
+        /// <summary>
+        /// Create the backup record from given information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void createButton_Click(object sender, EventArgs e) {
             DriveInfo drive = USBTools.getDriveObject(drivesDropdown.Text.Substring(0, 1));
             lockControls(true);
@@ -122,6 +148,10 @@ namespace Saviour_Backup_System
             }
         }
 
+
+        /// <summary>
+        /// Create record for drive
+        /// </summary>
         private void createRecord() {
             SqlCeConnection conn = databaseTools.conn;
             SqlCeCommand cmd = conn.CreateCommand();
@@ -170,6 +200,11 @@ namespace Saviour_Backup_System
 
         private void insertionSwitch_Click(object sender, EventArgs e) { insertionSwitch.Value = !insertionSwitch.Value; }
 
+        /// <summary>
+        /// Display warning for compression time
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void unifiedFileSwitch_Click(object sender, EventArgs e) { 
             compressionSwitch.Value = !compressionSwitch.Value;
             if(compressionSwitch.Value) {

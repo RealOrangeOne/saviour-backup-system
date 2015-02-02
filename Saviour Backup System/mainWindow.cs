@@ -24,6 +24,9 @@ namespace Saviour_Backup_System
             catch { this.showDisplay(); }
         }
 
+        /// <summary>
+        /// Stop displaying the window
+        /// </summary>
         public void removeDisplay() {
             formatDriveCapacityTimer.Stop();
             driveRefreshTimer.Stop();
@@ -33,6 +36,9 @@ namespace Saviour_Backup_System
             setup.icon.notifyIcon.Visible = true;
         }
 
+        /// <summary>
+        /// Display the window
+        /// </summary>
         public void showDisplay() {
             refreshDriveList();
             connectedDrivesList.Update();
@@ -44,6 +50,9 @@ namespace Saviour_Backup_System
             this.Show();
         }
 
+        /// <summary>
+        /// Refresh the list of drives in window
+        /// </summary>
         public void refreshDriveList() {
             DriveInfo[] drives = USBTools.getConnectedDrives();
             if (connectedDrivesList.Items.Count == USBTools.countDrives()) { return; } //if there is no change in the numer
@@ -66,7 +75,11 @@ namespace Saviour_Backup_System
             connectedDrivesList.Sort();
         }
 
-
+        /// <summary>
+        /// Refresh drive button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void connectedDrivesListRefresh_Click(object sender, EventArgs e)
         {
             toolStripProgress.Visible = true;
@@ -76,7 +89,11 @@ namespace Saviour_Backup_System
             toolStripProgress.Visible = false;
         }
 
-
+        /// <summary>
+        /// When an item in the connected drives list is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void connectedDrivesList_Selection(object sender, ListViewItemSelectionChangedEventArgs e) {
             toolStripProgress.Visible = true;
             if (!e.IsSelected) {
@@ -92,6 +109,10 @@ namespace Saviour_Backup_System
             toolStripProgress.Visible = false;
         }
         
+        /// <summary>
+        /// Show the details of of the selected drive
+        /// </summary>
+        /// <param name="drive"></param>
         private void displayDriveDetails(DriveInfo drive) {
             toolStripProgress.Visible = true;
             selectedDrive = drive;
@@ -118,6 +139,9 @@ namespace Saviour_Backup_System
             toolStripProgress.Visible = false;
         }
 
+        /// <summary>
+        /// Change value of drive capacity bar, and change format of value
+        /// </summary>
         private void formatDriveCapacity()
         {
             DriveInfo drive = selectedDrive;
@@ -137,7 +161,9 @@ namespace Saviour_Backup_System
             
         }
 
-
+        /// <summary>
+        /// Remove the details of onscreen details panel
+        /// </summary>
         private void clearDriveDetails() {
             string blankText = "";
             selectedDrive = null;
@@ -154,11 +180,19 @@ namespace Saviour_Backup_System
 
         private void formatDriveCapacityTimer_Tick(object sender, EventArgs e) { try { formatDriveCapacity(); } catch { } } //Because background workers cant interact with the GUI (very quickly), so a timer has to 
 
+        /// <summary>
+        /// Display elements on device tab
+        /// </summary>
         private void populateDeviceTab() {
-            // put stuff in here for changing labels of buttons etc.
             deviceTab.Visible = true;
             deviceTab.Select();
         }
+
+        /// <summary>
+        /// Catch event for form closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) {
             e.Cancel = true;
             switch (e.CloseReason) {
@@ -179,6 +213,11 @@ namespace Saviour_Backup_System
             }
         }
 
+        /// <summary>
+        /// Display the add backup rules window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addBackupRuleButton_Click(object sender, EventArgs e)
         {
             setup.ABW = new addBackupWizard();
@@ -187,17 +226,32 @@ namespace Saviour_Backup_System
 
         private void exitButton_Click(object sender, EventArgs e) { setup.closeProgram(); }
 
+        /// <summary>
+        /// Display current transfer window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void currentTransfersButton_Click(object sender, EventArgs e)
         {
             setup.CT.Show();
         }
 
+        /// <summary>
+        /// Show all backup drives
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void viewAllRulesButton_Click(object sender, EventArgs e)
         {
             setup.BV = new backupViewer();
             setup.BV.Show();
         }
 
+        /// <summary>
+        /// Run a backup of selected divce
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backupDeviceButton_Click(object sender, EventArgs e)
         {
             if (backupDirectoryDisplay.Text != "NONE") {

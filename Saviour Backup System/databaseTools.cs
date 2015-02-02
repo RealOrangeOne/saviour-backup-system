@@ -18,7 +18,9 @@ namespace Saviour_Backup_System
 
         private static void copyDatabase() { File.WriteAllBytes(@"" + databaseName, Resources.saviour); } //copy the file from resources
 
-
+        /// <summary>
+        /// Checks if the database exists, and then pings the connection
+        /// </summary>
         public static void init() {
             if (!File.Exists(databaseName)) { //if the database doesnt exists (program hasnt been run before)
                 copyDatabase();
@@ -27,6 +29,11 @@ namespace Saviour_Backup_System
             conn.Close();
         }
 
+        /// <summary>
+        /// Returns the drive name from an ID
+        /// </summary>
+        /// <param name="id">ID of the drive to search for</param>
+        /// <returns></returns>
         public static string getDriveName(string id) {
             string name = "NONE";
             conn.Open();
@@ -41,6 +48,11 @@ namespace Saviour_Backup_System
             return name;
         }
 
+        /// <summary>
+        /// Returns the backup directory for a drive
+        /// </summary>
+        /// <param name="id">ID of the drive to search for</param>
+        /// <returns></returns>
         public static string getBackupDirectory(string id) {
             string directory = "NONE";
             conn.Open();
@@ -57,6 +69,11 @@ namespace Saviour_Backup_System
             return directory;
         }
 
+        /// <summary>
+        /// Returns the creation date for a backup directory
+        /// </summary>
+        /// <param name="id">ID of the drive to search for</param>
+        /// <returns></returns>
         public static Int64 getBackupCreationDate(string id)
         {
             Int64 date = 0;
@@ -76,7 +93,10 @@ namespace Saviour_Backup_System
             return date;
         }
 
-
+        /// <summary>
+        /// Returns what drives are set to back up automatically
+        /// </summary>
+        /// <returns></returns>
         public static string[] getAutomaticBackups()
         {
             conn.Open();
@@ -93,6 +113,11 @@ namespace Saviour_Backup_System
             return IDs.ToArray();
         }
 
+        /// <summary>
+        /// Returns the name of the backup
+        /// </summary>
+        /// <param name="drive">Drive object to search for</param>
+        /// <returns></returns>
         public static string getBackupName(DriveInfo drive)
         {
             string name = "";
@@ -111,6 +136,13 @@ namespace Saviour_Backup_System
             return name;
         }
 
+        /// <summary>
+        /// Create a backup record in the database
+        /// </summary>
+        /// <param name="drive">Drive info object for backup drive</param>
+        /// <param name="startDate">Date the backup started (as UNIX timestamp)</param>
+        /// <param name="duration">How long the backup took to run (in seconds)</param>
+        /// <param name="hash">New hash of the drive</param>
         public static void createBackupRecord(DriveInfo drive, Int64 startDate, Int64 duration, string hash)
         {
             string id = USBTools.calculateDriveID(drive);
@@ -133,7 +165,11 @@ namespace Saviour_Backup_System
             conn.Close();
         }
 
-
+        /// <summary>
+        /// Returns the most recent hash of a drive
+        /// </summary>
+        /// <param name="id">ID of drive to search for</param>
+        /// <returns></returns>
         public static string getHashofRecentBackup(string id)
         {
             conn.Open();
@@ -151,6 +187,12 @@ namespace Saviour_Backup_System
             return hash;
         }
 
+
+        /// <summary>
+        /// Returns if the drive is compressed
+        /// </summary>
+        /// <param name="id">ID of the drive to search for</param>
+        /// <returns></returns>
         public static bool isCompression(string id)
         {
             conn.Open();
@@ -168,6 +210,10 @@ namespace Saviour_Backup_System
             return compression;
         }
 
+        /// <summary>
+        /// Returns all the drives that have backup records
+        /// </summary>
+        /// <returns></returns>
         public static DataTable getAllDriveBackups()
         {
             DataTable table = new DataTable();
@@ -181,6 +227,10 @@ namespace Saviour_Backup_System
             }
         }
 
+        /// <summary>
+        /// Deletes a drive record from the database
+        /// </summary>
+        /// <param name="creationDate">Date of drive creation as UNIX timestamp</param>
         public static void deleteDriveRecord(Int64 creationDate) {
             conn.Open();
             cmd.CommandText = "DELETE FROM RecordSet, Drive WHERE Creation_Date=? AND Recordset.Drive_ID = Drive.ID;";
@@ -191,6 +241,15 @@ namespace Saviour_Backup_System
             conn.Close();
         }
 
+        /// <summary>
+        /// Update a drive record in the database
+        /// </summary>
+        /// <param name="backupName">Name of the backup record</param>
+        /// <param name="backupLocation">Location to store backup</param>
+        /// <param name="automatic">is the backup automatic on insert?</param>
+        /// <param name="compression">Will the backup be compressed</param>
+        /// <param name="previousBackups">How many previous backups will be stored</param>
+        /// <param name="creationDate">Creation date of record</param>
         public static void updateDriveRecord(string backupName, string backupLocation, bool automatic, bool compression, int previousBackups, Int64 creationDate)
         {
             conn.Open();

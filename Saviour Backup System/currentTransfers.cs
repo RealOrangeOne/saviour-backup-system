@@ -21,7 +21,12 @@ namespace Saviour_Backup_System
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Starts a backup for a drive
+        /// </summary>
+        /// <param name="drive">Drive object of backup drive</param>
+        /// <param name="endDirectory">Directory to store files</param>
+        /// <param name="visible">Will the progress window be displayed?</param>
         public void startCopy(DriveInfo drive, string endDirectory, bool visible) { //used for validation to make sure the copy wont fail.
             if (!Directory.Exists(drive.Name)) { MessageBox.Show("The drive directory does not exist."); }
 
@@ -51,7 +56,15 @@ namespace Saviour_Backup_System
             }
         }
 
-        private void copyFiles(string driveLetter, string endDirectory, bool display, DriveInfo drive, string hash) //actually starts the backups (and loads the dialogs)
+        /// <summary>
+        /// Run a backup of a drive
+        /// </summary>
+        /// <param name="driveLetter">Windows drive letter for drive</param>
+        /// <param name="endDirectory">Directory to store backed up files</param>
+        /// <param name="display">Will the progress window be displayed</param>
+        /// <param name="drive">Drive object for backup drive</param>
+        /// <param name="hash">Current hash of drive</param>
+        private void copyFiles(string driveLetter, string endDirectory, bool display, DriveInfo drive, string hash)
         {
             backups++; //appends to the number of backups running
             progressBars.Add(new copyProgressBar());
@@ -68,6 +81,9 @@ namespace Saviour_Backup_System
             if (!display) { transfersList[backups].Hide(); } //if it is a startup backup process, quickly hide the dialog.
         }
 
+        /// <summary>
+        /// Label for displaying backup information
+        /// </summary>
         private class copyProgressLabel : Label {
             public copyProgressLabel()
             {
@@ -78,6 +94,9 @@ namespace Saviour_Backup_System
             }
         }
 
+        /// <summary>
+        /// Progressbar for displaying backup progress
+        /// </summary>
         private class copyProgressBar : DevComponents.DotNetBar.Controls.ProgressBarX
         {
             public copyProgressBar()
@@ -101,6 +120,11 @@ namespace Saviour_Backup_System
             this.Hide();
         }
 
+        /// <summary>
+        /// Clears the window of all controls
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to clear?\nThis will cancel all active transfers!", "Clear Window", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
