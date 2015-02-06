@@ -273,5 +273,10 @@ namespace Saviour_Backup_System
         {
             MessageBox.Show("Unavailable.");
         }
+
+        private void ejectDriveButton_Click(object sender, EventArgs e) {
+            RemoveDriveTools.RemoveDrive(driveLetterDisplay.Text.Substring(0, 2));
+            MessageBox.Show("Drive has been ejected", "Drive Ejected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
