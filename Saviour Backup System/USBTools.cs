@@ -92,11 +92,7 @@ namespace Saviour_Backup_System
         }
 
 
-        public static int countDrives() {
-            int numberofDrives = 0;
-            foreach (DriveInfo drive in getConnectedDrives()) { numberofDrives++; }
-            return numberofDrives;
-        }
+        public static int countDrives() { return getConnectedDrives().Length; }
 
 
         public static int spacePercentage(DriveInfo drive) {
@@ -107,7 +103,7 @@ namespace Saviour_Backup_System
         }
 
         public static string calculateDriveID(DriveInfo drive) {
-            return tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive)); ;
+            return tools.hash(drive.VolumeLabel + drive.TotalSize + drive.DriveFormat + USBTools.getDriveType(drive));
         }
 
 
