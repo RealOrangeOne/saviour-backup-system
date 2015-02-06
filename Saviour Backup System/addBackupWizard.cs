@@ -153,29 +153,33 @@ namespace Saviour_Backup_System
         /// Create record for drive
         /// </summary>
         private void createRecord() {
-            SqlCeConnection conn = databaseTools.conn;
-            SqlCeCommand cmd = conn.CreateCommand();
-            DriveInfo drive = USBTools.getDriveObject(drivesDropdown.Text.Substring(0, 1));
-            conn.Open();
+            SqlCeConnection conn = databaseTools.conn; //Get connection object
+            SqlCeCommand cmd = conn.CreateCommand(); //Generate command object to run SQL
+            DriveInfo drive = USBTools.getDriveObject(drivesDropdown.Text.Substring(0, 1)); //Get drive object from 
+            string driveID = USBTools.calculateDriveID(drive); //Calculate ID for drive
+            conn.Open(); //Open connection to database
             statusProgress.Text = "Connection established...";
 
-            cmd.CommandText = "INSERT INTO Drive (ID, Name, Capacity, File_System, Type) VALUES (?,?,?,?,?)";
+            cmd.CommandText = "INSERT INTO Drive (ID, Name, Capacity, File_System, Type) VALUES (?,?,?,?,?)"; //Defined SQL statement for insertion
+            /*Generate SQL parameters, stops injection */
             cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Drive Name", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Capacity", SqlDbType.BigInt));
             cmd.Parameters.Add(new SqlCeParameter("File System", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Type", SqlDbType.NText));
-            cmd.Prepare();
-            cmd.Parameters["Drive ID"].Value = USBTools.calculateDriveID(drive);
+            cmd.Prepare(); //Prepare the parameters for use
+            /*Assign values to parameters */
+            cmd.Parameters["Drive ID"].Value = driveID;
             cmd.Parameters["Drive Name"].Value = drive.VolumeLabel;
             cmd.Parameters["Capacity"].Value = Convert.ToInt64(drive.TotalSize);
             cmd.Parameters["File System"].Value = drive.DriveFormat;
             cmd.Parameters["Type"].Value = USBTools.getDriveType(drive);
-            cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
-            statusProgress.Text = "Drive Record Created...";
+            cmd.ExecuteNonQuery(); //Execute code
+            cmd.Parameters.Clear(); //Clear teh parameters for reuse
+            statusProgress.Text = "Drive Record Created..."; //Display message
 
-            cmd.CommandText = "INSERT INTO Recordset VALUES (?, ?, ?, ?, ?, ?, ?)";
+            cmd.CommandText = "INSERT INTO Recordset VALUES (?, ?, ?, ?, ?, ?, ?)"; //Redefine SQL statement for different insertion
+            /* Generate SQL Paramters for use */
             cmd.Parameters.Add(new SqlCeParameter("Name", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Drive ID", SqlDbType.NText));
             cmd.Parameters.Add(new SqlCeParameter("Creation Date", SqlDbType.BigInt));
@@ -183,19 +187,18 @@ namespace Saviour_Backup_System
             cmd.Parameters.Add(new SqlCeParameter("Automatic", SqlDbType.Bit));
             cmd.Parameters.Add(new SqlCeParameter("Compression", SqlDbType.Bit));
             cmd.Parameters.Add(new SqlCeParameter("Previous Backups", SqlDbType.Int));
-            cmd.Prepare();
+            cmd.Prepare(); //Prepare parameters
             cmd.Parameters["Name"].Value = backupNameInput.Text;
-            cmd.Parameters["Drive ID"].Value = USBTools.calculateDriveID(drive);
-            cmd.Parameters["Creation Date"].Value = tools.getUnixTimeStamp();
+            cmd.Parameters["Drive ID"].Value = driveID;
+            cmd.Parameters["Creation Date"].Value = tools.getUnixTimeStamp(); //Calulate current time
             cmd.Parameters["Backup Location"].Value = folderPath.Text;
             cmd.Parameters["Automatic"].Value = insertionSwitch.Value;
             cmd.Parameters["Compression"].Value = compressionSwitch.Value;
             cmd.Parameters["Previous Backups"].Value = previousBackupInput.Value;
-            cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
-            statusProgress.Text = "Recordset created...";
-            conn.Close();
-
+            cmd.ExecuteNonQuery(); //Execute SQL
+            cmd.Parameters.Clear(); //Clear parameter list
+            statusProgress.Text = "Recordset created..."; //Display message
+            conn.Close(); //Close database connection
         }
 
         private void insertionSwitch_Click(object sender, EventArgs e) { insertionSwitch.Value = !insertionSwitch.Value; }

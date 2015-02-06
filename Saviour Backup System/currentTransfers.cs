@@ -28,29 +28,28 @@ namespace Saviour_Backup_System
         /// <param name="endDirectory">Directory to store files</param>
         /// <param name="visible">Will the progress window be displayed?</param>
         public void startCopy(DriveInfo drive, string endDirectory, bool visible) { //used for validation to make sure the copy wont fail.
-            if (!Directory.Exists(drive.Name)) { MessageBox.Show("The drive directory does not exist."); }
+            if (!Directory.Exists(drive.Name)) { MessageBox.Show("The drive directory does not exist."); } //Check if the drive is still attached
 
-            else if (!Directory.Exists(endDirectory)) { MessageBox.Show("The end directory does not exist."); }
+            else if (!Directory.Exists(endDirectory)) { MessageBox.Show("The end directory does not exist."); } //Check if the directory exists
 
             else { //error checking is done (just in case something slips through.
-                string hash = tools.hashDirectory(drive.Name);
+                string hash = tools.hashDirectory(drive.Name); //Generate a hash of the drive in current state
                 string DBHash = databaseTools.getHashofRecentBackup(USBTools.calculateDriveID(drive)); //get the hash from the database
-                MessageBox.Show("hash:" + hash + "\nDBHash:" + DBHash);
                 if (DBHash != "NONE") {//if the hash is found in the database
                     if (DBHash == hash) { //if the hash in the database matches the drive, don't backup because nothing will have changed.
                         MessageBox.Show("No changes have been made to files on drive " + drive.VolumeLabel + ", Will not backup.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     } else { //The actual backup case
                         string addition; //stores any extra directory needed, mainly for adding temp.
-                        if (databaseTools.isCompression(USBTools.calculateDriveID(drive)))
+                        if (databaseTools.isCompression(USBTools.calculateDriveID(drive))) //is the drive using compression
                         {
-                            addition = "\\Temp";
+                            addition = "\\Temp"; //Append temp to directory for backup
                         }
-                        else {addition = "\\" + drive.VolumeLabel + "-" + DateTime.Now.ToString(); }
-                        copyFiles(drive.Name.Substring(0, 1), endDirectory + addition, visible, drive, hash);
+                        else {addition = "\\" + drive.VolumeLabel + "-" + DateTime.Now.ToString(); } //Generate directory with date / Time
+                        copyFiles(drive.Name.Substring(0, 1), endDirectory + addition, visible, drive, hash); //Initiate the copy
                     }
                 } else {
-                    MessageBox.Show("An error occured when getting the drive hash. Please try again.", "Hash Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("An error occured when getting the drive hash. Please try again.", "Hash Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //Hashes dont match
                     return;
                 }
             }
@@ -67,16 +66,16 @@ namespace Saviour_Backup_System
         private void copyFiles(string driveLetter, string endDirectory, bool display, DriveInfo drive, string hash)
         {
             backups++; //appends to the number of backups running
-            progressBars.Add(new copyProgressBar());
-            layoutPanel.Controls.Add(new copyProgressLabel());
-            layoutPanel.Controls.Add(progressBars[backups]);
+            progressBars.Add(new copyProgressBar()); //Create the display progressbar and store it for reference
+            layoutPanel.Controls.Add(new copyProgressLabel()); //Create the display label and add it to display
+            layoutPanel.Controls.Add(progressBars[backups]); //Display the progress bar and add it to display
 
 
-            copyFilesList.Add(new CopyFiles.CopyFiles(driveLetter + ":\\", endDirectory));
+            copyFilesList.Add(new CopyFiles.CopyFiles(driveLetter + ":\\", endDirectory)); //Generate copying oject, and pass it details of copy
 
-            transfersList.Add(new transferWindow(backups, drive, hash, endDirectory));
+            transfersList.Add(new transferWindow(backups, drive, hash, endDirectory)); //Generate progress window, and pass it details
             transfersList[backups].SynchronizationObject = this;
-            copyFilesList[backups].CopyAsync(transfersList[backups]);
+            copyFilesList[backups].CopyAsync(transfersList[backups]); //Initiate the backup (in a new thread) from reference to copying object
 
             if (!display) { transfersList[backups].Hide(); } //if it is a startup backup process, quickly hide the dialog.
         }
