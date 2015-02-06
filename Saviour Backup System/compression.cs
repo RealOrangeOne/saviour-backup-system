@@ -36,10 +36,10 @@ namespace Saviour_Backup_System
             Process.Start("\"" + fileDirectory + "\" a -y -i \"" + Gdirectory + GfileName + ".zip\" \"" + Gdirectory.Replace("\\Temp", "\\") + GfileName + ".sbf");
 
         }
-        private static void compression7Zip() { //need to write this!
+        private static void compression7Zip() { 
             string fileToCompress = Gdirectory + GfileName + ".zip";
             string outputFile = Gdirectory.Replace("\\Temp", GfileName + ".SB");
-            MessageBox.Show("Compression of your drive has begun. Be aware this can take a lot of time to run", "Compression Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Compression of your drive has begun. Be aware this can take a lot of time to run!", "Compression Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
             CompressFileLZMA(fileToCompress, outputFile);
         }
 
@@ -47,6 +47,11 @@ namespace Saviour_Backup_System
             ZipFile.CreateFromDirectory(Gdirectory, Gdirectory + GfileName + ".zip"); //create the zip file inside the temp directory still.
         }
 
+        /// <summary>
+        /// Compresses a file using LZMA compression
+        /// </summary>
+        /// <param name="inFile">Input File for compression</param>
+        /// <param name="outFile">Compressed file name</param>
         private static void CompressFileLZMA(string inFile, string outFile)
         {
             SevenZip.Compression.LZMA.Encoder coder = new SevenZip.Compression.LZMA.Encoder();
