@@ -1,0 +1,24 @@
+Analysis:
+	Remove contents
+	Object analysis Diagram
+	DFDS (whatever they are)
+
+IPSO Chart:
+	Add title
+	Add footer
+	Add styling
+
+Technical Documentation:
+	Add more important code sections
+	Complete procedure list
+	List names of included libraries / DLL's
+
+Testing Log:
+	Add evidence of testing (Another document maybe?)
+	Test more of the objectives
+	Remove the testing notes
+
+Appraisal:
+	Table of objectives
+	Comment on objectives as to completion state etc
+	(See moodle for details)
