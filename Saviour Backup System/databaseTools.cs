@@ -70,7 +70,7 @@ namespace Saviour_Backup_System
         }
 
         /// <summary>
-        /// Returns the creation date for a backup directory
+        /// Returns the creation date for a backup record
         /// </summary>
         /// <param name="id">ID of the drive to search for</param>
         /// <returns></returns>
