@@ -9,8 +9,3 @@ Testing Log:
 	Add evidence of testing (Another document maybe?)
 	Test more of the objectives
 	Remove the testing notes
-
-Appraisal:
-	Comment on objectives as to completion state etc
-	Get user feedback?
-	Improvements if i were to do it next time
