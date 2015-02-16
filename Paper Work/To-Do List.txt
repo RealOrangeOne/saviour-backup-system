@@ -1,16 +1,6 @@
 Analysis:
-	Remove contents
 	Object analysis Diagram
 	DFDS (whatever they are)
-
-IPSO Chart:
-	Add title
-	Add footer
-	Add styling
-
-User Documentation:
-	Add installation instructions
-	Add a description before steps for bullet points
 
 Technical Documentation:
 	Add more important code sections
