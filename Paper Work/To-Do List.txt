@@ -4,8 +4,6 @@ Analysis:
 
 Technical Documentation:
 	Add more important code sections
-	Complete procedure list
-	List names of included libraries / DLL's
 
 Testing Log:
 	Add evidence of testing (Another document maybe?)
@@ -13,7 +11,6 @@ Testing Log:
 	Remove the testing notes
 
 Appraisal:
-	Table of objectives
 	Comment on objectives as to completion state etc
 	Get user feedback?
 	Improvements if i were to do it next time
