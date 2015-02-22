@@ -9,3 +9,11 @@ Testing Log:
 	Add evidence of testing (Another document maybe?)
 	Test more of the objectives
 	Remove the testing notes
+
+Edit Footers! Done:
+	Anaysis
+	Testing
+	Appraisal
+	IPSO Chart
+	Techincal Documentation
+	
