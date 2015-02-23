@@ -8,7 +8,6 @@ Technical Documentation:
 Testing Log:
 	Add evidence of testing (Another document maybe?)
 	Test more of the objectives
-	Remove the testing notes
 
 Edit Footers! Done:
 	Anaysis
@@ -16,4 +15,13 @@ Edit Footers! Done:
 	Appraisal
 	IPSO Chart
 	Techincal Documentation
+	User Documentation
+Order:
+	Contents
+	Analysis 1-6
+	IPSO Chart 7
+	Testing 8-9
+	Techincal Documentation 10-16
+	User Documentation 17-18
+	Appraial 19-21
 	
