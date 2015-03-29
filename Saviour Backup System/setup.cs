@@ -28,7 +28,7 @@ namespace Saviour_Backup_System
             SS = new splashScreen(); //displays the splash screen
             SS.description.Text = "From Setup...";
             databaseTools.init();
-            startupBackups();
+            //startupBackups();
             SS.Close();
 
             icon = new notificationIcon();
