@@ -4,39 +4,14 @@ From Diane Feedback:
 	Move technical documentation algorithm screenshots to end (to make bigger!)
 	Technical algorithms into IPSO processes
 
-<<<<<<< HEAD
-	
-Order:
-	Contents
-	Analysis
-	IPSO Chart
-	Screen Designs
-	Testing
-	Technial Documentation
-	User Documentation
-	Appraisal
-=======
-Technical Documentation:
-	Add more important code sections
 
-Testing Log:
-	Add evidence of testing (Another document maybe?)
-	Test more of the objectives
-
-Edit Footers! Done:
-	Anaysis
-	Testing
-	Appraisal
-	IPSO Chart
-	Techincal Documentation
-	User Documentation
 Order:
 	Contents
 	Analysis 1-6
 	IPSO Chart 7
+	Screen Designs
 	Testing 8-9
 	Techincal Documentation 10-16
 	User Documentation 17-18
 	Appraial 19-21
 	
->>>>>>> b0e75a394013b9474d03a716e2084dc98be19d67
