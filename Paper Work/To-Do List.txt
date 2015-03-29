@@ -1,11 +1,7 @@
-Analysis:
-	Object analysis Diagram
-	DFDS (whatever they are)
-
-Technical Documentation:
-	Add more important code sections
-
-Testing Log:
-	Add evidence of testing (Another document maybe?)
-	Test more of the objectives
-	Remove the testing notes
+From Diane Feedback:
+	Main GUI inputs to IPSO inputs section
+	Testing with EVERY objective
+	Move technical documentation algorithm screenshots to end (to make bigger!)
+	Technical algorithms into IPSO processes
+	
+	
