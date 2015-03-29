@@ -3,5 +3,14 @@ From Diane Feedback:
 	Testing with EVERY objective
 	Move technical documentation algorithm screenshots to end (to make bigger!)
 	Technical algorithms into IPSO processes
+
 	
-	
+Order:
+	Contents
+	Analysis
+	IPSO Chart
+	Screen Designs
+	Testing
+	Technial Documentation
+	User Documentation
+	Appraisal
