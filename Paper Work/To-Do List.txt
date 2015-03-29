@@ -3,15 +3,16 @@ From Diane Feedback:
 	Testing with EVERY objective
 	Move technical documentation algorithm screenshots to end (to make bigger!)
 	Technical algorithms into IPSO processes
-
+	Feedback from 'client' (me!)
+	Common problems for user feedback
 
 Order:
 	Contents
-	Analysis 1-6
-	IPSO Chart 7
+	Analysis
+	IPSO Chart
 	Screen Designs
 	Testing 8-9
-	Techincal Documentation 10-16
-	User Documentation 17-18
-	Appraial 19-21
+	Techincal Documentation
+	User Documentation
+	Appraial
 	
