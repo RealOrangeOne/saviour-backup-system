@@ -1,10 +1,8 @@
 From Diane Feedback:
-	Main GUI inputs to IPSO inputs section
-	Testing with EVERY objective
-	Move technical documentation algorithm screenshots to end (to make bigger!)
 	Technical algorithms into IPSO processes
 	Feedback from 'client' (me!)
 	Common problems for user feedback
+	Screenshots of testing objectives
 
 Order:
 	Contents
