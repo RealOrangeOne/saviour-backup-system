@@ -2,11 +2,11 @@ From Diane Feedback:
 	Common problems for user feedback
 
 Order:
-	Contents
+	Contents 0
 	Analysis
 	IPSO Chart
 	Screen Designs
-	Testing 8-9
+	Testing
 	Techincal Documentation
 	User Documentation
 	Appraial
